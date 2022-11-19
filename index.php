@@ -45,7 +45,7 @@
         function BuscarUsuario(){
             var usuarioIngresado = document.getElementById('usuario').value;
             var contraIngresada =  document.getElementById('contra').value;
-            alert(usuarioIngresado+contraIngresada);
+        
             $.post(
                 "controllers/UsuarioController.php",
                 {
