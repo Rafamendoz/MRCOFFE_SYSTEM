@@ -13,6 +13,7 @@
     background-image:url('../img/fondo.jpg');
     background-size: 100vw;
     background-repeat: no-repeat;
+    font-family: 'Lucida Sans';
  }
  .inicio{
     display: flex;
@@ -76,6 +77,11 @@
   
    
 }
+
+.btnlogin:hover{
+   background-color: rgb(151, 115, 93);
+}
+
 .label label{
     margin-left:40%;
     color: rgb(92, 37, 5);

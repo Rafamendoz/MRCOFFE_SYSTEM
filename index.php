@@ -16,20 +16,20 @@
             <h1 id="title-2">LOGIN</h1>
                 <form action="">
                     <div class="input">
-                        <input type="text" name="usuario"> 
+                        <input type="text" name="usuario" id="usuario"> 
                     </div>
                     <div class="label">
                         <label for="nombre">USER</label>
                     </div>
                     <div class="input">
-                        <input type="password" name="contra" > 
+                        <input type="password" name="contra" id="contra" > 
                     </div>
                     <div class="label">
                         <label for="nombre">PASSWORD</label>
                     </div>
 
                     <div class="btn">
-                            <input type="submit" value="LOGIN">
+                            <input type="button" class="btnlogin" onclick="BuscarUsuario();" value="LOGIN" id="usuario">
                     </div>
                     
                 </form>
@@ -37,5 +37,86 @@
         </div>
 
     </section>
+
+    <script src="js/jquery.min.js"></script>
+
+
+    <script>
+        function BuscarUsuario(){
+            var usuarioIngresado = document.getElementById('usuario').value;
+            var contraIngresada =  document.getElementById('contra').value;
+            alert(usuarioIngresado+contraIngresada);
+            $.post(
+                "controllers/UsuarioController.php",
+                {
+                    'usuario':usuarioIngresado
+                    
+                },
+                function(data){
+                 
+                    var resp = JSON.parse(data);
+                    let timerInterval
+                        Swal.fire({
+                        title: 'Verificando Credenciales',
+                        html: 'Por favor <b></b> espere.',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                        }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            if(resp.password==contraIngresada){
+                                console.log(data);
+                                window.location.href='views/panelp.php';
+                            }else{
+                                Swal.fire(
+                                'Credenciales Incorrectas',
+                                'Verfique los valores ingresados',
+                                'error'
+                                )
+                            }
+
+                            
+                            
+                        }
+                        })
+                 
+                    
+
+                }
+
+
+
+
+            );
+
+
+
+
+
+        }
+
+
+
+    </script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
