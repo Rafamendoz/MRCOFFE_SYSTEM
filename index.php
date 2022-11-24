@@ -73,7 +73,7 @@
                         if (result.dismiss === Swal.DismissReason.timer) {
                             if(resp.password==contraIngresada){
                                 console.log(data);
-                                window.location.href='views/panelp.php';
+                                window.location.href='panelp.php';
                             }else{
                                 Swal.fire(
                                 'Credenciales Incorrectas',
