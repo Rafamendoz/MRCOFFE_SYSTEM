@@ -14,10 +14,8 @@
 <?php
   session_start();
   if(isset($_SESSION['Rol'])){
-    echo ('bienvenido');
-}else{
-    echo ("no es bienvenido");
-}
+    
+
   
 ?>
 <!DOCTYPE html>
@@ -187,3 +185,8 @@
 
     </body>
 </html>
+<?php
+	}else{
+		header("Location:index.php");
+	}
+?>
