@@ -11,8 +11,8 @@
     //print_r($datos);
 
     if ($datos === FALSE){
-        header ('location:index.php');
-
+        
+        echo "<script> alert('Credenciales incorrectas'); window.location= 'index.php' </script>";
     }elseif($query->rowCount() == 1){
         $_SESSION['User'] = $datos->nombre;
         $_SESSION['Rol'] = $datos->idrol;	
