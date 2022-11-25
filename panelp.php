@@ -11,7 +11,15 @@
 </body>
 </html> -->
 
-
+<?php
+  session_start();
+  if(isset($_SESSION['Rol'])){
+    echo ('bienvenido');
+}else{
+    echo ("no es bienvenido");
+}
+  
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -60,8 +68,8 @@
                         <div class="nav">
                             
                             <div class="sb-sidenav-menu-heading">Personas</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            <a <?php if($_SESSION['Rol'] != 1){ ?>  style="display:none;"  <?php } ?> class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div  class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Usuarios
                                 <div class="sb-sidenav-collapse-arrow"></div>
                             </a>
@@ -71,15 +79,15 @@
                                     <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                                 </nav>
                             </div>-->
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            <a <?php if($_SESSION['Rol'] != 1){ ?>  style="display:none;"  <?php } ?> class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div  class="sb-nav-link-icon"><i class="fas fa-book-open" ></i></div>
                                 Clientes
                                 <div class="sb-sidenav-collapse-arrow"></div>
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 
                             </div>
-                            <div class="sb-sidenav-menu-heading">Pedidos</div>
+                            <div  class="sb-sidenav-menu-heading">Pedidos</div>
                             <a class="nav-link" href="charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Pedido
@@ -98,6 +106,11 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
+                
+                <h2> <?php echo "<h4> Bienvenido - ".$_SESSION['User']."</h4>";?></h2>
+                
+
+
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Administrador</h1>
                         <ol class="breadcrumb mb-4">
@@ -144,6 +157,7 @@
                        
                         
                     </div>
+                   
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
@@ -166,5 +180,10 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <script>
+            
+
+        </script>
+
     </body>
 </html>

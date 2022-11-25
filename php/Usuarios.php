@@ -6,14 +6,16 @@ class Usuarios{
     public $idusuarios;
     public $nombre;
     public $password;
+    public $idrol;
 
 
 
 
-    function Constructor($iduser, $name, $pass){
+    function Constructor($iduser, $name, $pass, $rol){
         $this->idusuarios=$iduser;
         $this->nombre=$name;
         $this->password=$pass;
+        $this->idrol=$rol;
     }
 
     function SetUser($user){
@@ -30,10 +32,17 @@ class Usuarios{
 
     }
 
+    function SetRol($rol){
+        $this->idrol=$rol;
+
+   
+
+    }
+
 
     function ObtenerPassByUser($user,$Conexion){
 
-        $query = "SELECT password from usuarios WHERE nombre="."'".$user."'";
+        $query = "SELECT password, idrol from usuarios WHERE nombre="."'".$user."'";
         $result = mysqli_query($Conexion, $query);
         $Usuario = new Usuarios();
  
@@ -42,7 +51,8 @@ class Usuarios{
               
               $Usuario->SetContra($row['password']);
               $Usuario->SetUser($user);
-          
+              $Usuario->SetRol($row['idrol']);
+            
             }
         
           
@@ -50,7 +60,5 @@ class Usuarios{
         return $Usuario;
       }
 }
-
-
 
 ?>

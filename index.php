@@ -1,4 +1,63 @@
 <!DOCTYPE html>
+<?php
+    include_once 'database.php';
+
+    session_start();
+
+    if(isset($_GET['cerrar_sesion'])){
+        session_unset();
+
+        session_destroy();
+    }
+
+    if(isset($_SESSION['rol'])){
+        switch($_SESSION['rol']){
+            case 1:
+                header('location: admin.php');
+            break;
+
+            case 2:
+            header('location: views/Vista.php');
+            break;
+
+            default:
+        }
+    }
+
+    if(isset($_POST['usuario']) && isset($_POST['contra'])){
+        $username = $_POST['usuario'];
+        $password = $_POST['contra'];
+
+        $db = new Database();
+        $query = $db->connect()->prepare('SELECT*FROM usuarios WHERE nombre = :usuario AND password = :password');
+        $query->execute(['nombre' => $usuario, 'password' => $password]);
+
+        $row = $query->fetch(PDO::FETCH_NUM);
+        if($row == true){
+            // validar rol
+            $rol = $row[3];
+            $_SESSION['rol'] = $rol;
+
+            switch($_SESSION['rol']){
+                case 1:
+                    header('location: admin.php');
+                break;
+    
+                case 2:
+                header('location: views/Vista.php');
+                break;
+    
+                default:
+            }
+        }else{
+            // no existe el usuario
+            echo "El usuario o contraseña son incorrectos";
+        }
+
+    }
+    
+
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +73,7 @@
         </div>
         <div class="forma">
             <h1 id="title-2">LOGIN</h1>
-                <form action="">
+                <form action="Rol.php" method="POST" >
                     <div class="input">
                         <input type="text" name="usuario" id="usuario"> 
                     </div>
@@ -29,7 +88,7 @@
                     </div>
 
                     <div class="btn">
-                            <input type="button" class="btnlogin" onclick="BuscarUsuario();" value="LOGIN" id="usuario">
+                            <input type="submit" class="btnlogin"  value="LOGIN" id="enviar">
                     </div>
                     
                 </form>
@@ -42,81 +101,10 @@
 
 
     <script>
-        function BuscarUsuario(){
-            var usuarioIngresado = document.getElementById('usuario').value;
-            var contraIngresada =  document.getElementById('contra').value;
         
-            $.post(
-                "controllers/UsuarioController.php",
-                {
-                    'usuario':usuarioIngresado
-                    
-                },
-                function(data){
-                 
-                    var resp = JSON.parse(data);
-                    let timerInterval
-                        Swal.fire({
-                        title: 'Verificando Credenciales',
-                        html: 'Por favor <b></b> espere.',
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: () => {
-                            Swal.showLoading()
-                            
-                        },
-                        willClose: () => {
-                            clearInterval(timerInterval)
-                        }
-                        }).then((result) => {
-                        /* Read more about handling dismissals below */
-                        if (result.dismiss === Swal.DismissReason.timer) {
-                            if(resp.password==contraIngresada){
-                                console.log(data);
-                                window.location.href='panelp.php';
-                            }else{
-                                Swal.fire(
-                                'Credenciales Incorrectas',
-                                'Verfique los valores ingresados',
-                                'error'
-                                )
-                            }
-
-                            
-                            
-                        }
-                        })
-                 
-                    
-
-                }
-
-
-
-
-            );
-
-
-
-
-
-        }
-
-
-
     </script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>
