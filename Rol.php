@@ -12,7 +12,7 @@
 
     if ($datos === FALSE){
         header ('location:index.php');
-        alert("Contraseña o usuario incorrecto");
+        echo "<script"
     }elseif($query->rowCount() == 1){
         $_SESSION['User'] = $datos->nombre;
         $_SESSION['Rol'] = $datos->idrol;	
