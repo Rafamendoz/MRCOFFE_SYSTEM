@@ -18,7 +18,7 @@ if(empty($_GET['token']))
 $user_id = $mysqli ->real_escape_string($_GET['user_id']);
 $token = $mysqli ->real_escape_string($_GET['token']);
 
-if(!verificaTokenPass){
+if(!verificaTokenPass($user_id,$token)){
     echo 'no se pudo verificar los datos';
     exit;
 }
@@ -51,7 +51,7 @@ if(!verificaTokenPass){
             <div class="card-body">
                 <div class="card-header">
                     <div class="panel-title text-warning font-effect-emboss">Recuperar Password</div>
-                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="index.php">Iniciar
+                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a class="panel-link" href="index.php">Iniciar
                             Sesión</a></div>
                 </div>
 
