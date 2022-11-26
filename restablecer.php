@@ -9,11 +9,19 @@ if(!empty($_POST)){
 
     if(isEmail($email)){
 
+<<<<<<< HEAD
   
         
         if(emailExiste($email)){
             $user_id = getValor('correo','correo',$email);
-           $nombre = getValor('nombre','correo',$email);
+           $nombre = getValor('nombre','correo',$emsail);
+=======
+        $errors[]="Debe ingresar un correo electronico valido";
+    }
+        if(emailExiste($email)){
+            $user_id = getValor('id','correo',$email);
+         $nombre = getValor('nombre','correo',$email);
+>>>>>>> 6f0af17a3ae06cc99f44a7e4d644f347b1728933
 
            $token = generaTokenPass($email);
            $url='http://localhost/login/cambia_pass.php?user_id='.$user_id.'&token='.$token;
@@ -29,13 +37,19 @@ if(!empty($_POST)){
             $errors[] = "Error al Enviar el  Email";
       
            }
+        }else{
+            $errors[] = "No Existe el correo";
         }
     }else{
         echo 'error';
     }
+<<<<<<< HEAD
 }else{
     echo 'error';
 }
+=======
+
+>>>>>>> 6f0af17a3ae06cc99f44a7e4d644f347b1728933
 
 ?>
 
