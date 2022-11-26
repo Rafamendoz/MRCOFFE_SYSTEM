@@ -88,7 +88,7 @@ function getValor($campo, $campoWhere, $valor){
 function generaTokenPass($user_id){
     global $mysqli;
     $token = generateToken();
-    $stmt =$mysqli->prepare("Update usuarios SET token_password=?, password_request=1 where correo=?");
+    $stmt =$mysqli->prepare("Update usuarios SET activacion=1, token_password=?, password_request=1 where correo=?");
     $stmt->bind_param("ss", $token, $user_id);
     $stmt->execute();
     $stmt->close();

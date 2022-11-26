@@ -96,7 +96,7 @@ if(!verificaTokenPass($user_id,$token)){
                             </div>
                         </div>
                     </form>
-                    <?php echo resultBlock($errors);?>
+                    <?php #echo resultBlock($errors);?>
                 </div>
             </div>
         </div>
