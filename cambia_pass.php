@@ -63,7 +63,7 @@ if(!verificaTokenPass($user_id,$token)){
                     <input id="user_id" type="hidden" class="form-control" name="user_id" value=
                     "<?php echo $user_id; ?>"/>
                     <input id="token" type="hidden" class="form-control" name="token" value=
-                    "<?php echo $user_id; ?>"/>
+                    "<?php echo $token; ?>"/>
 
 
                         <div class="form-group d-block ">
