@@ -13,7 +13,7 @@ if(!empty($_POST)){
         
         if(emailExiste($email)){
             $user_id = getValor('correo','correo',$email);
-           $nombre = getValor('nombre','correo',$emsail);
+           $nombre = getValor('nombre','correo',$email);
 
            $token = generaTokenPass($email);
            $url='http://localhost/login/cambia_pass.php?user_id='.$user_id.'&token='.$token;
