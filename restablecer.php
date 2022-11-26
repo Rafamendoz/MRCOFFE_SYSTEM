@@ -16,7 +16,7 @@ if(!empty($_POST)){
            $nombre = getValor('nombre','correo',$email);
 
            $token = generaTokenPass($email);
-           $url='http://localhost/login/cambia_pass.php?user_id='.$user_id.'&token='.$token;
+           $url='http://localhost/PROYECTODW/cambia_pass.php?user_id='.$user_id.'&token='.$token;
            $asunto='Recuperar Password';
            $cuerpo="Hola $nombre:<br/><br/> Se ha solicitado un reinicio de  contrase&ntilde;a, visita la siguiente direcci&oacute;n: <a href='$url'>$url</a>";
 

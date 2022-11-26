@@ -18,7 +18,7 @@ if(empty($_GET['token']))
 $user_id = $mysqli ->real_escape_string($_GET['user_id']);
 $token = $mysqli ->real_escape_string($_GET['token']);
 
-if(!verificaTokenPass){
+if(!verificaTokenPass($user_id,$token)){
     echo 'no se pudo verificar los datos';
     exit;
 }
@@ -94,7 +94,7 @@ if(!verificaTokenPass){
                             </div>
                         </div>
                     </form>
-                    <?php echo resultBlock($errors);?>
+                    <?php #echo resultBlock($errors);?>
                 </div>
             </div>
         </div>
