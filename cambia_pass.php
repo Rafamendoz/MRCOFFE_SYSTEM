@@ -72,6 +72,8 @@ if(!verificaTokenPass($user_id,$token)){
                            <input id="" type="password" class="form-control" name="password" placeholder="password"
                                 required="">
                            </div>
+                           </div>
+                           <div class="form-group d-block ">
                            <label for="password" class="col-md-3-control-label"> Confirmar Password</label>
                            <div class="col-md-9">
                            <input id="" type="password" class="form-control" name="password" placeholder="password"
