@@ -68,6 +68,7 @@
     padding: 1rem;
     margin-left:4rem;
     margin-top: 0%;
+    margin-bottom: 2%;
     font-family: 'Lucida Sans';
     font-size: 15px;
     color: white; 
@@ -83,12 +84,12 @@
    background-color: rgb(151, 115, 93);
 }
 
-.btn a{
+a{
    text-decoration: none;
    color: rgb(94, 53, 53);
    text-align: center;
-   margin-left: 15%;
-   margin-top: 2%;
+   margin-left:16%;
+
 }
 .label label{
     margin-left:40%;

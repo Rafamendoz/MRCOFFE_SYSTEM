@@ -89,9 +89,9 @@
 
                     <div class="btn">
                             <input type="submit" class="btnlogin"  value="LOGIN" id="enviar"><br>
-                           <a href="restablecer.php">¿Ha olvidado la contraseña?</a>
+                        
                     </div>
-               
+                    <a href="restablecer.php">¿Ha olvidado la contraseña?</a>
                        
                     
                 </form>
