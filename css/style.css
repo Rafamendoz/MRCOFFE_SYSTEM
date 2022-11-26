@@ -69,7 +69,7 @@
     margin-left:4rem;
     margin-top: 0%;
     font-family: 'Lucida Sans';
-    font-size: 20px;
+    font-size: 15px;
     color: white; 
     border-radius: 5px;
     background-color: rgb(114, 50, 13);
@@ -78,10 +78,18 @@
    
 }
 
+
 .btnlogin:hover{
    background-color: rgb(151, 115, 93);
 }
 
+.btn a{
+   text-decoration: none;
+   color: rgb(94, 53, 53);
+   text-align: center;
+   margin-left: 15%;
+   margin-top: 2%;
+}
 .label label{
     margin-left:40%;
     color: rgb(92, 37, 5);
