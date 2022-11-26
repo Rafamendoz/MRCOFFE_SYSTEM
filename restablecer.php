@@ -9,9 +9,10 @@ if(!empty($_POST)){
     if(!isEmail($email)){
 
         $errors[]="Debe ingresar un correo electronico valido";
+    }
         if(emailExiste($email)){
             user_id = getValor('id','correo',$email);
-           nombre = getValor('nombre','correo',$email);
+         nombre = getValor('nombre','correo',$email);
 
            $token - generaTokenPass($email);
            $url='http://'.$_SERVER["SERVER_NAME"].'/login/cambia_pass.php?user_id='.$user_id.'&token='.$token;
@@ -26,9 +27,11 @@ if(!empty($_POST)){
            }else {
             $errors[] = "Error al Enviar el  Email";
            }
+        }else{
+            $errors[] = "No Existe el correo";
         }
     }
-}
+
 
 ?>
 
