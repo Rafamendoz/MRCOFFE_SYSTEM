@@ -11,8 +11,8 @@ if(!empty($_POST)){
         $errors[]="Debe ingresar un correo electronico valido";
     }
         if(emailExiste($email)){
-            user_id = getValor('id','correo',$email);
-         nombre = getValor('nombre','correo',$email);
+            $user_id = getValor('id','correo',$email);
+         $nombre = getValor('nombre','correo',$email);
 
            $token - generaTokenPass($email);
            $url='http://'.$_SERVER["SERVER_NAME"].'/login/cambia_pass.php?user_id='.$user_id.'&token='.$token;
