@@ -2,40 +2,27 @@
 require 'conexion.php';
 require 'funciones.php';
 
-$errors = array();
-if(!empty($_POST)){
-    $email=$mysqli -> real_escape_string($_POST['email']);
+if(empty($_GET['user_id']))
 
-    if(!isEmail($email)){
+{
+    header('Location: index.php');
 
-        $errors[]="Debe ingresar un correo electronico valido";
-    }
-        if(emailExiste($email)){
-            $user_id = getValor('id','correo',$email);
-         $nombre = getValor('nombre','correo',$email);
+}
+if(empty($_GET['token']))
 
-           $token - generaTokenPass($email);
-           $url='http://'.$_SERVER["SERVER_NAME"].'/login/cambia_pass.php?user_id='.$user_id.'&token='.$token;
-           $asunto='Recuperar Password';
-           $cuerpo="Hola $nombre:<br/><br/> Se ha solicitado un reinicio de  contrase&ntilde;a, visita la siguiente direcci&oacute;n: <a href='$url'>$url</a>";
+{
+    header('Location: index.php');
+    
+}
 
-           if(enviarEmail($email,$nombre, $asunto, $cuerpo))    {
-            echo "Hemos enviado un correo electronico a la direccion $email para restablecer tu password. <br/>";
-            echo "<a href='index.php>Iniciar Sesion</a>";
-            exit;
+$user_id = $mysqli ->real_escape_string($_GET['user_id']);
+$token = $mysqli ->real_escape_string($_GET['token']);
 
-           }else {
-            $errors[] = "Error al Enviar el  Email";
-           }
-        }else{
-            $errors[] = "No Existe el correo";
-        }
-    }
-
-
+if(!verificaTokenPass){
+    echo 'no se pudo verificar los datos';
+    exit;
+}
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +30,7 @@ if(!empty($_POST)){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RECUPAR PASSWORD</title>
+    <title>RECUPERAR PASSWORD</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
@@ -63,7 +50,7 @@ if(!empty($_POST)){
         mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-3">
             <div class="card-body">
                 <div class="card-header">
-                    <div class="panel-title text-warning font-effect-emboss">    Recuperar Password</div>
+                    <div class="panel-title text-warning font-effect-emboss">Recuperar Password</div>
                     <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="index.php">Iniciar
                             Sesión</a></div>
                 </div>
@@ -72,18 +59,24 @@ if(!empty($_POST)){
 
                     <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 
-                    <form id="loginform" class="form-horizontal" role="form" action="" method="POST" autocomplete="off">
+                    <form id="loginform" class="form-horizontal" role="form" action="guardar_pass.php" method="POST" autocomplete="off">
+                    <input id="user_id" type="hidden" class="form-control" name="user_id" value=
+                    "<?php echo $user_id; ?>"/>
+                    <input id="token" type="hidden" class="form-control" name="token" value=
+                    "<?php echo $user_id; ?>"/>
 
-                        <div style="margin-bottom: 25px" class="input-group">   
 
-                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-
-                    <form id="loginform" class="form-horizontal" role="form" action="" method="POST" autocomplete="off">
-
-                        <div style="margin-bottom: 25px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="email" type="email" class="form-control" name="email" placeholder="email"
+                        <div class="form-group d-block ">
+                           <label for="password" class="col-md-3-control-label">Nueva Password</label><br>
+                           <div class="col-md-9">
+                           <input id="" type="password" class="form-control" name="password" placeholder="password"
                                 required="">
+                           </div>
+                           <label for="password" class="col-md-3-control-label"> Confirmar Password</label>
+                           <div class="col-md-9">
+                           <input id="" type="password" class="form-control" name="password" placeholder="password"
+                                required>
+                           </div>   
                         </div>
 
                         <div style="margin-top:10px" class="form-group">
