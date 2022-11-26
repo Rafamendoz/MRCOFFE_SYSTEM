@@ -2,20 +2,21 @@
 require 'conexion.php';
 require 'funciones.php';
 
-$errors = array();
+
+
 if(!empty($_POST)){
-    $email=$mysqli -> real_escape_string($_POST['email']);
+    $email=$mysqli-> real_escape_string($_POST['email']);
 
-    if(!isEmail($email)){
+    if(isEmail($email)){
 
-        $errors[]="Debe ingresar un correo electronico valido";
-    }
+  
+        
         if(emailExiste($email)){
-            $user_id = getValor('id','correo',$email);
-         $nombre = getValor('nombre','correo',$email);
+            $user_id = getValor('correo','correo',$email);
+           $nombre = getValor('nombre','correo',$email);
 
-           $token - generaTokenPass($email);
-           $url='http://'.$_SERVER["SERVER_NAME"].'/login/cambia_pass.php?user_id='.$user_id.'&token='.$token;
+           $token = generaTokenPass($email);
+           $url='http://localhost/login/cambia_pass.php?user_id='.$user_id.'&token='.$token;
            $asunto='Recuperar Password';
            $cuerpo="Hola $nombre:<br/><br/> Se ha solicitado un reinicio de  contrase&ntilde;a, visita la siguiente direcci&oacute;n: <a href='$url'>$url</a>";
 
@@ -26,12 +27,17 @@ if(!empty($_POST)){
 
            }else {
             $errors[] = "Error al Enviar el  Email";
+      
            }
         }else{
             $errors[] = "No Existe el correo";
         }
+    }else{
+        echo 'error';
     }
-
+}else{
+    echo 'error';
+}
 
 ?>
 
@@ -101,7 +107,7 @@ if(!empty($_POST)){
                             </div>
                         </div>
                     </form>
-                    <?php echo resultBlock($errors);?>
+                  <?php #print_r($errors);?>
                 </div>
             </div>
         </div>

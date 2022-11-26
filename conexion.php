@@ -4,7 +4,7 @@
     $password = "DaLgPkLvAtvG";
     $db = "fhopenet_MrCoffe";
 
-    $conexion = mysqli_connect($server, $userbd, $password, $db);
+    $mysqli = mysqli_connect($server, $userbd, $password, $db);
 
 
 
