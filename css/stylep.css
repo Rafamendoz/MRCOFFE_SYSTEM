@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+.cabecerap{
+    margin-bottom: 0 !important;
+}
+
+.panelnav{
+    padding: 1em;
+}
+
+
+h1{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+}

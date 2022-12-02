@@ -86,7 +86,7 @@
                                 
                             </div>
                             <div  class="sb-sidenav-menu-heading">Pedidos</div>
-                            <a class="nav-link" href="charts.html">
+                            <a class="nav-link" href="views/pedidos.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Pedido
                             </a>
@@ -181,6 +181,20 @@
         <script>
             
 
+        </script>
+
+        <script>
+            function GoPedido(){
+                .$post('pedidos.php'
+
+                , {
+
+                },function(data){
+
+                }
+
+                );
+            }
         </script>
 
     </body>
