@@ -2,7 +2,7 @@
 include('cabecera.php'); 
 include('../conexion.php');
 
- $idpedido = $_GET["Idpedido"];
+ /*$idpedido = $_GET["Idpedido"];
 
  $query = "SELECT MAX(idpedido) as idpedi FROM pedido";
  $result = mysqli_query($mysqli,$query);
@@ -11,7 +11,7 @@ include('../conexion.php');
         {
           $pedidon = $row['idpedi']+1;
       
-        }
+        }*/
 
  
 
@@ -22,7 +22,7 @@ include('../conexion.php');
 
 
     <div class=" bd-highlight align-items-center">
-        <div class="panelnav ">
+        <div class="panelnav">
             <div class="shadow p-3 mb-1 bg-body rounded">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb cabecerap">
@@ -36,14 +36,134 @@ include('../conexion.php');
 
         </div>
 
-        <div class="p-2 bd-highlight">
-              <p>Detalle de Pedido</p>
-        </div>
 
-        <div class="px-5 bd-highlight">
+        <div class="px-3 mx-3 mt-3 pb-4 bg-body rounded">
            
+                <div class="row">
 
+                    <div class="dashed">
+                        
+
+                   
+                            <div class="col-7 shadow-lg p-3 mb-0 bg-warning rounded">
+                                <div class="fcabera"></div>
+                                </br>
+                               <p><b>PRE-FACTURA</b></p>
+                              
+                            </div>
+
+                          
+                
+                    </div>
+            
+       
+
+
+          
+                </div>
+
+                <div class="row">
+                            
+                    <div class="dashed ">     
+                            <div class="col-7 shadow-lg px-3 pb-2 bg-body">
+                                <div class="row">
+                                    <hr class="hr" />
+                                    <div class="col-3 align-self-center">
+                                        <p class="p1"><b>N.Pedido:</b></p>
+                                    </div>
+
+                                    <div class="col-3 align-self-center">
+                                        <p class="p1">11101</p>
+                                    </div>
+
+                                    <div class="col-2 align-self-center">
+                                        <p class="p1"><b>N. Factura:</b></p>
+                                    </div>
+
+                                    <div class="col-4 align-self-center" >
+                                        <p class="p1">1111-22344-234222</p>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-3 align-self-center">
+                                        <p class="p1"><b>C.Cliente:</b></p>
+                                    </div>
+
+                                    <div class="col-3 align-self-center">
+                                        <p class="p1">11101</p>
+                                    </div>
+
+                                    <div class="col-2 align-self-center">
+                                        <p class="p1"><b>Nombre:</b></p>
+                                    </div>
+                                    <br>
+                                    </br>
+                                   
+
+
+                                    <div class="col-4 align-self-center" >
+                                        <p class="p1">Edwin Rafael Mendoza</p>
+                                    </div>
+                                    <hr class="hr" />
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-3 align-self-center">
+                                        <p class="p1">N.Pedido:</p>
+                                    </div>
+
+                                    <div class="col-3 align-self-center">
+                                        <p class="p1">11101</p>
+                                    </div>
+
+                                    <div class="col-2 align-self-center">
+                                        <p class="p1">N. Factura:</p>
+                                    </div>
+
+                                    <div class="col-4 align-self-center" >
+                                        <p class="p1">1111-22344-234222</p>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-3 align-self-center">
+                                        <p class="p1">N.Pedido:</p>
+                                    </div>
+
+                                    <div class="col-3 align-self-center">
+                                        <p class="p1">11101</p>
+                                    </div>
+
+                                    <div class="col-2 align-self-center">
+                                        <p class="p1">N. Factura:</p>
+                                    </div>
+
+                                    <div class="col-4 align-self-center" >
+                                        <p class="p1">1111-22344-234222</p>
+                                    </div>
+
+                                </div>
+                            
+
+
+
+                            </div>
+                    </div>
+
+              
+
+
+
+
+                </div>
         </div>
+
+
+       
                    
 
                         

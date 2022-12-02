@@ -18,3 +18,27 @@ p{
     text-align: center;
     
 }
+
+
+.p1{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    margin: 0;
+    padding: 0%;
+    text-align: center;
+   
+    
+}
+
+.fcabera {
+  border-radius: 100%;
+  background: rgb(255, 255, 255);
+  width: 2em;
+  height: 2em;
+  margin:0px auto;
+
+
+  
+}
+
+

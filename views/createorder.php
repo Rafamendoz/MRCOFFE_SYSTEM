@@ -25,6 +25,7 @@ include('cabecera.php');
             <div class="bg-dark bg-gradient text-white">
                 <p>Nuevo Pedido</p>
             </div>
+            
             <div class="px-3 shadow mt-3 pb-4 bg-body rounded">
                 <form class="row g-3 " method="get" action="detallepedido.php">
                     <div class="col-md-1 text-center">
@@ -123,20 +124,69 @@ include('cabecera.php');
 
 
                 <div class="row">
-                    <div class="col-2 align-self-center">
-                        <label for="labelNameProduct">Nombre del Producto:</label>
+                    <div class="col-1   align-self-center text-center">
+                        <i class="fa-solid fa-circle-info fa-xl"></i>
+                    </div>
+                    <div class="col-2 align-self-center text-center">
+                        <label for="labelNameProduct" class="text-center">Nombre del Producto</label>
                     </div>
                     <div class="col-4">
                         <input type="text" class="form-control text-center" value="Cafe sin leche" readonly></input>
+                    </div>
+
+                    <div class="col-1 align-self-center ">
+                        <label for="labelNameProduct">Cantidad</label>
+                    </div>
+
+                    <div class="col-1 ">
+                        <input type="number" class="form-control text-center" value=""></input>
+                    </div>
+
+                    <div class="col-3  align-self-center  ">
+                        <label for="labelProductInf" class="text-center"><b>| Product Information</label>
                     </div>
                     
 
                 </div>
 
-                <hr class="hr" />
+
+
+                <hr class="hr mb-1" />
+                
 
                 <div class="row">
-                    <h6>Detalle</h3>
+               
+
+                    <div class="col-12 ">
+                        
+                        <table class="table table-striped text-center align-content-center">
+                               
+                            <thead>
+                          
+                                <th>Codigo</td>
+                                <th>Nombre del Producto</td>
+                                <th>Cantidad</td>
+                                <th>Precio</td>
+                                <th>Accion</td>
+
+                            </thead>
+
+                            <tbody  class="text-center">
+                                <tr>
+                                    <td>11134</td>
+                                    <td>Cafe sin Leche</td>
+                                    <td>1</td>
+                                    <td>13.45</td>
+                                    <td>
+                                    <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+    
+                        </table>
+
+                    </div>
+              
 
                 </div>
 
@@ -145,7 +195,7 @@ include('cabecera.php');
 
                 <div class="row ">
                     <div class="col-2">
-                            <button type="submit" class="btn btn-primary">Generar PreOrden</button>
+                            <button type="button" onclick="GoResumen();" class="btn btn-primary">Generar PreOrden</button>
                     </div>
                 </div>
             </div>
@@ -162,6 +212,13 @@ include('cabecera.php');
    
 
 </main>
+
+    <script>
+        function GoResumen(){
+          window.location.href = 'detallepedido.php';
+        }
+    
+    </script>
 
 
 <?php
