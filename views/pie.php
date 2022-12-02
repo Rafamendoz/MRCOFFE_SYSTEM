@@ -21,10 +21,8 @@ echo <<<EOT
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../js/datatables-simple-demo.js"></script>
-        <script>
-            
-
-        </script>
+        <script src="https://kit.fontawesome.com/0a7f799594.js" crossorigin="anonymous"></script>
+       
 
         
     </body>
