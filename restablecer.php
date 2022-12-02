@@ -50,7 +50,6 @@ if(!empty($_POST)){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RECUPAR PASSWORD</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -69,9 +68,8 @@ if(!empty($_POST)){
         mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-3">
             <div class="card-body">
                 <div class="card-header">
-                    <div class="panel-title text-warning font-effect-emboss">    Recuperar Password</div>
-                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="index.php">Iniciar
-                            Sesión</a></div>
+                    <div class="panel-title text-warning font-effect-emboss"> Recuperar Password</div>
+                    <div style="float:right; font-size: 70%; position: relative; top:-20px"><a href="index.php">Iniciar Sesión</a></div>
                 </div>
 
                 <div style="padding-top:30px" class="card-body">
