@@ -73,8 +73,8 @@
           <div class="nav">
 
             <div class="sb-sidenav-menu-heading">Personas</div>
-            <a <?php if($_SESSION['Rol'] != 1){ ?> style="display:none;" <?php } ?> class="nav-link collapsed" href="#"
-              data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
+            <a <?php if($_SESSION['Rol'] != 1){ ?> style="display:none;" <?php } ?> class="nav-link collapsed" href="views/usuario.php"
+              data-bs-target="#collapseLayouts" aria-expanded="false"
               aria-controls="collapseLayouts">
               <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
               Usuarios

@@ -48,7 +48,7 @@
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item"  href="salir.php">Logout</a></li>
+                        <li><a class="dropdown-item"  href="../salir.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -60,11 +60,11 @@
                         <div class="nav">
                             
                             <div class="sb-sidenav-menu-heading">Personas</div>
-                            <a 
+                            
     EOT; ?>
                             
-                            
-                            <?php if( $_SESSION['Rol']!= 1){ ?>  style="display:none;"  <?php } ?> class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a href="usuario.php"
+                            <?php if( $_SESSION['Rol']!= 1){ ?>  style="display:none;"  <?php } ?> class="nav-link" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div  class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Usuarios
                                 <div class="sb-sidenav-collapse-arrow"></div>
@@ -75,7 +75,7 @@
                                     <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                                 </nav>
                             </div>-->
-                            <a <?php if( $_SESSION['Rol'] != 1){ ?>  style="display:none;"  <?php } ?> class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <a <?php if( $_SESSION['Rol'] != 1){ ?>  style="display:none;"  <?php } ?> class="nav-link collapsed" href="clientes.php"  data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div  class="sb-nav-link-icon"><i class="fas fa-book-open" ></i></div>
                                 Clientes
                                 <div class="sb-sidenav-collapse-arrow"></div>
@@ -84,7 +84,7 @@
                                 
                             </div>
                             <div  class="sb-sidenav-menu-heading">Pedidos</div>
-                            <a class="nav-link" href="views/pedidos.php">
+                            <a class="nav-link" href="pedidos.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Pedido
                             </a>
