@@ -4,24 +4,24 @@ include('cabecera.php');
 
 
 <main>
-  <div class="d-flex flex-column bd-highlight">
-    <div class=" bd-highlight align-items-center">
-      <div class="panelnav ">
-        <div class="shadow p-3 mb-1 bg-body rounded">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb cabecerap">
-              <li class="breadcrumb-item"><a href="../panelp.php">Panel Principal</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Pedidos</li>
-            </ol>
-          </nav>
-        </div>
+  <div class="d-flex flex-column bd-highlight ">
+      <div class=" bd-highlight align-items-center">
+        <div class="panelnav ">
+          <div class="shadow p-3 mb-1 bg-body rounded">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb cabecerap">
+                <li class="breadcrumb-item"><a href="../panelp.php">Panel Principal</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Pedidos</li>
+              </ol>
+            </nav>
+          </div>
 
+        </div>
       </div>
-    </div>
-    
-    <div class="row px-3 mb-2 text-center">
-      <p>Gestion de Pedidos</p>
-    </div>
+      
+      <div class="row px-3 mb-2 text-center ">
+        <p>Gestion de Pedidos</p>
+      </div>
 
       <div class="row px-5">
         <div class="col-xl-3 col-md-6">
