@@ -25,7 +25,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">Mr Coffe
+            <a class="navbar-brand ps-3" href="../panelp.php">Mr Coffe
 
             </a>
             <!-- Sidebar Toggle-->
@@ -95,72 +95,79 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="d-flex flex-column bd-highlight mb-3">
+                    <div class="d-flex flex-column bd-highlight">
                         <div class=" bd-highlight align-items-center">
-                            <div class="panelnav text-bg-light">
-                                <nav aria-label="breadcrumb">
-                                        <ol class="breadcrumb cabecerap">
-                                            <li class="breadcrumb-item"><a href="views/panelp.php">Panel Principal</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Pedidos</li>
-                                        </ol>
-                                </nav>
+                            <div class="panelnav ">
+                                <div  class="shadow p-3 mb-1 bg-body rounded">
+                                    <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb cabecerap">
+                                                <li class="breadcrumb-item"><a href="../panelp.php">Panel Principal</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">Pedidos</li>
+                                            </ol>
+                                    </nav>
+                                </div>
+                               
                             </div>
-                          
-                    
-                                    
-                            
                         </div>
                        
                         <div class="p-2 bd-highlight">
-                            <h1>Gestion de Pedidos</h1>
+                            <p>Gestión de Pedidos</p>
 
                         </div>
-                        <div class="p-2 bd-highlight">
+
+                        <div class="px-5 bd-highlight">
                             
-                        <div class="row">
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="card bg-primary text-white mb-5">
-                                        <div class="card-body">Generar Pedido</div>
-                                        <div class="card-footer d-flex align-items-center justify-content-between">
-                                            <a class="small text-white stretched-link" href="#">View Details</a>
-                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            <div class="row">
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="card bg-primary text-white mb-5">
+                                            <div class="card-body">Generar Pedido</div>
+                                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                                <a class="small text-white stretched-link" href="#">View Details</a>
+                                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3    col-md-6">
+                                        <div class="card bg-warning text-white mb-4">
+                                            <div class="card-body">Pedidos Realizados</div>
+                                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                                <a class="small text-white stretched-link" href="#">View Details</a>
+                                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="card bg-success text-white mb-4">
+                                            <div class="card-body">Reporte de Pedidos</div>
+                                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                                <a class="small text-white stretched-link" href="#">View Details</a>
+                                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="card bg-danger text-white mb-4">
+                                            <div class="card-body">Pedidos Anulados</div>
+                                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                                <a class="small text-white stretched-link" href="#">View Details</a>
+                                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3    col-md-6">
-                                    <div class="card bg-warning text-white mb-4">
-                                        <div class="card-body">Pedidos Realizados</div>
-                                        <div class="card-footer d-flex align-items-center justify-content-between">
-                                            <a class="small text-white stretched-link" href="#">View Details</a>
-                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="card bg-success text-white mb-4">
-                                        <div class="card-body">Reporte de Pedidos</div>
-                                        <div class="card-footer d-flex align-items-center justify-content-between">
-                                            <a class="small text-white stretched-link" href="#">View Details</a>
-                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="card bg-danger text-white mb-4">
-                                        <div class="card-body">Pedidos Anulados</div>
-                                        <div class="card-footer d-flex align-items-center justify-content-between">
-                                            <a class="small text-white stretched-link" href="#">View Details</a>
-                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
+                         </div>
+
+                         <div class=" bd-highlight text-center">
+                            <img src="../img/pedidoimg.jpg" alt="pedidoimage" width="40%" height="40%">
 
                         </div>
-                    </div>
+
+                        
                    
                 </main>
-                <footer class="py-4 bg-light mt-auto">
+                <footer class="py-4 bg-light mt-1">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; Mr Coffee 2022</div>
