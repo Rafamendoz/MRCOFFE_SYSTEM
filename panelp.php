@@ -208,6 +208,19 @@
 
     );
   }
+
+  function GoUsuario() {
+    .$post('usuario.php'
+
+      , {
+
+      },
+      function(data) {
+
+      }
+
+    );
+  }
   </script>
 
 </body>
