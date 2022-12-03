@@ -29,94 +29,71 @@
       </ol>
       <br /><br /><br /><br />
 
-      <div class="row" id="formulario">
+      <div id="formulario">
+        <h3 class="modal-title text-center m-10px-b">Registrar Usuario</h3>
+        <form>
+          <div class="form-row d-flex">
+            <div class="input-group ">
+              <input class="form-control" type="text" placeholder="Busqueda..." aria-label="Search for..."
+                aria-describedby="btnNavbarSearch" />
+              <button class="btn btn-primary" id="btnNavbarSearch" type="button" onclick="Buscarusuario()"><i
+                  class="fas fa-search"></i></button>
 
-        <form class="container" action="" method="post ">
-          <h3 class="modal-title text-center m-10px-b">Registrar Usuario</h3>
-
-          <br />
-
-          <div class="row">
-
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="idal">Identidad del Alumno</label>
-                <input type="text" maxlength="13" class="form-control" id="idalumno" placeholder="Ingrese la identidad "
-                  name="idalumno">
-              </div>
             </div>
-            <button type="button" onclick="Buscarusuario()" class="btn btn-default" value="guardar">Buscar</button>
-          </div>
-
-          <br />
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" maxlength="13" class="form-control" name="nombre" id="nombre" style="color:black">
-              </div>
+            <div class="form-group col-md-4">
+              <label for="inputPassword4">Password</label>
+              <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="rol">Rol de Usuario</label>
-                <input type="text" maxlength="13" class="form-control" name="roles" id="idrol"
-                  placeholder="Ingrese el apellido ">
-              </div>
+          <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          </div>
+          <div class="form-row d-flex ">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState">State</label>
+              <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputZip">Zip</label>
+              <input type="text" class="form-control" id="inputZip">
             </div>
           </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="correo">Correo Electronico</label>
-                <input type="email" maxlength="13" class="form-control" name="email" id="correo"
-                  placeholder="john@example.com" style="color:black;">
-              </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                Check me out
+              </label>
             </div>
           </div>
-          <br>
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
 
+        <div class="row">
+          <div class="col-md-4">
+            <button id="ocultar" type="button" onclick="RegistrarUsuario()" class="btn btn-default"
+              value="guardar">Guardar</button>
+            <button type="button" onclick="cancelar();" class="btn btn-default" value="Cancelar">Cancelar</button>
 
-
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="nomal">Usuario</label>
-                <input type="text" maxlength="60" class="form-control" id="user" placeholder="Ingrese el usuario"
-                  name="user">
-              </div>
-            </div>
           </div>
-
-
-          <br />
-
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="apeal">Contraseña</label>
-                <input type="password" maxlength="60" class="form-control" id="contra"
-                  placeholder="Ingrese la contraseña" name="contra">
-              </div>
-            </div>
+          <div id="mostrar" style='display:none'>
+            <button type="button" onclick="ModificarUsuario()" class="btn btn-default"
+              value="guardar">Modificar</button>
+            <button type="button" onclick="EliminarUsuario ()" class="btn btn-default" value="guardar">Eliminar</button>
           </div>
-
-          <div class="row">
-            <div class="col-md-4">
-              <button id="ocultar" type="button" onclick="RegistrarUsuario()" class="btn btn-default"
-                value="guardar">Guardar</button>
-              <button type="button" onclick="cancelar();" class="btn btn-default" value="Cancelar">Cancelar</button>
-
-            </div>
-            <div id="mostrar" style='display:none'>
-              <button type="button" onclick="ModificarUsuario()" class="btn btn-default"
-                value="guardar">Modificar</button>
-              <button type="button" onclick="EliminarUsuario ()" class="btn btn-default"
-                value="guardar">Eliminar</button>
-            </div>
-          </div>
+        </div>
         </form>
       </div>
 

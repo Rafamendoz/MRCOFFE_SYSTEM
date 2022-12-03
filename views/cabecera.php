@@ -8,6 +8,7 @@
 
 ?>
 
+
 <?php
     echo <<<EOT
     <!DOCTYPE html>
@@ -22,7 +23,7 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
         <link href="../css/stylep.css" rel="stylesheet" />
-
+        
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -62,43 +63,43 @@
                             <div class="sb-sidenav-menu-heading">Personas</div>
                             
     EOT; ?>
-                            
-                            <a href="usuario.php"
-                            <?php if( $_SESSION['Rol']!= 1){ ?>  style="display:none;"  <?php } ?> class="nav-link" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div  class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Usuarios
-                                <div class="sb-sidenav-collapse-arrow"></div>
-                            </a>
-                     <!--  <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+
+<a href="usuario.php" <?php if( $_SESSION['Rol']!= 1){ ?> style="display:none;" <?php } ?> class="nav-link"
+  data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+  Usuarios
+  <div class="sb-sidenav-collapse-arrow"></div>
+</a>
+<!--  <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"><i class="fas fa-angle-down"></i>
                                     <a class="nav-link" href="layout-static.html">Static Navigation</a>
                                     <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                                 </nav>
                             </div>-->
-                            <a <?php if( $_SESSION['Rol'] != 1){ ?>  style="display:none;"  <?php } ?> class="nav-link collapsed" href="clientes.php"  data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div  class="sb-nav-link-icon"><i class="fas fa-book-open" ></i></div>
-                                Clientes
-                                <div class="sb-sidenav-collapse-arrow"></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                
-                            </div>
-                            <div  class="sb-sidenav-menu-heading">Pedidos</div>
-                            <a class="nav-link" href="pedidos.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Pedido
-                            </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Factura
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div>
-                </nav>
-            </div>
-            <div id="layoutSidenav_content"> 
- 
+<a <?php if( $_SESSION['Rol'] != 1){ ?> style="display:none;" <?php } ?> class="nav-link collapsed" href="clientes.php"
+  data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+  <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+  Clientes
+  <div class="sb-sidenav-collapse-arrow"></div>
+</a>
+<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+
+</div>
+<div class="sb-sidenav-menu-heading">Pedidos</div>
+<a class="nav-link" href="pedidos.php">
+  <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+  Pedido
+</a>
+<a class="nav-link" href="tables.html">
+  <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+  Factura
+</a>
+</div>
+</div>
+<div class="sb-sidenav-footer">
+  <div class="small">Logged in as:</div>
+  Start Bootstrap
+</div>
+</nav>
+</div>
+<div id="layoutSidenav_content">

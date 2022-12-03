@@ -1,20 +1,78 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
 
-.cabecerap{
+.cabecerap {
     margin-bottom: 0 !important;
 }
 
-.panelnav{
+.panelnav {
     padding: 1em;
 }
 
 
-p{
+p {
     font-family: 'Roboto', sans-serif;
     font-size: 2em;
     margin: 0;
     padding: 0%;
     text-align: center;
     font-weight: bold;
+}
+
+main {
+    background-image: url('../img/fondo.jpg');
+}
+
+.section-usuario {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    padding: 2rem 3rem;
+
+}
+
+#formulario {
+    width: 70%;
+    margin-top: 8%;
+
+}
+
+
+
+#contener {
+    width: 80%;
+
+
+
+}
+
+#imagen {
+
+    width: 37%;
+    height: 30rem;
+    margin-left: 60%;
+    margin-top: -45%;
+    margin-bottom: 2%;
+
+
+
+}
+
+img {
+    width: 30%;
+    height: 30rem;
+}
+
+#boton {
+    margin-left: 9%;
+}
+
+.form-group {
+    margin-block-end: 2rem;
+}
+
+.input-group {
+    margin-block-end: 2rem;
 }
