@@ -54,10 +54,10 @@ include('../conexion.php');
                               
                             </div>
 
-                            <div class="col-4 shadow-lg p-3 mx-4 mb-2 bg-success rounded-pill ">
+                            <div class="col-4 shadow-lg p-3 mx-4 mb-2 btn-success rounded-pill ">
                                
                                 </br>
-                                <p style="color: white;"><b> <i class="fa-solid fa-comment-dollar mx-2 fa-xl"></i>SUBTOTAL</b></p>
+                                <p style="color: white;"><i class="fa-solid fa-comment-dollar mx-2 fa-xl"></i>SUBTOTAL: <b>L <label>120.00</b></label></p>
                               
                             </div>
 
@@ -183,8 +183,8 @@ include('../conexion.php');
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-12 shadow-lg p-3  mb-3 btn-outline-danger">
-                                        <p>Descuento: L.0.00</p>
+                                    <div class="col-12 shadow-lg p-3  mb-3 btn-danger">
+                                        <p><i class="fa-solid fa-percent fa-xl mx-2"></i>Descuento: L.0.00</p>
 
                                     </div>
                                 </div>
@@ -192,9 +192,22 @@ include('../conexion.php');
 
                                 
                                 <div class="row">
-                                    <div class="col-12 shadow-lg p-3  bg-body">
-                                        <p>Total</p>
+                                    <div class="col-12 shadow-lg p-3 btn-light">
+                                        <p><i class="fa-solid fa-money-bill fa-xl mx-2"></i></i>Total: L<label id="LSubtotal">120.00</label></p>
 
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-6  p-3 d-grid gap-2 btn-light">
+                                        <button type="button"  class="btn btn-primary"><i class="fa-regular fa-circle-right fa-lg mx-2"></i>Procesar</button>
+
+                                    </div>
+
+                                    <div class="col-6  p-3 d-grid gap-2 btn-light">
+                                        <button type="button"  class="btn btn-danger"><i class="fa-solid fa-ban fa-lg mx-2"></i>Cancelar</button>
                                     </div>
                                 </div>
 
