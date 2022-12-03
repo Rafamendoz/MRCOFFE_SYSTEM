@@ -47,17 +47,17 @@ include('../conexion.php');
                         
 
                    
-                            <div class="col-7 shadow-lg p-3 mb-0 bg-warning rounded">
+                            <div class="col-7 shadow-lg p-3 mb-0 bg-primary rounded">
                                 <div class="fcabera"></div>
                                 </br>
-                               <p><b>PRE-FACTURA</b></p>
+                               <p class="p1" style="font-size: 1.4em; color:white;"><b>PRE-FACTURA</b></p>
                               
                             </div>
 
                             <div class="col-4 shadow-lg p-3 mx-4 mb-2 btn-success rounded-pill ">
                                
                                 </br>
-                                <p style="color: white;"><i class="fa-solid fa-comment-dollar mx-2 fa-xl"></i>SUBTOTAL: <b>L <label>120.00</b></label></p>
+                                <p class="p1" style="color: white;"><i class="fa-solid fa-comment-dollar mx-2 fa-xl"></i>SUBTOTAL: <b>L <label>120.00</b></label></p>
                               
                             </div>
 
@@ -82,34 +82,34 @@ include('../conexion.php');
                                 <div class="row">
                                     <hr class="hr" />
                                     <div class="col-3 align-self-center">
-                                        <p class="p1"><b>N.Pedido:</b></p>
+                                        <p class="p2"><b>N.Pedido:</b></p>
                                     </div>
 
                                     <div class="col-3 align-self-center">
-                                        <p class="p1">11101</p>
+                                        <p class="p2">11101</p>
                                     </div>
 
                                     <div class="col-2 align-self-center">
-                                        <p class="p1"><b>N. Factura:</b></p>
+                                        <p class="p2"><b>N. Factura:</b></p>
                                     </div>
 
                                     <div class="col-4 align-self-center" >
-                                        <p class="p1">1111-22344-234222</p>
+                                        <p class="p2">1111-22344-234222</p>
                                     </div>
 
                                 </div>
 
                                 <div class="row">
                                     <div class="col-3 align-self-center">
-                                        <p class="p1"><b>C.Cliente:</b></p>
+                                        <p class="p2"><b>C.Cliente:</b></p>
                                     </div>
 
                                     <div class="col-3 align-self-center">
-                                        <p class="p1">11101</p>
+                                        <p class="p2">11101</p>
                                     </div>
 
                                     <div class="col-2 align-self-center">
-                                        <p class="p1"><b>Nombre:</b></p>
+                                        <p class="p2"><b>Nombre:</b></p>
                                     </div>
                                     <br>
                                     </br>
@@ -117,7 +117,7 @@ include('../conexion.php');
 
 
                                     <div class="col-4 align-self-center" >
-                                        <p class="p1">Edwin Rafael Mendoza</p>
+                                        <p class="p2">Edwin Rafael Mendoza</p>
                                     </div>
                                     <hr class="hr" />
 
@@ -125,7 +125,7 @@ include('../conexion.php');
 
                                 <div class="row">
                                     <div class="col-3 align-self-center">
-                                        <p class="p1">Atendido por:</p>
+                                        <p class="p2">Atendido por:</p>
                                     </div>
 
                                     <div class="col-3 align-self-center">
@@ -133,7 +133,7 @@ include('../conexion.php');
                                     </div>
 
                                     <div class="col-2 align-self-center">
-                                        <p class="p1">Fecha:</p>
+                                        <p class="p2">Fecha:</p>
                                     </div>
 
                                     <div class="col-4 align-self-center" >
@@ -162,7 +162,13 @@ include('../conexion.php');
                                         </thead>
 
                                         <tbody>
-                                            
+                                        <tr>
+                                                <td>Cafe Sin Leche</td>
+                                                <td>1</td>
+                                                <td>12.93</td>
+                                                <td>0.00</td>
+                                                <td>12.93</td>
+                                            </tr>
                                             
                                         </tbody>
                                     </table>
@@ -177,14 +183,14 @@ include('../conexion.php');
                             <div class="col-4  p-3 mx-4 ">
                                 <div class="row">
                                     <div class="col-12 shadow-lg p-3 mb-3  btn-primary">
-                                        <p><i class="fa-solid fa-coins fa-xl mx-2"></i>ISV: L.12.33</p>
+                                        <p class="p1"><i class="fa-solid fa-coins fa-xl mx-2"></i>ISV: L.12.33</p>
 
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-12 shadow-lg p-3  mb-3 btn-danger">
-                                        <p><i class="fa-solid fa-percent fa-xl mx-2"></i>Descuento: L.0.00</p>
+                                        <p class="p1"><i class="fa-solid fa-percent fa-xl mx-2"></i>Descuento: L.0.00</p>
 
                                     </div>
                                 </div>
@@ -193,7 +199,7 @@ include('../conexion.php');
                                 
                                 <div class="row">
                                     <div class="col-12 shadow-lg p-3 btn-light">
-                                        <p><i class="fa-solid fa-money-bill fa-xl mx-2"></i></i>Total: L<label id="LSubtotal">120.00</label></p>
+                                        <p class="p1"><i class="fa-solid fa-money-bill fa-xl mx-2"></i></i>Total: L<label id="LSubtotal">120.00</label></p>
 
                                     </div>
                                 </div>

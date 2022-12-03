@@ -10,15 +10,32 @@
 }
 
 
+<<<<<<< HEAD
 p {
+=======
+.p1 {
+>>>>>>> 3c2694fbebe932a29677e14c8ce13590f487af7a
     font-family: 'Roboto', sans-serif;
-    font-size: 2em;
+    font-size: 1em;
     margin: 0;
     padding: 0%;
     text-align: center;
+    font-weight: 100;
 
 
 }
+
+.p2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    margin: 0;
+    padding: 0%;
+    text-align: center;
+    font-weight: 100;
+
+
+}
+
 
 .fcabera {
     border-radius: 100%;
@@ -31,9 +48,7 @@ p {
 
 }
 
-main {
-    background-image: url('../img/fondo.jpg');
-}
+
 
 .section-usuario {
 
@@ -87,4 +102,8 @@ img {
 
 .input-group {
     margin-block-end: 2rem;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 3c2694fbebe932a29677e14c8ce13590f487af7a
