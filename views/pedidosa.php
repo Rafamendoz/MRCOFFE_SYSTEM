@@ -35,7 +35,7 @@ include('../conexion.php');
 
 
         <div class="bg-dark bg-gradient text-white p-2 mx-3 mt-3 ">
-                <p>Pedidos Anulados</p>
+                <p class="p1">Pedidos Anulados</p>
         </div>
             
         <div class="px-3 mx-3  pb-4 bg-body shadow rounded">

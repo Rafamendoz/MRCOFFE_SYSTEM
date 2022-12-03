@@ -19,8 +19,8 @@ include('cabecera.php');
         </div>
       </div>
       
-      <div class="row px-3 mb-2 text-center ">
-        <p>Gestion de Pedidos</p>
+      <div class="row p-2 mx-3 mt-3  text-center ">
+        <p class="p1">Gestión de Pedidos</p>
       </div>
 
       <div class="row px-5">

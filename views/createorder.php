@@ -19,12 +19,12 @@ include('cabecera.php');
 
         </div>
 
-
+        <div class="bg-dark bg-gradient text-white p-2 mx-3 mt-3 ">
+                <p class="p1">Nuevo Pedido</p>
+        </div>
 
         <div class="px-3 bd-highlight ">
-            <div class="bg-dark bg-gradient text-white">
-                <p>Nuevo Pedido</p>
-            </div>
+               
             
             <div class="px-3 shadow mt-3 pb-4 bg-body rounded">
                 <form class="row g-3 " method="get" action="detallepedido.php">
