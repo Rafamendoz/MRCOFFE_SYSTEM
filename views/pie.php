@@ -24,7 +24,7 @@ echo <<<EOT
         <script src="https://kit.fontawesome.com/0a7f799594.js" crossorigin="anonymous"></script>
        
 
-        
+        <script src="../js/jquery.min.js"></script>
     </body>
 </html>
 EOT;

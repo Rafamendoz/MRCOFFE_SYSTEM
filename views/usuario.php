@@ -55,9 +55,9 @@ include('cabecera.php');
             <form class="card-body" action="" method="post ">
 
               <div class="input-group ">
-                <input class="form-control" type="text" placeholder="Ingrese la id " aria-label="Search for..."
-                  aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button" onclick="Buscarusuario()"><i
+                <input class="form-control" type="text" id="user" placeholder="Ingrese la id "
+                  aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button" onclick="BuscarUsuario()"><i
                     class="fas fa-search"></i></button>
 
               </div>
@@ -137,7 +137,112 @@ include('cabecera.php');
 
 
 </main>
+<!--- Creacion de funciones en javascript--->
 
+<script type="text/javascript">
+function RegistrarUsuario() {
+  let usuario = document.getElementById("user").value;
+  let nombre = document.getElementById("name").value;
+  let contra = document.getElementById("contra").value;
+  let rol = document.getElementById("idrol").value;
+  let correo = document.getElementById("correo").value;
+  alert(idusuario + nombre + correo);
+  $.post("../controllers/InsertarUsuario.php", {
+      'usuario': usuario,
+      'nombre': nombre,
+      "contra": contra,
+      "rol": rol,
+      "correo": correo
+
+
+
+    },
+    function(data) {
+
+
+      console.log(data);
+      var resp = JSON.parse(data);
+      console.log(resp);
+
+
+    }
+  );
+}
+
+
+function ModificarUsuario() {
+  let usuario = document.getElementById("user").value;
+  let nombre = document.getElementById("name").value;
+  let contra = document.getElementById("contra").value;
+  let rol = document.getElementById("idrol").value;
+  let correo = document.getElementById("correo").value;
+  alert(idusuario + nombre + correo);
+  $.post("../controllers/EditarUsuario.php", {
+      'usuario': usuario,
+      'nombre': nombre,
+      "contra": contra,
+      "rol": rol,
+      "correo": correo
+
+
+
+    },
+    function(data) {
+
+
+      console.log(data);
+      var resp = JSON.parse(data);
+      console.log(resp);
+
+
+    }
+  );
+}
+
+function BuscarUsuario() {
+  var usuario = document.getElementById("user").value;
+  $.post("../controllers/ObtenerUsuario.php", {
+      'usuario': usuario
+
+
+    },
+
+    function(data) {
+
+      console.log(data);
+      var resp = JSON.parse(data);
+      console.log(resp);
+
+      document.getElementById('mostrar').style.display = 'block';
+      document.getElementById('ocultar').style.display = 'none';
+      $("#user").prop("disabled", true);
+      document.getElementById("user").value = resp.idusuarios;
+      document.getElementById("name").value = resp.nombre;
+      document.getElementById("contra").value = resp.password;
+      document.getElementById("correo").value = resp.correo;
+      document.getElementById("idrol").value = resp.idrol;
+
+
+
+    }
+
+  );
+
+}
+
+
+
+
+
+
+
+
+
+
+function cancelar() {
+  javascript: location.reload();
+}
+</script>
 
 <?php
 include('pie.php'); 
