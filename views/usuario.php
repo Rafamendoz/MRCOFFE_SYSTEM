@@ -31,7 +31,7 @@ include('cabecera.php');
 
     <div class="px-5 bd-highlight">
 
-      <div class="row">
+      <div class="row caja">
         <div class="col-xl-3 col-md-6">
           <div class="card bg-warning text-white mb-5">
             <div class="card-body">Reporte de Usuarios</div>
@@ -45,8 +45,8 @@ include('cabecera.php');
 
       </div>
       <div class="section-usuario">
-        <div class=" card text-center d-flex p-md-2" id="contener">
-          <div class="card-header p-2 bg-warning text-light">
+        <div class=" card text-center d-flex mb-5" id="contener">
+          <div class="card-header  bg-warning text-light">
             <h1>Registrar Usuario</h1>
           </div>
           <div class="row" id="formulario">
@@ -54,7 +54,7 @@ include('cabecera.php');
 
             <form class="card-body" action="" method="post ">
 
-              <div class="input-group ">
+              <div class="input-group " id="busca">
                 <input class="form-control" type="text" id="user" placeholder="Ingrese la id "
                   aria-label="Search for..." aria-describedby="btnNavbarSearch" />
                 <button class="btn btn-primary" id="btnNavbarSearch" type="button" onclick="BuscarUsuario()"><i
@@ -99,30 +99,28 @@ include('cabecera.php');
               </div>
 
               <div class="form-row d-flex ">
-                <div class="col-md-4">
+                <div class="col-md-4 d-flex ">
                   <button id="ocultar" type="button" onclick="RegistrarUsuario()" class="form-control btn btn-warning"
                     value="guardar">Guardar</button>
-                </div>
-                <div class="col-md-4  " id="boton">
                   <button type="button" onclick="cancelar();" class="form-control btn btn-dark"
                     value="Cancelar">Cancelar</button>
-
                 </div>
-                <div class="form-group col-md-4">
-                  <div id="mostrar" style='display:none'>
-                    <button type="button" onclick="ModificarUsuario()" class=" form-control btn btn-warning"
-                      value="guardar">Modificar</button>
-                    <button type="button" onclick="EliminarUsuario ()" class=" form-control btn btn-default"
-                      value="guardar">Eliminar</button>
+                <div class="col-md-4 d-flex  ">
+                  <div class="form-group col-md-4  ">
+                    <div id="mostrar" style='display:none'>
+                      <button type="button" onclick="ModificarUsuario()" class=" form-control btn btn-warning"
+                        value="guardar">Modificar</button>
+                      <button type="button" onclick="EliminarUsuario ()" class=" form-control btn btn-default"
+                        value="guardar">Eliminar</button>
+                    </div>
                   </div>
                 </div>
-              </div>
             </form>
           </div>
-          <div class="card card-body" id="imagen">
-            <img class="card-img-top" src="../img/usuario.png" alt="usuario">
+          <!--<div class="card card-body" id="imagen">
+            <img class="card-img-top" id="imag" src="../img/usuario.png" alt="usuario">
 
-          </div>
+        </div>-->
         </div>
 
 
@@ -141,12 +139,12 @@ include('cabecera.php');
 
 <script type="text/javascript">
 function RegistrarUsuario() {
-  let usuario = document.getElementById("user").value;
-  let nombre = document.getElementById("name").value;
-  let contra = document.getElementById("contra").value;
-  let rol = document.getElementById("idrol").value;
-  let correo = document.getElementById("correo").value;
-  alert(idusuario + nombre + correo);
+  var usuario = document.getElementById("user").value;
+  var nombre = document.getElementById("name").value;
+  var contra = document.getElementById("contra").value;
+  var rol = document.getElementById("idrol").value;
+  var correo = document.getElementById("correo").value;
+  alert(usuario + nombre + correo);
   $.post("../controllers/InsertarUsuario.php", {
       'usuario': usuario,
       'nombre': nombre,
@@ -171,13 +169,13 @@ function RegistrarUsuario() {
 
 
 function ModificarUsuario() {
-  let usuario = document.getElementById("user").value;
-  let nombre = document.getElementById("name").value;
-  let contra = document.getElementById("contra").value;
-  let rol = document.getElementById("idrol").value;
-  let correo = document.getElementById("correo").value;
-  alert(idusuario + nombre + correo);
-  $.post("../controllers/EditarUsuario.php", {
+  var usuario = document.getElementById("user").value;
+  var nombre = document.getElementById("name").value;
+  var contra = document.getElementById("contra").value;
+  var rol = document.getElementById("idrol").value;
+  var correo = document.getElementById("correo").value;
+  alert(usuario + nombre + correo);
+  $.post("../controllers/EditarUsuarios.php", {
       'usuario': usuario,
       'nombre': nombre,
       "contra": contra,

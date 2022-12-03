@@ -37,11 +37,13 @@ echo <<<EOT
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Busqueda..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </form>
+      <div class=" input-group">
+        <input class="form-control" type="text" placeholder="Busqueda..." aria-label="Search for..."
+          aria-describedby="btnNavbarSearch" />
+        <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
+            class="fas fa-search"></i></button>
+      </div>
+    </form>
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
@@ -65,10 +67,11 @@ echo <<<EOT
                             
     EOT; ?>
 
-<a href="usuario.php" <?php if ($_SESSION['Rol'] != 1) { ?> style="display:none;" <?php } ?> class="nav-link" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-    Usuarios
-    <div class="sb-sidenav-collapse-arrow"></div>
+<a href="usuario.php" <?php if ($_SESSION['Rol'] != 1) { ?> style="display:none;" <?php } ?> class="nav-link"
+  data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+  Usuarios
+  <div class="sb-sidenav-collapse-arrow"></div>
 </a>
 <!--  <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"><i class="fas fa-angle-down"></i>
@@ -76,28 +79,29 @@ echo <<<EOT
                                     <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                                 </nav>
                             </div>-->
-<a <?php if ($_SESSION['Rol'] != 1) { ?> style="display:none;" <?php } ?> class="nav-link collapsed" href="clientes.php" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-    Clientes
-    <div class="sb-sidenav-collapse-arrow"></div>
+<a <?php if ($_SESSION['Rol'] != 1) { ?> style="display:none;" <?php } ?> class="nav-link collapsed" href="clientes.php"
+  data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+  <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+  Clientes
+  <div class="sb-sidenav-collapse-arrow"></div>
 </a>
 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 
 </div>
 <div class="sb-sidenav-menu-heading">Pedidos</div>
 <a class="nav-link" href="pedidos.php">
-    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-    Pedido
+  <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+  Pedido
 </a>
 <a class="nav-link" href="tables.html">
-    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-    Factura
+  <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+  Factura
 </a>
 </div>
 </div>
 <div class="sb-sidenav-footer">
-    <div class="small">Logged in as:</div>
-    <?php echo $_SESSION['User']; ?>
+  <div class="small">Logged in as:</div>
+  <?php echo $_SESSION['User']; ?>
 </div>
 </nav>
 </div>

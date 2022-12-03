@@ -8,7 +8,7 @@
 	  $email= @$_POST["correo"];
 		$rol=@$_POST["rol"];
 	  $Usuario = new Usuarios();
-	  $Usuario-> SetAdd($iduser, $name, $pass,$email, $rol);
-		echo json_encode($Usuario->EditarUsuario($conexion));
+	  $Usuario->SetAdd($iduser, $name, $pass,$rol, $email);
+		echo json_encode($Usuario->modificarUsuario( $mysqli ));
 }
 ?>

@@ -25,8 +25,7 @@
       <div class=" input-group">
         <input class="form-control" type="text" placeholder="Busqueda..." aria-label="Search for..."
           aria-describedby="btnNavbarSearch" />
-        <button class="btn btn-primary" id="btnNavbarSearch" type="button" onclick="Buscarusuario()"><i
-            class="fas fa-search"></i></button>
+        <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
       </div>
     </form>
     <!-- Navbar-->

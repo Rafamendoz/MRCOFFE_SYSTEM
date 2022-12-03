@@ -52,46 +52,50 @@
     flex-direction: row;
     justify-content: center;
     width: 100%;
-    padding: 2rem 3rem;
+    padding: 3rem 3rem;
 
 }
 
 #formulario {
-    width: 70%;
-    margin-top: 8%;
+    width: 95%;
+    margin-top: 1%;
+    margin-bottom: 10%;
+    margin-left: 2%;
 
 }
 
 
 
 #contener {
-    width: 80%;
-
+    width: 100%;
+    margin-bottom: 10%;
 
 
 }
 
 #imagen {
+    width: 30%;
+    margin-left: 80%;
+    margin-top: -52%;
+    margin-bottom: 15%;
 
-    width: 37%;
-    height: 30rem;
-    margin-left: 60%;
-    margin-top: -45%;
-    margin-bottom: 2%;
+}
 
-
+#imag {
+    width: 80%;
+    height: 20rem;
 
 }
 
 
 #boton {
-    margin-left: 9%;
+    /*margin-left: 2%;*/
 }
 
 .form-group {
     margin-block-end: 2rem;
 }
 
-.input-group {
+#busca {
     margin-block-end: 2rem;
 }
