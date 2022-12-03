@@ -1,6 +1,7 @@
 <?php
 include('cabecera.php');
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="d-flex flex-column bd-highlight mt-2">
     <div class=" bd-highlight align-items-center">
         <div class="panelnav ">
@@ -45,18 +46,18 @@ include('cabecera.php');
                     <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Ingrese los apellidos" />
                 </div>
                 <div class="form-group">
-                    <label for="direccion">Direccion</label>
+                    <label for="direccion">Dirección</label>
                     <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingrese la direccion" />
                 </div>
             </div>
 
             <div class="col-6">
                 <div class="form-group">
-                    <label for="telefono">Telefono</label>
+                    <label for="telefono">Teléfono</label>
                     <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el telefono" />
                 </div>
                 <div class="form-group">
-                    <label for="correo">Correo Electronico</label>
+                    <label for="correo">Correo Electrónico</label>
                     <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese el correo" />
                 </div>
                 <div class="form-group">
@@ -65,27 +66,28 @@ include('cabecera.php');
                 </div>
             </div>
             <div class="mt-2">
-                <button type="submit" class="btn btn-success" onsubmit="" name="registrar" value="ok">
+                <button type="submit" class="btn btn-warning" onsubmit="" name="registrar" value="ok">
                     Agregar Cliente
                 </button>
-                <button type="reset" class="btn btn-danger">Cancelar</button>
+                <button type="reset" class="btn btn-dark">Cancelar</button>
             </div>
         </form>
         <div class="row p-4">
+            <input class="form-control col-2" id="myInput" type="text" placeholder="Buscar..">
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
-                        <th scope="col">Direccion</th>
+                        <th scope="col">Dirección</th>
                         <th scope="col">Correo</th>
-                        <th scope="col">Telefono</th>
+                        <th scope="col">Teléfono</th>
                         <th scope="col">RTN</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                     <?php
                     include '../conexion.php';
                     $query = "SELECT * FROM cliente";
@@ -101,10 +103,10 @@ include('cabecera.php');
                             <td><?php echo $row['telefono'] ?></td>
                             <td><?php echo $row['identidad'] ?></td>
                             <td>
-                                <a href="modificarCliente.php?id=<?php echo $row['idcliente'] ?>" class="btn btn-success">
+                                <a href="modificarCliente.php?id=<?php echo $row['idcliente'] ?>" class="btn btn-warning">
                                     Editar
                                 </a>
-                                <a href="clientes.php?id=<?php echo $row['idcliente'] ?>" onclick="return eliminar()" class="btn btn-danger">Eliminar</a>
+                                <a href="clientes.php?id=<?php echo $row['idcliente'] ?>" onclick="return eliminar()" class="btn btn-dark">Eliminar</a>
                             </td>
                         </tr>
                     <?php
@@ -116,6 +118,16 @@ include('cabecera.php');
 
                 </tbody>
             </table>
+            <script>
+                $(document).ready(function() {
+                    $("#myInput").on("keyup", function() {
+                        var value = $(this).val().toLowerCase();
+                        $("#myTable tr").filter(function() {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                        });
+                    });
+                });
+            </script>
         </div>
     </div>
 
