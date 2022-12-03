@@ -26,6 +26,10 @@
                                 
                             </div>
                             <div  class="sb-sidenav-menu-heading">Pedidos</div>
+                            <a class="nav-link" href="productos.php">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+                                Productos
+                            </a>
                             <a class="nav-link" href="charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Pedido

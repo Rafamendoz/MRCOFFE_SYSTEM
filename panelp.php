@@ -36,7 +36,7 @@ if (isset($_SESSION['Rol'])) {
   <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
       <!-- Navbar Brand-->
-      <a class="navbar-brand ps-3" href="index.html">Mr Coffee
+      <a class="navbar-brand ps-3" href="panelp.php">Mr Coffee
 
       </a>
       <!-- Sidebar Toggle-->
@@ -90,6 +90,10 @@ if (isset($_SESSION['Rol'])) {
 
               </div>
               <div class="sb-sidenav-menu-heading">Pedidos</div>
+              <a class="nav-link" href="productos.php">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+                Productos
+              </a>
               <a class="nav-link" href="views/pedidos.php">
                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                 Pedido
