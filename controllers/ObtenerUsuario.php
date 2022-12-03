@@ -1,8 +1,8 @@
 <?php
 	include("../conexion.php");
 	include("../php/Usuarios.php");
-		$Usuario = new Usuario();
+		$Usuario = new Usuarios();
 		$iduser= @$_POST["usuario"];
-		echo json_encode($Usuario->ObtenerUsuariosById($iduser,$conexion));
+		echo json_encode($Usuario->ObtenerUsuariosById($iduser,$mysqli));
 
 ?>

@@ -6,7 +6,7 @@ class Usuarios{
     public $idusuarios;
     public $nombre;
     public $password;
-    public $correo
+    public $correo;
     public $idrol;
 
 
@@ -64,8 +64,8 @@ class Usuarios{
         $lista = array();
         while ($row = mysqli_fetch_array($result))
         {
-            $Usuario;= new Usuarios();
-            $Usuario;>ConstructorSobrecargado($row['idusuarios'],$row['nombre'],$row['password'],$row['correo'],$row['correo']);
+            $Usuario= new Usuarios();
+            $Usuario->ConstructorSobrecargado($row['idusuarios'],$row['nombre'],$row['password'],$row['correo'],$row['correo']);
           $lista[]=$Usuario;
 
         }
@@ -128,7 +128,7 @@ class Usuarios{
         
       }
       function ObtenerUsuariosById($iduser, $Conexion){
-        $query = "SELECT NombreAlumno, ApellidoAlumno, idDepartamento,Identidadalumno from alumnos where Identidadalumno=$id";
+        $query = "SELECT idusuarios,nombre, password, correo,idrol from usuarios where nombre='$iduser'";
         $result = mysqli_query($Conexion, $query);
         $Usuario = new Usuarios();
         if ($row = mysqli_fetch_array($result))
