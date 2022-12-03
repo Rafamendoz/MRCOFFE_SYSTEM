@@ -41,7 +41,9 @@ include('../conexion.php');
            
                 <div class="row">
 
-                    <div class="dashed">
+    
+
+                    
                         
 
                    
@@ -52,9 +54,20 @@ include('../conexion.php');
                               
                             </div>
 
+                            <div class="col-4 shadow-lg p-3 mx-4 mb-2 bg-success rounded-pill ">
+                               
+                                </br>
+                                <p style="color: white;"><b> <i class="fa-solid fa-comment-dollar mx-2 fa-xl"></i>SUBTOTAL</b></p>
+                              
+                            </div>
+
+
+                            
+
                           
                 
-                    </div>
+
+                    
             
        
 
@@ -64,7 +77,7 @@ include('../conexion.php');
 
                 <div class="row">
                             
-                    <div class="dashed ">     
+                 
                             <div class="col-7 shadow-lg px-3 pb-2 bg-body">
                                 <div class="row">
                                     <hr class="hr" />
@@ -112,39 +125,47 @@ include('../conexion.php');
 
                                 <div class="row">
                                     <div class="col-3 align-self-center">
-                                        <p class="p1">N.Pedido:</p>
+                                        <p class="p1">Atendido por:</p>
                                     </div>
 
                                     <div class="col-3 align-self-center">
-                                        <p class="p1">11101</p>
+                                        <p class="p1">Juana la cubana</p>
                                     </div>
 
                                     <div class="col-2 align-self-center">
-                                        <p class="p1">N. Factura:</p>
+                                        <p class="p1">Fecha:</p>
                                     </div>
 
                                     <div class="col-4 align-self-center" >
-                                        <p class="p1">1111-22344-234222</p>
+                                        <p class="p1"><?php 
+                                        $fechaActual = date('d/m/y');
+                                        echo $fechaActual;?></p>
                                     </div>
+                                    <br>
+                                    <br>
+                                    </br>
+                                    
+                                    <hr class="hr">
 
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-3 align-self-center">
-                                        <p class="p1">N.Pedido:</p>
-                                    </div>
+                                    <table class="table  table-striped text-center align-content-center">
+                                        <thead>
+                                            <tr>
+                                                <th>Descripcion</th>
+                                                <th>Cantidad</th>
+                                                <th>Precio</th>
+                                                <th>Descuento</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                        </thead>
 
-                                    <div class="col-3 align-self-center">
-                                        <p class="p1">11101</p>
-                                    </div>
-
-                                    <div class="col-2 align-self-center">
-                                        <p class="p1">N. Factura:</p>
-                                    </div>
-
-                                    <div class="col-4 align-self-center" >
-                                        <p class="p1">1111-22344-234222</p>
-                                    </div>
+                                        <tbody>
+                                            
+                                            
+                                        </tbody>
+                                    </table>
 
                                 </div>
                             
@@ -152,7 +173,37 @@ include('../conexion.php');
 
 
                             </div>
-                    </div>
+
+                            <div class="col-4  p-3 mx-4 ">
+                                <div class="row">
+                                    <div class="col-12 shadow-lg p-3 mb-3  btn-primary">
+                                        <p><i class="fa-solid fa-coins fa-xl mx-2"></i>ISV: L.12.33</p>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 shadow-lg p-3  mb-3 btn-outline-danger">
+                                        <p>Descuento: L.0.00</p>
+
+                                    </div>
+                                </div>
+
+
+                                
+                                <div class="row">
+                                    <div class="col-12 shadow-lg p-3  bg-body">
+                                        <p>Total</p>
+
+                                    </div>
+                                </div>
+
+                              
+                               
+                              
+                            </div>
+
+
 
               
 
