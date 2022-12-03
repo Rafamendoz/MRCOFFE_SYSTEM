@@ -24,14 +24,14 @@ include('cabecera.php');
       </div>
     </div>
 
-    <div class="p-2 bd-highlight text-light">
+    <div class="p-2 bd-highlight text-dark">
       <p>Gestión de Usuarios</p>
 
     </div>
 
     <div class="px-5 bd-highlight">
 
-      <div class="row caja">
+      <!-- <div class="row caja">
         <div class="col-xl-3 col-md-6">
           <div class="card bg-warning text-white mb-5">
             <div class="card-body">Reporte de Usuarios</div>
@@ -43,10 +43,10 @@ include('cabecera.php');
         </div>
 
 
-      </div>
+      </div>-->
       <div class="section-usuario">
         <div class=" card text-center d-flex mb-5" id="contener">
-          <div class="card-header  bg-warning text-light">
+          <div class="card-header  bg-dark text-light">
             <h1>Registrar Usuario</h1>
           </div>
           <div class="row" id="formulario">
@@ -62,65 +62,71 @@ include('cabecera.php');
 
               </div>
               <div class="form-row d-flex justify-content-between text-center m-5-t" id="forma">
-                <div class="form-group col-md-9">
+                <div class="form-group col-md-6">
                   <label for="nomal">Usuario</label>
                   <input type="text" class="form-control  " id="name" placeholder="Ingrese el usuario" name="user">
                 </div>
-              </div>
-              <div class="form-row d-flex justify-content-between text-center m-5-t" id="forma">
-                <div class="form-group col-md-9">
+                <div class="form-group col-md-6">
                   <label for="apeal">Contraseña</label>
                   <input type="password" class="form-control" id="contra" placeholder="Ingrese la contraseña"
                     name="contra">
                 </div>
               </div>
+
               <div class="form-row d-flex justify-content-between text-center m-md-2">
-                <div class="form-group col-md-9">
+                <div class="form-group col-md-6">
                   <label for="correo">Correo Electronico</label>
                   <input type="email" class="form-control" name="email" id="correo" placeholder="john@example.com">
                 </div>
-              </div>
-              <div class="form-row d-flex justify-content-between text-center m-md-2">
-                <div class="form-group col-md-9">
+                <div class="form-group col-md-6">
                   <label for="rol">Rol de Usuario</label>
                   <select id="idrol" name="idrol" title="Roles" class="form-control" data-live-search="true">
                     <?php
-              while ($row = mysqli_fetch_array($result))
-              {
-              ?>
+                  while ($row = mysqli_fetch_array($result))
+                  {
+                  ?>
 
                     <option value="<?php echo $row['idrol']?>"><?php echo $row ['rol'];?></option>
                     <?php
-              }
-              ?>
+                  }
+                  ?>
                   </select>
 
                 </div>
+
               </div>
 
-              <div class="form-row d-flex ">
-                <div class="col-md-4 d-flex ">
-                  <button id="ocultar" type="button" onclick="RegistrarUsuario()" class="form-control btn btn-warning"
-                    value="guardar">Guardar</button>
-                  <button type="button" onclick="cancelar();" class="form-control btn btn-dark"
-                    value="Cancelar">Cancelar</button>
-                </div>
-                <div class="col-md-4 d-flex  ">
-                  <div class="form-group col-md-4  ">
-                    <div id="mostrar" style='display:none'>
-                      <button type="button" onclick="ModificarUsuario()" class=" form-control btn btn-warning"
-                        value="guardar">Modificar</button>
-                      <button type="button" onclick="EliminarUsuario ()" class=" form-control btn btn-default"
-                        value="guardar">Eliminar</button>
-                    </div>
-                  </div>
-                </div>
+
             </form>
           </div>
           <!--<div class="card card-body" id="imagen">
             <img class="card-img-top" id="imag" src="../img/usuario.png" alt="usuario">
 
         </div>-->
+
+
+
+          <div class="form-row d-flex ">
+
+            <div class="col-md-4 d-flex  ">
+              <button id="ocultar" type="button" onclick="RegistrarUsuario()"
+                class="form-control btn btn-warning mx-4 mb-3 " value="guardar">Guardar</button>
+              <button type="button" onclick="cancelar();" class="form-control btn btn-dark mx-4 mb-3 "
+                value="Cancelar">Cancelar</button>
+              <button id="mostrar" style='display:none' type="button" onclick="ModificarUsuario()"
+                class=" form-control btn btn-warning mx-4 mb-3 " value="guardar">Modificar</button>
+            </div>
+            <div class="col-md-4 d-flex ">
+              <div id="mostrar" style='display:none'>
+
+                <div class="form-group col-md-4  ">
+
+                  <!-- <button type="button" onclick="EliminarUsuario ()" class=" form-control btn btn-default"
+                      value="guardar">Eliminar</button>-->
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
 
