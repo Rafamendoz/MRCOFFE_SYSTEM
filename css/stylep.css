@@ -16,9 +16,22 @@
     margin: 0;
     padding: 0%;
     text-align: center;
+    font-weight: 100;
 
 
 }
+
+.p2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    margin: 0;
+    padding: 0%;
+    text-align: center;
+    font-weight: 100;
+
+
+}
+
 
 .fcabera {
     border-radius: 100%;
