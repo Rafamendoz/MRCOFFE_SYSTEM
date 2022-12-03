@@ -5,100 +5,143 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<!-- sidebar-->
-<?php
+    <!-- sidebar-->
+    <?php
         require("header.php");
     ?>
-<!-- sidebar-->
-<?php
+        <!-- sidebar-->
+        <?php
             require("sidebar.php");
         ?>
 
-<div id="layoutSidenav_content">
+            <div id="layoutSidenav_content">
+                
+                  
+                
+                <!-- contenido-->
+   
+            
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Productos</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Inventario de Productos</li>
+                        </ol>
+                        <div class="row">
+             <script>
+                function eliminar() {
+                    var respuesta = confirm("¿Está seguro de eliminar el Producto?");
+                    return respuesta;
+                    
 
-
-
-  <!-- contenido-->
-
-  <main>
-
-    <h2> <?php echo "<h4>  - ".$_SESSION['User']."</h4>";?></h2>
-
-    <div class="container-fluid px-4">
-      <h1 class="mt-4">Productos</h1>
-      <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Administrador</li>
-      </ol>
-      <div class="row">
-
-
-        <div class="col-xl-3 col-md-6">
-          <div class="card bg-primary text-white mb-4">
-            <div class="card-body">Primary Card</div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
-              <a class="small text-white stretched-link" href="#">View Details</a>
-              <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                }
+            </script>
+    <form method="POST" class="row">
+            <?php
+            include 'conexion.php';
+         /*   include 'controllers/ProductosEliminarController.php';*/
+            include 'controllers/ProductosInsertarController.php';
+            ?>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="codigo">Código</label>
+                    <input type="number" class="form-control" id="codigo" name="codigo" placeholder="Ingrese el Código" />
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese la Descripción" />
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
-          <div class="card bg-warning text-white mb-4">
-            <div class="card-body">Warning Card</div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
-              <a class="small text-white stretched-link" href="#">View Details</a>
-              <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
-          <div class="card bg-success text-white mb-4">
-            <div class="card-body">Success Card</div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
-              <a class="small text-white stretched-link" href="#">View Details</a>
-              <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
-          <div class="card bg-danger text-white mb-4">
-            <div class="card-body">Danger Card</div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
-              <a class="small text-white stretched-link" href="#">View Details</a>
-              <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-            </div>
-          </div>
-        </div>
 
-      </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="producto">Producto</label>
+                    <input type="text" class="form-control" id="producto" name="producto" placeholder="Ingrese el Producto" />
+                </div> 
+            
+                <div class="form-group">
+                    <label for="precio">Precio</label>
+                    <input type="number" class="form-control" id="precio" name="precio" placeholder="Ingrese el precio" />
+                </div> 
+            </div>
 
-    </div>
-  </main>
-  <!-- fin contenido-->
 
-  <!-- footer-->
-  <?php
+            <div class="mt-2">
+                <button type="submit" class="btn btn-success" onsubmit="" name="registrar" value="ok">
+                    Agregar Producto
+                </button>
+                <button type="reset" class="btn btn-danger">Cancelar</button>
+            </div>
+        </form>
+                            
+                        <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th id="">Código</th>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Precio</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                
+                                    <tbody>
+                                      <?php
+                                          include 'conexion.php';
+                                          $query = "SELECT * FROM producto";
+                                          $result = mysqli_query($mysqli, $query);
+                                          while ($row = mysqli_fetch_array($result)) {
+                                      ?> 
+                                        <tr>
+                                            
+                                            <td scope="row"><?php echo $row['idproducto'] ?></td>
+                                            <td><?php echo $row['nombreproducto'] ?></td>
+                                            <td><?php echo $row['descripcion'] ?></td> 
+                                            <td><?php echo $row['precio'] ?></td> 
+                                            <td>
+                                              <a href="productosModificar.php?id=<?php echo $row['idproducto'] ?>" class="btn btn-success">
+                                              <i class="fa-solid fa-pen-to-square"></i> </a>
+                                              <a href="productosEliminar.php?id=<?php echo $row['idproducto'] ?>"  class="btn btn-danger">
+                                              <i class="fa-solid fa-trash"></i></a>
+                                            </td>                             
+                                        </tr>
+                                        <?php
+                                          }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                         </div>
+                            
+                        </div>
+                        
+                    <!-- fin contenido-->
+
+                <!-- footer-->
+                <?php
                 require("footer.php");
                 ?>
-</div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-</script>
-<script src="js/scripts.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="assets/demo/chart-area-demo.js"></script>
-<script src="assets/demo/chart-bar-demo.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-<script src="js/datatables-simple-demo.js"></script>
-<script>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script>
+        <script>
+            
 
+        </script>
 
-</script>
-
-</body>
-
+    </body>
 </html>
 <?php
-	}else{
-		header("Location:index.php");
-	}
+    }else{
+        header("Location:index.php");
+    }
 ?>
+
