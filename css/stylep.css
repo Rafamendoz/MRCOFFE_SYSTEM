@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:wght@700&display=swap');
 
 
 .cabecerap {
@@ -16,7 +16,19 @@ p {
     margin: 0;
     padding: 0%;
     text-align: center;
-    font-weight: bold;
+
+
+}
+
+.fcabera {
+    border-radius: 100%;
+    background: rgb(255, 255, 255);
+    width: 2em;
+    height: 2em;
+    margin: 0px auto;
+
+
+
 }
 
 main {
