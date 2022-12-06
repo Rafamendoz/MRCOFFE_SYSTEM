@@ -4,14 +4,14 @@
   
 ?>
 <?php
-	include("conexion.php");
+	include("../conexion.php");
 
 			$query = "SELECT idcargo, nombrecargo from cargos";
 			$result = mysqli_query($mysqli, $query);
 
 ?>
 <?php
-	include("conexion.php");
+	include("../conexion.php");
 
 			$query2 = "SELECT idusuarios, nombre from usuarios";
 			$result2 = mysqli_query($mysqli, $query2);
@@ -22,7 +22,9 @@ include('cabecera.php');
 ?>
 
 
-
+<head>
+				<script src='js/jquery.min.js'></script>
+				</head>
 <!-- contenido-->
 
 
@@ -222,7 +224,7 @@ include('cabecera.php');
     var idusuarios = document.getElementById("idusuarios").value;
     //alert(idempleados);
     $.post(
-      "WSEmpleado/InsertarEmpleado.php", {
+      "../WSEmpleado/InsertarEmpleado.php", {
         'idempleados': idempleados,
         'nombre': nombre,
         "apellido": apellido,
@@ -252,7 +254,7 @@ include('cabecera.php');
     var idcargo = document.getElementById("idcargo").value;
     var idusuarios = document.getElementById("idusuarios").value;
     $.post(
-      "WSEmpleado/EditarEmpleado.php", {
+      "../WSEmpleado/EditarEmpleado.php", {
         'idempleados': idempleados,
         'nombre': nombre,
         "apellido": apellido,
@@ -276,7 +278,7 @@ include('cabecera.php');
 
 
     $.post(
-      "WSEmpleado/ObtenerEmpleado.php", {
+      "../WSEmpleado/ObtenerEmpleado.php", {
         'idempleados': idempleados,
 
       },
@@ -316,7 +318,7 @@ include('cabecera.php');
 
 
     $.post(
-      "WSEmpleado/EliminarEmpleado.php", {
+      "../WSEmpleado/EliminarEmpleado.php", {
         'idempleados': idempleados
 
       },
