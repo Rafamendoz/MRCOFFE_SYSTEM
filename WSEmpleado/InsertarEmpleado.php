@@ -34,7 +34,7 @@
 
 
 		if (mysqli_error($mysqli)){
-
+		
 			$respuesta="2";
 
 		}else {

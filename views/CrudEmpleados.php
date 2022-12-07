@@ -1,8 +1,4 @@
-<?php
-  session_start();
-  if(isset($_SESSION['Rol'])){
-  
-?>
+
 <?php
 	include("../conexion.php");
 
@@ -18,33 +14,29 @@
 
 ?>
 <?php
+include "../conexion.php";
+$id = $_GET['id'];
+$h= "ola";
+$consulta = "SELECT * FROM empleados WHERE idempleados = $id";
+$resultado = $mysqli->query($consulta);
+
+echo "<script>console.log('Console: " .$id . "' );</script>";
+?>
+<?php
 include('cabecera.php'); 
 ?>
 
 
 <head>
-				<script src='js/jquery.min.js'></script>
+				<script src='../js/jquery.min.js'></script>
 				</head>
 <!-- contenido-->
 
 
 <main>
   <div class="d-flex flex-column bd-highlight">
-    <div class=" bd-highlight align-items-center">
-      <div class="panelnav ">
-        <div class="shadow p-3 mb-1 bg-body rounded">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb cabecerap">
-              <li class="breadcrumb-item"><a href="../panelp.php">Panel Principal</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
-            </ol>
-          </nav>
-        </div>
+    
 
-      </div>
-    </div>
-
-    <h2> <?php echo "<h4>  - ".$_SESSION['User']."</h4>";?></h2>
 
     <div class="container-fluid px-4">
       <h1 class="mt-4">Empleados</h1>
@@ -60,61 +52,64 @@ include('cabecera.php');
           <div id="formulario">
             <form id="form" method="POST">
 
-              <?php
-
-					?>
+            <?php
+            while ($datos = $resultado->fetch_object()) {
+            ?>
               <div class="row">
-                <div class="">
                   <div class="col-sm-2 form-group">
                     <label for="nomal">ID</label>
-                    <input type="text" maxlength="60" class="form-control" id="idempleados"
+                    <input type="hidden" maxlength="60" class="form-control" id="idempleados"
+                    value="<?php echo $datos->idempleados ?>"
                       placeholder="Ingrese el ID del producto" name="id"><br>
 
-                    <button type="button" onclick="Buscar()" class="centrarBotonBuscar" value="buscar">Buscar</button>
-                    <button type="button" onclick="cancelar()" class="centrarBotonBuscar"
-                      value="limpiar">Limpiar</button>
                   </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4 form-group">
+                  
+                    <label for="nomal">Nombre:</label>
+                    <input type="text" maxlength="60" required class="form-control" id="nombre"
+                    value="<?php echo $datos->nombre; ?>"
+                      placeholder="Ingrese el nombre" name="nombre">
+                  
+                </div>
+                <div class="col-lg-4 form-group">
+                  
+                    <label for="nomal">Apellido:</label>
+                    <input type="text" maxlength="60" required pattern="[a-z]{1,15}" class="form-control" id="apellido"
+                    value="<?php echo $datos->apellido; ?>"
+                    placeholder="Ingrese el Apellido" name="apellido">
+                  
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-lg-4 form-group">
-                  <div>
-                    <label for="nomal">Nombre:</label>
-                    <input type="text" maxlength="60" required class="form-control" id="nombre"
-                      placeholder="Ingrese el nombre" name="nombre">
-                  </div>
-                </div>
-                <div class="col-lg-4 form-group">
-                  <div>
-                    <label for="nomal">Apellido:</label>
-                    <input type="text" maxlength="60" required pattern="[a-z]{1,15}" class="form-control" id="apellido"
-                      placeholder="Ingrese el Apellido" name="apellido">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-4 form-group">
-                  <div>
+                  
                     <label for="nomal">identidad:</label>
                     <input type="number" maxlength="60" required class="form-control" id="identidad"
-                      placeholder="Ingrese el nombre del producto" name="descripcion">
-                  </div>
+                    value="<?php echo $datos->identidad; ?>"
+                    placeholder="Ingrese el nombre del producto" name="descripcion">
+                  
                 </div>
                 <div class="col-lg-4 form-group">
-                  <div>
+                  
                     <label for="nomal">Fecha contratacion:</label>
                     <input type="text" maxlength="60" class="form-control" id="fechaContratacion" placeholder=""
-                      name="descripcion">
-                  </div>
+                    value="<?php echo $datos->fechaContratacion; ?>"
+                    name="descripcion">
+                  
                 </div>
               </div>
+
               <div>
                 <div class="col-md-8 form-group">
                   <div>
                     <label for="nomal">Direccion:</label>
                     <input type="text" maxlength="60" class="form-control" id="direccion"
-                      placeholder="Ingrese la direccion" name="descripcion">
+                    value="<?php echo $datos->direccion; ?>" 
+                    placeholder="Ingrese la direccion" name="descripcion">
                   </div>
                 </div>
               </div>
@@ -122,7 +117,8 @@ include('cabecera.php');
                 <div>
                   <label for="nomal">Telefono:</label>
                   <input type="number" maxlength="8" pattern="{8}" class="form-control" id="telefono"
-                    placeholder="Ingrese el nombre del producto" name="descripcion">
+                  value="<?php echo $datos->telefono; ?>"  
+                  placeholder="Ingrese el nombre del producto" name="descripcion">
                 </div>
               </div>
               <br>
@@ -133,7 +129,7 @@ include('cabecera.php');
                     <div id="idcgo" title="Elija una categoria">
 
                       <select id="idcargo" required name="idcargo" title="Id Cargo" class="  form-control form-group"
-                        data-live-search="true">
+                        data-live-search="true" value="<?php echo $datos->idCargo; ?>">
 
                         <?php
 											while ($row = mysqli_fetch_array($result))
@@ -154,13 +150,14 @@ include('cabecera.php');
                     <div id="usuarui" title="Elija un usuario">
 
                       <select id="idusuarios" required name="idusuarios" title="idusuarios"
-                        class="  form-control form-group" data-live-search="true">
+                        class="  form-control form-group" data-live-search="true"
+                        value="<?php echo $datos->idusuarios; ?>">
                         <?php
 											while ($row = mysqli_fetch_array($result2))
 											{
 											?>
 
-                        <option value="<?php echo $row['idusuarios']?>"><?php echo $row ['nombre'];?></option>
+                        <option value="<?php echo $row['idusuarios']?>"><?php echo $row ['nombre'];?><?php echo $datos->idusuarios; ?></option>
                         <?php
 											}
 											?>
@@ -171,16 +168,15 @@ include('cabecera.php');
               </div>
 
 
-
-              <br />
-              <button id="ocultar" type="button" onclick="RegistrarEmpleado()" class="centrarBoton"
-                value="ingresar">Ingresar</button>
-              <div id="mostrar" style='display:none'>
-                <button type="button" onclick="ModificarEmpleado()" class="centrarBoton"
-                  value="buenas">Modificar</button>
-                <button type="button" onclick="EliminarEmpleado()" class="centrarBoton" value="buenas">Eliminar</button>
-              </div>
+              
+                <button type="button" onclick="ModificarEmpleado()" class="btn btn-warning"
+                  value="modificar">Modificar</button>
+                <button type="button" onclick="regresar()" class="btn btn-dark" value="Cancelar">
+                  Cancelar</button>
+              
+              <?php } ?>
             </form>
+
           </div>
 
         </div>
@@ -190,19 +186,9 @@ include('cabecera.php');
       <!-- fin contenido-->
 
       <!-- footer-->
-      <?php
-                require("footer.php");
-                ?>
+
   </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-  </script>
-  <script src="js/scripts.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-  <script src="assets/demo/chart-area-demo.js"></script>
-  <script src="assets/demo/chart-bar-demo.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-  <script src="js/datatables-simple-demo.js"></script>
+
 
 
 
@@ -212,6 +198,7 @@ include('cabecera.php');
 
 
   <script type="text/javascript">
+
   function RegistrarEmpleado() {
     var idempleados = document.getElementById("idempleados").value;
     var nombre = document.getElementById("nombre").value;
@@ -343,13 +330,16 @@ include('cabecera.php');
       cancelar();
     } else if (error == 8) {
       alert("Empleado modificado correctamente");
-      cancelar();
+      regresar();
     } else {
       //alert(error);
       alert("Todos los campos deben de ser llenados");
     }
   }
 
+  function regresar() {
+    window.location = "empleados.php";
+  }
   function cancelar() {
     javascript: location.reload();
   }
@@ -358,8 +348,3 @@ include('cabecera.php');
   </body>
 
   </html>
-  <?php
-	}else{
-		header("Location:index.php");
-	}
-?>

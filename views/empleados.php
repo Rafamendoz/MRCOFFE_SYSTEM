@@ -1,8 +1,9 @@
-<?php
-  session_start();
-  if(isset($_SESSION['Rol'])){
 
+
+<?php
+require("cabecera.php");
 ?>
+
 <?php
   include("../conexion.php");
     $query1="select COUNT(*) as total from empleados";
@@ -16,115 +17,263 @@
     $detalle =mysqli_query($mysqli,$query2);
 ?>
 <?php
-    require("cabecera.php");
+	include("../conexion.php");
+
+			$query = "SELECT idcargo, nombrecargo from cargos";
+			$result = mysqli_query($mysqli, $query);
+
+
+			$query2 = "SELECT idusuarios, nombre from usuarios";
+			$result2 = mysqli_query($mysqli, $query2);
+
 ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-                <!-- contenido-->
+<!DOCTYPE html>
+<html lang="en">
 
-        <main>
+<!-- contenido-->
+<main>
+    <div class="d-flex flex-column bd-highlight">
+        
+        
 
-        <h2> <?php echo "<h4>  - ".$_SESSION['User']."</h4>";?></h2>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Empleados</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Detalles de Empleados</li>
+        </ol>
 
-            <div class="container-fluid px-4">
-                <h1 class="mt-4">Empleados</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Detalles</li>
-                </ol>
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            Gestionar Empleados
 
-                            <a href="CrudEmpleados.php" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
-                                <i class="fas fa-plus"></i>
+        <form id="form"  method="POST">
+        
+                
+              
+            <div class="row">
+                
+                <div class="col-sm-1 form-group">
+                    <label for="nomal">ID</label>
+                    <input type="text" maxlength="60" class="form-control" id="idempleados"
+                        placeholder="Ingrese el ID del empleado" name="id"><br>
 
-                            </a>
-                        </div>
+                
+                </div>
+                <div class="col-lg-3 form-group">                    
+                    <label for="nomal">Nombre:</label>
+                    <input type="text" maxlength="60" required class="form-control" id="nombre"
+                        placeholder="Ingrese el nombre" name="nombre">
+                </div>
+                <div class="col-lg-3 form-group">                    
+                    <label for="nomal">Apellido:</label>
+                        <input type="text" maxlength="60" required pattern="[a-z]{1,15}" class="form-control" id="apellido"
+                            placeholder="Ingrese el Apellido" name="apellido">                   
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label for="nomal">identidad:</label>
+                    <input type="number" maxlength="60" required class="form-control" id="identidad"
+                        placeholder="Ingrese el numero de identidad" name="descripcion">   
+                </div>
+                <div class="col-sm-4 form-group">                    
+                    <label for="nomal">Fecha contratacion:</label>
+                    <input type="text" maxlength="60" class="form-control" id="fechaContratacion" placeholder="0000-00-00"
+                        name="fechaContratacion">                   
+                </div>
+            </div>
+
+            <div class="row" height="50">
+                <div class="col-sm-4 form-group">
+                    <label for="nomal">Direccion:</label>
+                    <input type="text" maxlength="60" class="form-control" id="direccion"
+                        placeholder="Ingrese la direccion" name="descripcion">
+                </div>
+                
+                <div class="col-lg-4 form-group" >
+
+                        <label for="nomal">Telefono:</label>
+                        <input type="number" maxlength="8" pattern="{8}" class="form-control" id="telefono"
+                        placeholder="Ingrese el numero de telefono" name="descripcion">
+
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 form-group">
+                    <div>
+                        <label for="apeal">Cargos</label>
+                        
+                            <select id="idcargo" required name="idcargo" title="Id Cargo" class="  form-control form-group"
+                                data-live-search="true">
+                                <?php
+                                    while ($row = mysqli_fetch_array($result))
+                                    {
+                                ?>
+                                <option value="<?php echo $row['idcargo']?>"><?php echo $row ['nombrecargo'];?></option>
+                                <?php
+                                    }
+                                ?>
+                            </select>
+                        
                     </div>
+                </div>
+                <div class="col-lg-4">
+                    <div>
+                        <label for="apeal">Usuario</label>
+                        
 
-                    <div class="card-body">
-                        <table id="datatablesSimple">
-                            <thead>
-                                <tr>
-                                    <!--<th>Acciones</th-->
-                                    <th scope="col" >id</th>
-                                    <th scope="col" >Nombre</th>
-                                    <th scope="col" >Apellido</th>
-                                    <th scope="col" >identidad</th>
-                                    <th scope="col" >fechaCont.</th>
-                                    <th scope="col" >direccion</th>
-                                    <th scope="col" >telefono</th>
-                                    <th scope="col" >idCargo</th>
-                                    <th scope="col" >idusuario</th>
-                                    <th scope="col" >Acciones</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                            <?php 	while (	$row2 = mysqli_fetch_array($detalle))
+                            <select id="idusuarios" required name="idusuarios" title="idusuarios"
+                            class="  form-control form-group" data-live-search="true">
+                            <?php
+                                while ($row = mysqli_fetch_array($result2))
                                 {
                             ?>
-                            <tr>
-                               
-                                <td><?php echo $row2['idempleados'] ?></td>
-                                <td><?php echo $row2['nombre'] ?></td>
-                                <td><?php echo $row2['apellido'] ?></td>
-                                <td><?php echo $row2['identidad'] ?></td>
-                                <td><?php echo $row2['fechaContratacion'] ?></td>
-                                <td><?php echo $row2['direccion'] ?></td>
-                                <td><?php echo $row2['telefono'] ?></td>
-                                <td><?php echo $row2['idCargo'] ?></td>
-                                <td><?php echo $row2['idusuarios'] ?></td>
-                                <td>
-                                <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
-                                >
-                                    <i class="far fa-edit"></i>
-                                </a>
-                                
-                                <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                                >
-                                    <i class="far fa-trash-alt"></i>
-                                </a>
-                                </td>
-                            </tr>
-                                <?php
+
+                            <option value="<?php echo $row['idusuarios']?>"><?php echo $row ['nombre'];?></option>
+                            <?php
                                 }
-                                ?>
-
-                            </tbody>
-
-                        </table>
-                        <h4 id="reporte">Total de productos registrados:	<?php echo $row1['total']?></h4>
-
+                            ?>
+                            </select>
+                        
                     </div>
                 </div>
+                <div class="col-lg-8">
+                <button id="" type="button" onclick="RegistrarEmpleado()" class="btn btn-warning"
+                    value="ingresar">Agregar Empleado</button>
                 </div>
-        </main>
-            <!-- fin contenido-->
+            </div>
+            
+            
+ 
+        </form>
 
-                <!-- footer-->
-  
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <!--<th>Acciones</th-->
+                            <th scope="col" >id</th>
+                            <th scope="col" >Nombre</th>
+                            <th scope="col" >Apellido</th>
+                            <th scope="col" >identidad</th>
+                            <th scope="col" >fechaCont.</th>
+                            <th scope="col" >direccion</th>
+                            <th scope="col" >telefono</th>
+                            <th scope="col" >idCargo</th>
+                            <th scope="col" >idusuario</th>
+                            <th scope="col" >Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <?php 	while (	$row2 = mysqli_fetch_array($detalle))
+                        {
+                    ?>
+                    <tr>
+                        
+                        <td><?php echo $row2['idempleados'] ?></td>
+                        <td><?php echo $row2['nombre'] ?></td>
+                        <td><?php echo $row2['apellido'] ?></td>
+                        <td><?php echo $row2['identidad'] ?></td>
+                        <td><?php echo $row2['fechaContratacion'] ?></td>
+                        <td><?php echo $row2['direccion'] ?></td>
+                        <td><?php echo $row2['telefono'] ?></td>
+                        <td><?php echo $row2['idCargo'] ?></td>
+                        <td><?php echo $row2['idusuarios'] ?></td>
+                        <td>
+                        <a href="CrudEmpleados.php?id=<?php echo $row2['idempleados'] ?>" class="btn btn-warning">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        
+                        <a href="" onclick="" class="btn btn-dark">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                        </td>
+                    </tr>
+                        <?php
+                        }
+                        ?>
+
+                    </tbody>
+
+                </table>
+                
+            </div>
+        </div>
+    </div>
+</main>
+            <!-- fin contenido-->
             
     
     <!--funciones -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
-        <script>
 
 
-        </script>
+    <script type="text/javascript">
+
+        function RegistrarEmpleado() {
+            
+        var idempleados = document.getElementById("idempleados").value;  
+        var nombre = document.getElementById("nombre").value;
+        var apellido = document.getElementById("apellido").value;
+        var identidad = document.getElementById("identidad").value;
+        var fechaContratacion = document.getElementById("fechaContratacion").value;
+        var direccion = document.getElementById("direccion").value;
+        var telefono = document.getElementById("telefono").value;
+        var idcargo = document.getElementById("idcargo").value;
+        var idusuarios = document.getElementById("idusuarios").value;
+        //alert(nombre+'-'+apellido+'-'+identidad+'-'+fechaContratacion+'-'+ 
+        //direccion+'-'+ telefono+'-'+ idcargo+'-'+ idusuarios);
+        $.post(
+        "../WSEmpleado/InsertarEmpleado.php", {
+            'idempleados': idempleados,
+            'nombre': nombre,
+            "apellido": apellido,
+            "identidad": identidad,
+            "fechaContratacion": fechaContratacion,
+            "direccion": direccion,
+            "telefono": telefono,
+            "idcargo": idcargo,
+            "idusuarios": idusuarios,
+        },
+        function(data) {
+
+            Validar(data);
+            
+        }
+        );
+    }
+
+ 
+
+
+    function Validar(error) {
+        //alert(error);
+        if (error == 1) {
+        alert("Ingresado correctamente");
+        cancelar();
+        } else if (error == 3) {
+        alert("Ya existe un empleado con esta identidad");
+        } else if (error == 9) {
+        alert("Empleado eliminado correctamente");
+        cancelar();
+        } else if (error == 8) {
+        alert("Empleado modificado correctamente");
+        cancelar();
+        } else {
+        //alert(error);
+        alert("Todos los campos deben de ser llenados");
+        }
+    }
+
+    function cancelar() {
+        javascript: location.reload();
+    }
+  </script>
+
+</body>
+</html>
 
 <?php
-    include('pie.php');
+include('pie.php');
 ?>
-<?php
-	}else{
-		header("Location:index.php");
-	}
-?>
+

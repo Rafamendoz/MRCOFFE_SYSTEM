@@ -17,7 +17,7 @@
                                 Clientes
                                 <div class="sb-sidenav-collapse-arrow"></div>
                             </a>
-                            <a <?php if($_SESSION['Rol'] != 1){ ?>  style="display:none;"  <?php } ?> class="nav-link collapsed" href="./empleados.php"  aria-expanded="false" aria-controls="collapsePages">
+                            <a <?php if($_SESSION['Rol'] != 1){ ?>  style="display:none;"  <?php } ?> class="nav-link collapsed" href="views/empleados.php"  aria-expanded="false" aria-controls="collapsePages">
                                 <div  class="sb-nav-link-icon"><i class="fas fa-book-open" ></i></div>
                                 Empleado
                                 <div class="sb-sidenav-collapse-arrow"></div>

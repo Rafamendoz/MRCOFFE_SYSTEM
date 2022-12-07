@@ -67,11 +67,11 @@ $resultado = $mysqli->query($consulta);
             </div>
 
             <div class="mt-2">
-                <button type="submit" class="btn btn-success" onsubmit="" name="modificar" value="ok">
+                <button type="submit" class="btn btn-warning" onsubmit="" name="modificar" value="ok">
                     Editar Producto
                 </button>
                 <?php } ?>
-                <a href="productos.php" class="btn btn-danger">
+                <a href="productos.php" class="btn btn-dark">
                                               Cancelar</a>
             </div>
         </form>
