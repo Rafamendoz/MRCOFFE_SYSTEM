@@ -22,8 +22,6 @@ echo <<<EOT
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../js/datatables-simple-demo.js"></script>
         <script src="https://kit.fontawesome.com/0a7f799594.js" crossorigin="anonymous"></script>
-       
-
         <script src="../js/jquery.min.js"></script>
     </body>
 </html>
