@@ -11,9 +11,10 @@ class Cliente{
     public $telefono;
     public $correo;
     public $identidad;
+    public $idgenero;
 
 
-    function Constructor($idcliente, $nombre, $apellido, $direccion, $telefono, $correo, $identidad){
+    function Constructor($idcliente, $nombre, $apellido, $direccion, $telefono, $correo, $identidad, $idgenero){
         $this->idcliente = $idcliente;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
@@ -21,6 +22,7 @@ class Cliente{
         $this->telefono = $telefono;
         $this->correo = $correo;
         $this->identidad = $identidad;
+        $this->idgenero = $idgenero;
 
     }
 
@@ -35,7 +37,7 @@ class Cliente{
         $result = mysqli_query($conexion, $query);
         while ($row = mysqli_fetch_array($result)){
             $cliente = new Cliente();
-            $cliente->Constructor($row[0], $row[1], $row[2], $row[3], $row[4], $row[5],$row[6]);
+            $cliente->Constructor($row[0], $row[1], $row[2], $row[3], $row[4], $row[5],$row[6],$row[7]);
             $listCliente[] = $pedido;
 
         }
@@ -56,7 +58,7 @@ class Cliente{
 
             while ($row = mysqli_fetch_array($result)){
                 $cliente = new Cliente();
-                $cliente->Constructor($row[0], $row[1], $row[2], $row[3], $row[4], $row[5],$row[6]);
+                $cliente->Constructor($row[0], $row[1], $row[2], $row[3], $row[4], $row[5],$row[6],$row[7]);
             
     
             }
