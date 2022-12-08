@@ -148,6 +148,21 @@ class Usuarios{
         
         return $Usuario;
       }
+      
+    function BuscarUsuarios($conexion){
+      $query = "SELECT u.idusuarios,u.nombre, u.correo, iu,rol FROM usuarios as u INNER JOIN rol iu on iu.irol = u.idrol";
+      $listadetalle = array();
+      $result = mysqli_query($conexion, $query);
+      while ($row = mysqli_fetch_array($result)){
+        $Usuario = new Usuarios();
+          $Usuario->Constructor($row['idusuarios'],$row['nombre'],$row['correo'],$row['rol']);
+          $listadetalle[] = $Usuario;
+
+      }
+      return $listadetalle;
+  }
+
+}
 }
 
 ?>

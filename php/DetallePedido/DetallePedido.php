@@ -34,8 +34,8 @@ class DetallePedido{
         $result = mysqli_query($conexion, $query);
         while ($row = mysqli_fetch_array($result)){
             $detalle = new DetallePedido();
-            $dpedido->Constructor($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7]);
-            $listadetalle[] = $dpedido;
+            $detalle->Constructor($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7]);
+            $listadetalle[] = $detalle;
 
         }
         return $listadetalle;

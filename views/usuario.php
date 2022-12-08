@@ -136,15 +136,89 @@ if(isset($_SESSION['Rol'])){
 
 
     </div>
+
+    <div class="px-3 mx-3  pb-4 bg-body shadow rounded">
+
+
+
+
+      <div class="row">
+        <div class="col-12">
+          <table class="table text-center" id="TablaU">
+
+          </table>
+        </div>
+
+      </div>
+
+    </div>
   </div>
+
+
 
 
 
 
 </main>
 <!--- Creacion de funciones en javascript--->
-
+<script src="../js/jquery.min.js">
+</script>
 <script type="text/javascript">
+(function() {
+  Obtener();
+})();
+
+
+
+function Obtener() {
+  $.post("../controllers/buscarUsuario.php", {
+
+    },
+    function(data) {
+      alert(data);
+      var resp = JSON.parse(data);
+      console.log(resp);
+      var html = "";
+      var basehtml =
+        "<tr>" +
+        " <th>Codigo</th>" +
+        "<th>Nombre</th>" +
+        "<th>Rol</th>" +
+        "<th>Correo</th>" +
+        "<th>Accion</th>" +
+        "</tr>";
+
+
+      for (var i in resp) {
+
+        html = html + "<tr>td>" + resp[i].idusuarios +
+          "</td>" +
+          "<td>" + resp[i].nombre + "</td>" +
+          "<td>" + resp[i].correo + "</td>" +
+          "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].idrol + "</td>" +
+          "<td>" + "<a href=\"\" class=\"edit-form-data\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
+          "<i class=\"fa-solid fa-eye\"></i></a>" +
+          "<a href=\"\" class=\"edit-form-data px-2\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
+          "<i class=\"far fa-trash-alt\"></i></a>" +
+          "</td>/tr>";
+
+
+      }
+
+      var finalhtml = basehtml + html;
+
+      document.getElementById("TablaU").innerHTML = finalhtml;
+
+
+
+
+
+
+
+    }
+  );
+}
+
 function RegistrarUsuario() {
   var usuario = document.getElementById("user").value;
   var nombre = document.getElementById("name").value;
@@ -239,11 +313,6 @@ function BuscarUsuario() {
 
 
 
-
-
-
-
-
 function cancelar() {
   javascript: location.reload();
 }
@@ -252,7 +321,7 @@ function cancelar() {
 <?php
 include('pie.php'); 
 ?>
-    <?php
+<?php
     }else{
         header("Location:index.php");
     }
