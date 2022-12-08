@@ -2,27 +2,33 @@
 include('cabecera.php'); 
 include('../conexion.php');
 include('../php/DetallePedido/DetallePedido.php');
+include('../php/Pedidos/Pedidos.php');
 
- /*$idpedido = $_GET["Idpedido"];
-
- $query = "SELECT MAX(idpedido) as idpedi FROM pedido";
- $result = mysqli_query($mysqli,$query);
- $pedidon=0;
- while ($row = mysqli_fetch_array($result))
-        {
-          $pedidon = $row['idpedi']+1;
-      
-        }*/
-
+ 
+        $ccliente=$_POST["IdCliente"];
+        $fecha=$_POST["idfecha"];
+        $idpedido = $_POST["Idpedido"];
         
+        $cabecerap = new Pedido();
+
+        $cabecerap->Constructor($idpedido, 0, $fecha, 0 , $ccliente, 0);
+        $arrayDetalle = array();
+
         $len = $_POST["len"];
         for($i=1; $i<=$len; $i++){
-          echo  $_POST["f".$i."c1"];
-          echo  $_POST["f".$i."c2"];
-          echo  $_POST["f".$i."c3"];
-          echo  $_POST["f".$i."c4"];
-
+       
+          
+          $dp = new DetallePedido();
+          $dp->Constructor($_POST["Idpedido"],$_POST["f".$i."c1"], $_POST["f".$i."c3"], 0.00, 0.00, 0.00, 0.00);
+          array_push($arrayDetalle, $dp);
         }
+
+        print_r( json_encode($arrayDetalle));
+        print_r( );
+
+        $json =json_encode($cabecerap);
+
+        
 
           
 ?>
@@ -100,13 +106,6 @@ include('../php/DetallePedido/DetallePedido.php');
               <p class="p2">11101</p>
             </div>
 
-            <div class="col-2 align-self-center">
-              <p class="p2"><b>N. Factura:</b></p>
-            </div>
-
-            <div class="col-4 align-self-center">
-              <p class="p2">1111-22344-234222</p>
-            </div>
 
           </div>
 
@@ -289,23 +288,37 @@ include('../php/DetallePedido/DetallePedido.php');
 <!--- Creacion de funciones en javascript--->
 
 <script type="text/javascript">
-function Total() {
-  document.getElementById('mostrar').style.display = 'block';
-  document.getElementById('ocultar').style.display = 'none';
 
-}
+  
+  window.onload=function() {
+    ObtenerValores();
+		}
 
-function SubTotal() {
-  let precio = document.getElementById("cantidad").value;
-  let cant = document.getElementById("precio").value;
+  function Total() {
+    document.getElementById('mostrar').style.display = 'block';
+    document.getElementById('ocultar').style.display = 'none';
+
+  }
+
+  function SubTotal() {
+    let precio = document.getElementById("cantidad").value;
+    let cant = document.getElementById("precio").value;
 
 
-  // Calculo del subtotal
-  let subtotal = precio * cantidad;
-  document.getElementById("subtotal").innerHTML = subtotal;
-}
+    // Calculo del subtotal
+    let subtotal = precio * cantidad;
+    document.getElementById("subtotal").innerHTML = subtotal;
+  }
+
+  function ObtenerValores(){
+    var resp = JSON.parse(<?php echo json_encode($cabecerap);?>);
+    console.log(resp.idpedido);
+    alert("ELL");
 
 
+  }
+
+</script>
 
 
 

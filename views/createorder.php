@@ -43,12 +43,13 @@ include('cabecera.php');
 
                     <div class="col-md-6 text-center">
                         <label for="inputPassword4" class="form-label" >Nombre del Cliente</label>
-                        <input type="text" class="form-control" id="NameC" readonly >
+                        <input type="text" class="form-control" id="NameC"  readonly >
                     </div>
 
                     <div class="col-md-3   text-center">
                         <label for="inputDate" class="form-label" >Fecha</label>
-                        <input type="text" class="form-control text-center" id="idFecha" readonly value="<?php echo date('d/m/y');?>">
+                        <input type="text" class="form-control text-center" hidden name="idfecha" id="" readonly value="<?php echo date('y-m-d');?>">
+                        <input type="text" class="form-control text-center"  id="idFecha" readonly value="<?php echo date('d-m-y');?>">
                     </div>
 
 
@@ -177,7 +178,7 @@ include('cabecera.php');
 
                 <div class="row ">
                     <div class="col-2">
-                            <button type="button" id="IdGenerar" onclick="CrearListaProductos()"  class="btn btn-primary">Generar PreOrden</button>
+                            <button type="button" id="IdGenerar" onclick="GoResumen()"  class="btn btn-primary">Generar PreOrden</button>
                     </div>
                 </div>
             
@@ -219,13 +220,10 @@ include('cabecera.php');
 
 
         function GoResumen(){
-           /* if(validar()){
-                var html = $("#idTbody").html();
-                $("#Linputhtml").val(html);
-                
-            }*/
-            CrearListaProductos();
-
+           if(validar()==true){
+                CrearListaProductos();
+            }
+          
            
         }
 
