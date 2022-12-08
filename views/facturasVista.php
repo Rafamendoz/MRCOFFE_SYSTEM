@@ -10,6 +10,11 @@ include('cabecera.php');
     $detalle = mysqli_query($mysqli, $query);
 ?>
 <main>
+    <script>
+        function generarFactura(id){
+            window.open("../PROYECTODW/views/fpdf/ReporteProductos.php?id=" + id);
+        }
+        </script>
 <div class=" bd-highlight align-items-center">
         <div class="panelnav">
             <div class="shadow p-3 mb-1 bg-body rounded">
@@ -55,7 +60,7 @@ include('cabecera.php');
                             <td><?php echo $row['idpedido'] ?></td>
                             <td><?php echo $row['fecha'] ?></td>
                             <td><?php echo $row['total'] ?></td>
-                            <th><a href="#">Ver detalle</a></th>
+                            <th><a href="<?php echo "/PROYECTODW/views/fpdf/Factura.php?id=".$row['codigoFactura'] ?>">Ver detalle</a></th>
                         </tr>
                         <?php
                             }
