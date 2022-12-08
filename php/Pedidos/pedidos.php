@@ -67,6 +67,17 @@ class Pedido{
   
     }
 
+    function ObtenerIdPedido($conexion){
+        $query = "SELECT MAX(idpedido) FROM pedido;"; 
+        $resultado = mysqli_query($conexion, $query);
+        while($row = mysqli_fetch_array($resultado)){
+            $idpedidon = $row[0]+1;
+
+        }
+        return $idpedidon;
+
+    }
+
 }
 
 
