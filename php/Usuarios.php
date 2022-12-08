@@ -28,6 +28,12 @@ class Usuarios{
         $this->correo=$email;
         $this->idrol=$rol;
       }
+      function ConstructorSob($iduser, $name,$email, $rol){
+        $this->idusuarios=$iduser;
+        $this->nombre=$name;
+        $this->correo=$email;
+        $this->idrol=$rol;
+      }
   
       function SetAdd($iduser, $name, $pass,$email, $rol){
         $this->idusuarios=$iduser;
@@ -148,6 +154,21 @@ class Usuarios{
         
         return $Usuario;
       }
+      
+    function BuscarUsuarios($conexion){
+      $query = "SELECT u.idusuarios,u.nombre, u.correo, iu,rol FROM usuarios as u INNER JOIN rol iu on iu.irol = u.idrol";
+      $listadetalle = array();
+      $result = mysqli_query($conexion, $query);
+      while ($row = mysqli_fetch_array($result)){
+        $Usuario = new Usuarios();
+        $Usuario->ConstructorSob($row['idusuarios'],$row['nombre'],$row['correo'],$row['rol']);
+          $listadetalle[] = $Usuario;
+
+      }
+      return $listadetalle;
+  }
+
 }
+
 
 ?>
