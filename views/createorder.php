@@ -1,5 +1,6 @@
 <?php
 include('cabecera.php'); 
+
 ?>
 
 <main>
@@ -27,7 +28,7 @@ include('cabecera.php');
                
             
             <div class="px-3 shadow mt-3 pb-4 bg-body rounded">
-                <form class="row g-3 " method="get" action="detallepedido.php">
+                <form class="row g-3 " method="POST" action="detallepedido.php" id="formularioG">
                     <div class="col-md-1 text-center">
                         <label for="inputIdPedido" class="form-label">N. Pedido</label>
                         <input type="text" class="form-control text-center" name="Idpedido" id="idp"  readonly ></label>
@@ -176,7 +177,7 @@ include('cabecera.php');
 
                 <div class="row ">
                     <div class="col-2">
-                            <button type="button" onclick="GoResumen();" class="btn btn-primary">Generar PreOrden</button>
+                            <button type="button" id="IdGenerar" onclick="CrearListaProductos()"  class="btn btn-primary">Generar PreOrden</button>
                     </div>
                 </div>
             
@@ -198,7 +199,8 @@ include('cabecera.php');
 
     <script>
         const codigos =[];
-
+        var contador2=0;
+        
         var inputCliente = document.getElementById("IdCliente");
         inputCliente.addEventListener("keypress", function(event){
             if(event.key==="Enter"){
@@ -222,6 +224,7 @@ include('cabecera.php');
                 $("#Linputhtml").val(html);
                 
             }*/
+            CrearListaProductos();
 
            
         }
@@ -358,24 +361,29 @@ include('cabecera.php');
                     var idcolcantidad = idfila+"cantidad"
                     var validador="";
                     var contador=0;
+
+                   
+                    
                     $("#"+idcolumna).each(function(){
                         validador = $(this).text();
                     }); 
 
                     if(idfila !=validador){
-                        var html = "<tr id="+idfila+"><td id="+idcolumna+">"+resp.codigo+"</td>"+
-                        "<td>"+resp.descripcion+"</td>"+
-                        "<td class=\"idcolumacantidad\">"+cantidad+"</td>"+
-                        "<td>"+resp.precio+"</td>"+
+                        contador2=contador2+1;
+                        var html = "<tr id="+idfila+" scope=\"row\" data-id=\"f"+contador2+"\"><td id="+idcolumna+"><input hidden name=\"f"+contador2+"c1\" value="+resp.codigo+">"+resp.codigo+"</td>"+
+                        "<td class=\"nombre\"><input hidden name=\"f"+contador2+"c2\" value="+resp.descripcion+"/>"+resp.descripcion+"</td>"+
+                        "<td class =\"cantidad\" >  <input hidden class=\"idcolumacantidad\" name=\"f"+contador2+"c3\" value="+cantidad+">"+cantidad+"</td>"+
+                        "<td class =\"precio\"> <input hidden name=\"f"+contador2+"c4\" value="+resp.precio+">"+resp.precio+"</td>"+
                         "<td>"+
                         "<button onclick=\"EliminarFromOrder("+idfila+")\" type=\"button\" class=\"btn btn-outline-danger\"><i class=\"fa-solid fa-trash\"></i></button>"+
                         "</td></tr>";
                         $("#idTbody").append(html);
 
                         $(".idcolumacantidad").each(function(){
-                            contador =contador+parseInt($(this).text());
-                           
+                            contador =contador+parseInt($(this).val());
+                         
                         }); 
+                        alert(contador);
                         $("#idTotalProductos").val(contador);
 
 
@@ -467,6 +475,16 @@ include('cabecera.php');
             return estado;
               
         }
+
+
+
+        function CrearListaProductos(){
+            var rowCount = $("#idTablaDetalle tr").length-1;
+            $("#formularioG").append("<input hidden name=\"len\" value="+rowCount+">");
+
+           $( "#formularioG" ).submit();
+            
+    }
 
  
 

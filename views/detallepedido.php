@@ -1,6 +1,7 @@
 <?php
 include('cabecera.php'); 
 include('../conexion.php');
+include('../php/DetallePedido/DetallePedido.php');
 
  /*$idpedido = $_GET["Idpedido"];
 
@@ -14,8 +15,16 @@ include('../conexion.php');
         }*/
 
         
-   
-           
+        $len = $_POST["len"];
+        for($i=1; $i<=$len; $i++){
+          echo  $_POST["f".$i."c1"];
+          echo  $_POST["f".$i."c2"];
+          echo  $_POST["f".$i."c3"];
+          echo  $_POST["f".$i."c4"];
+
+        }
+
+          
 ?>
 
 

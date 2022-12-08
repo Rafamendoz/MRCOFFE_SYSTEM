@@ -1,5 +1,5 @@
 <?php 
-include("../Respuesta.php");
+
 
 class DetallePedido{
 
