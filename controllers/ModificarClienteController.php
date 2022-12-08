@@ -19,7 +19,7 @@ if (!empty($_POST['modificar'])) {
         $id = $_POST['id'];
 
         $sql = "UPDATE cliente SET nombre='$nombres', apellido='$apellidos', direccion='$direccion', telefono='$telefono', correo='$correo', identidad='$identidad' WHERE idcliente='$id'";
-        $result = mysqli_query($conexion, $sql);
+        $result = mysqli_query($mysqli, $sql);
         if ($result) {
             echo "Cliente modificado correctamente";
             header("Location: ../views/registroCliente.php");
