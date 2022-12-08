@@ -1,6 +1,7 @@
 <?php
 include('cabecera.php'); 
 include('../conexion.php');
+include('../php/Pedidos/pedidos.php');
 
  /*$idpedido = $_GET["Idpedido"];
 
@@ -45,28 +46,8 @@ include('../conexion.php');
 
             <div class="row">
                 <div class="col-12">
-                  <table class="table text-center">
-                    <thead>
-                        <tr>
-                            <th>Codigo Pedido</th>
-                            <th>Codigo Cliente</th>
-                            <th>Nombre del Cliente</th>
-                            <th>Atendido por</th>
-                            <th>Total</th>
-                            <th>Accion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>12342</td>
-                            <td>3534</td>
-                            <td>Edwin Rafael Espino</td>
-                            <td>Juana La Cuabana</td>
-                            <td>123.45</td>
-                            <th><a href="#">Ver detalle</a></th>
-                        </tr>
-
-                    </tbody>
+                  <table class="table text-center" id="TablaPedidosR">
+                    
                   </table>
                 </div>
                
@@ -78,6 +59,70 @@ include('../conexion.php');
 
 
 </main>
+
+<script src="../js/jquery.min.js"></script>
+
+
+<script>
+    (function(){
+        ObtenerPedidosRealizados();
+    })();
+
+
+
+    function ObtenerPedidosRealizados(){
+        $.post(
+            "../controllers/Pedidos/BuscarPedidosR.php",
+            {},
+            function(data){
+                alert(data);
+                var resp = JSON.parse(data);
+                console.log(resp);
+                var html="";
+                var basehtml =
+                                "<tr>"+
+                               " <th>Codigo Pedido</th>"+
+                                "<th>Codigo Cliente</th>"+
+                                "<th>Nombre del Cliente</th>"+
+                                "<th>Atendido por</th>"+
+                                "<th>Total</th>"+
+                                "<th>Accion</th>"+
+                                "</tr>";
+
+              
+                for(var i in resp){
+                    
+                    html =html+ "<tr><td>"+resp[i].idpedido+"</td>"+
+                    "<td>"+resp[i].idcliente+"</td>"+
+                    "<td>"+resp[i].nombrecliente+"</td>"+
+                    "<td>"+resp[i].nombreempleado+"</td>"+
+                    "<td>"+resp[i].total+"</td>"+
+                    "<td>"+"<a href=\"\" class=\"edit-form-data\" data-toggle=\"modal\" data-target=\"#editMdl\">"+
+                    "<i class=\"fa-solid fa-eye\"></i></a>"+
+                    "<a href=\"\" class=\"edit-form-data px-2\" data-toggle=\"modal\" data-target=\"#editMdl\">"+
+                    "<i class=\"far fa-trash-alt\"></i></a>"+
+                    "</td></tr>";
+                    
+
+                }
+
+                var finalhtml = basehtml+html;
+
+                document.getElementById("TablaPedidosR").innerHTML = finalhtml;
+
+
+
+
+
+                
+             
+            }
+        );
+    }
+
+</script>
+
+
 
 
 

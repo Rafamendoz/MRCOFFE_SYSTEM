@@ -1,5 +1,6 @@
 <?php
 include('cabecera.php');
+if(isset($_SESSION['Rol'])){
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="d-flex flex-column bd-highlight mt-2">
@@ -23,10 +24,9 @@ include('cabecera.php');
 
         }
     </script>
-    <div class="container fluid row m-2">
-        <div class="p-2 bd-highlight">
-            <h3>Clientes</h3>
-
+    <div class="container-fluid row m-2">
+        <div class="card-header  bg-dark text-light">
+            <h1>Registrar Clientes</h1>
         </div>
 
 
@@ -104,9 +104,11 @@ include('cabecera.php');
                             <td><?php echo $row['identidad'] ?></td>
                             <td>
                                 <a href="modificarCliente.php?id=<?php echo $row['idcliente'] ?>" class="btn btn-warning">
-                                    Editar
+                                <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
-                                <a href="clientes.php?id=<?php echo $row['idcliente'] ?>" onclick="return eliminar()" class="btn btn-dark">Eliminar</a>
+                                <a href="clientes.php?id=<?php echo $row['idcliente'] ?>" onclick="return eliminar()" class="btn btn-dark">
+                                <i class="fa-solid fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     <?php
@@ -134,3 +136,8 @@ include('cabecera.php');
     <?php
     include('pie.php');
     ?>
+    <?php
+    }else{
+        header("Location:index.php");
+    }
+?>

@@ -1,4 +1,5 @@
 
+
 <?php
 	include("../conexion.php");
 
@@ -22,11 +23,14 @@ $resultado = $mysqli->query($consulta);
 
 echo "<script>console.log('Console: " .$id . "' );</script>";
 ?>
+
 <?php
 include('cabecera.php'); 
+if(isset($_SESSION['Rol'])){
 ?>
 
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
 				<script src='../js/jquery.min.js'></script>
 				</head>
@@ -36,17 +40,30 @@ include('cabecera.php');
 <main>
   <div class="d-flex flex-column bd-highlight">
     
+  <div class=" bd-highlight align-items-center">
+      <div class="panelnav ">
+        <div class="shadow p-3 mb-1 bg-body rounded">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb cabecerap">
+              <li class="breadcrumb-item"><a href="../panelp.php">Panel Principal</a></li>
+              <li class="breadcrumb-item"><a href="empleados.php">Empleados</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Modificar Empleado</li>
+            </ol>
+          </nav>
+        </div>
 
+      </div>
+    </div>
 
     <div class="container-fluid px-4">
-      <h1 class="mt-4">Empleados</h1>
-      <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active"></li>
-      </ol>
+      <div class="card-header  bg-dark text-light">
+            <h1>Modificar Empleado</h1>
+        </div>
+      <br>
       <div class="card mb-4">
         <div class="card-header">
           <i class="fas fa-table me-1"></i>
-          Modificar Empleados
+          Datos del Empleado
         </div>
         <div class="card-body">
           <div id="formulario">
@@ -55,15 +72,7 @@ include('cabecera.php');
             <?php
             while ($datos = $resultado->fetch_object()) {
             ?>
-              <div class="row">
-                  <div class="col-sm-2 form-group">
-                    <label for="nomal">ID</label>
-                    <input type="hidden" maxlength="60" class="form-control" id="idempleados"
-                    value="<?php echo $datos->idempleados ?>"
-                      placeholder="Ingrese el ID del producto" name="id"><br>
 
-                  </div>
-              </div>
 
               <div class="row">
                 <div class="col-lg-4 form-group">
@@ -348,3 +357,9 @@ include('cabecera.php');
   </body>
 
   </html>
+
+  <?php
+    }else{
+        header("Location:index.php");
+    }
+?>

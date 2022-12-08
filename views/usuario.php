@@ -1,5 +1,6 @@
 <?php
-include('cabecera.php'); 
+include('cabecera.php');
+if(isset($_SESSION['Rol'])){
 ?>
 <?php
 	include('../conexion.php');
@@ -250,4 +251,9 @@ function cancelar() {
 
 <?php
 include('pie.php'); 
+?>
+    <?php
+    }else{
+        header("Location:index.php");
+    }
 ?>
