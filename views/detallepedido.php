@@ -8,10 +8,10 @@ include('../php/Pedidos/Pedidos.php');
         $ccliente=$_POST["IdCliente"];
         $fecha=$_POST["idfecha"];
         $idpedido = $_POST["Idpedido"];
+        $namec = $_POST["NameC"]; 
         echo $fecha;
-        $cabecerap = new Pedido();
 
-        $cabecerap->Constructor($idpedido, 0, $fecha, 0 , $ccliente, 0);
+       
         $arrayDetalle = array();
 
         $len = $_POST["len"];
@@ -103,7 +103,7 @@ include('../php/Pedidos/Pedidos.php');
             </div>
 
             <div class="col-3 align-self-center">
-              <p class="p2">11101</p>
+              <p class="p2" id="idpedido">11101</p>
             </div>
 
 
@@ -115,7 +115,7 @@ include('../php/Pedidos/Pedidos.php');
             </div>
 
             <div class="col-3 align-self-center">
-              <p class="p2">11101</p>
+              <p class="p2" id="idCliente">11101</p>
             </div>
 
             <div class="col-2 align-self-center">
@@ -127,7 +127,7 @@ include('../php/Pedidos/Pedidos.php');
 
 
             <div class="col-4 align-self-center">
-              <p class="p2">Edwin Rafael Mendoza</p>
+              <p class="p2" id="idNCliente">Edwin Rafael Mendoza</p>
             </div>
             <hr class="hr" />
 
@@ -315,12 +315,17 @@ include('../php/Pedidos/Pedidos.php');
     const fecha =  new Date();
     var idfecha = formatoFecha(fecha, "yy-mm-dd");
     var IdCliente=<?php echo $ccliente;?>;
+    var nombreCliente="<?php echo $namec;?>";
     alert(idpedido+""+""+IdCliente);
     $.post("../controllers/DetalleP/ObtenerCabeceraPController.php",
-    {"idpedido":idpedido, "idfecha":idfecha, "IdCliente":IdCliente},
+    {"idpedido":idpedido, "idfecha":idfecha, "IdCliente":IdCliente, "NombreCliente":nombreCliente},
     function(data){
       var resp = JSON.parse(data);
       console.log(resp);
+
+      $("#idpedido").html(resp.idpedido);
+      $("#idCliente").html(resp.idcliente);
+      $("#idNCliente").html(resp.nombrecliente);
 
     });
 

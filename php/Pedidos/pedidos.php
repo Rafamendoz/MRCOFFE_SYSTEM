@@ -10,16 +10,18 @@ class Pedido{
     public $horapedido;
     public $idcliente;
     public $idtipopago;
+    public $nombrecliente;
 
 
 
-    function Constructor($idpedido, $idempleado, $fechapedido, $horapedido, $idcliente, $idtipopago){
+    function Constructor($idpedido, $idempleado, $fechapedido, $horapedido, $idcliente, $idtipopago, $nombrecliente){
         $this->idpedido=$idpedido;
         $this->idempleado=$idempleado;
         $this->fechapedido=$fechapedido;
         $this->horapedido=$horapedido;
         $this->idcliente=$idcliente;
         $this->idtipopago=$idtipopago;
+        $this->nombrecliente=$nombrecliente;
     }
 
    

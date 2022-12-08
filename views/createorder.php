@@ -43,7 +43,7 @@ include('cabecera.php');
 
                     <div class="col-md-6 text-center">
                         <label for="inputPassword4" class="form-label" >Nombre del Cliente</label>
-                        <input type="text" class="form-control" id="NameC"  readonly >
+                        <input type="text" class="form-control" id="NameC" name="NameC" readonly >
                     </div>
 
                     <div class="col-md-3   text-center">
