@@ -28,12 +28,33 @@ $resultado = $mysqli->query($consulta);
                 <!-- contenido-->
    
             
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Eliminar Productos</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Inventario de Productos</li>
-                        </ol>
-                        <div class="row">
+                             
+                    
+<div class="d-flex flex-column bd-highlight">
+    <div class=" bd-highlight align-items-center">
+        <div class="panelnav ">
+            <div class="shadow p-3 mb-1 bg-body rounded">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb cabecerap">
+                        <li class="breadcrumb-item"><a href="../panelp.php">Panel Principal</a></li>
+                        <li class="breadcrumb-item"><a href="productoss.php">producto</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Eliminar producto </li>
+                    </ol>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid px-4">
+        <div class="card-header  bg-dark text-light">
+            <h3>Eliminar producto</h3>
+
+        </div>
+        <div class="card mb-4">
+            <br>
+           
+            <div class="card-body">
              
     <form method="POST" class="row">
             <?php
@@ -54,11 +75,11 @@ $resultado = $mysqli->query($consulta);
             </div>
 
             <div class="mt-2">
-                <button type="submit" class="btn btn-success" onsubmit="" name="eliminar" value="ok">
+                <button type="submit" class="btn btn-warning" onsubmit="" name="eliminar" value="ok">
                     Eliminar Producto
                 </button>
                 <?php } ?>
-                <a href="productos.php" class="btn btn-danger">
+                <a href="productos.php" class="btn btn-dark">
                                               Cancelar</a>
             </div>
         </form>

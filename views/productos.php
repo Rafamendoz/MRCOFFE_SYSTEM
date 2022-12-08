@@ -1,7 +1,6 @@
 <?php
-
 session_start();
-
+include('views/cabecera.php'); 
 if (isset($_SESSION['Rol'])) {
 
 ?>
@@ -21,34 +20,14 @@ if (isset($_SESSION['Rol'])) {
 
 
         <!-- contenido-->
-        <div class="d-flex flex-column bd-highlight">
-    <div class=" bd-highlight align-items-center">
-      <div class="panelnav ">
-        <div class="shadow p-3 mb-1 bg-body rounded">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb cabecerap">
-              <li class="breadcrumb-item"><a href="../panelp.php">Panel Principal</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Productos</li>
+
+
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Productos</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Inventario de Productos</li>
             </ol>
-          </nav>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="p-2 bd-highlight text-dark">
-      <p>Gestión de Productos</p>
-
-    </div>
-
-    <div class="px-5 bd-highlight">
-
-
-<div class="section-usuario">
-  <div class=" card text-center d-flex mb-5" id="contener">
-    <div class="card-header  bg-dark text-light">
-      <h1>Producto</h1>
-    </div>
+            <div class="row">
                 <script>
                     function eliminar() {
                         var respuesta = confirm("¿Está seguro de eliminar el Producto?");
