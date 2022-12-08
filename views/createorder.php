@@ -45,7 +45,7 @@ include('cabecera.php');
 
                     <div class="col-md-3   text-center">
                         <label for="inputDate" class="form-label" >Fecha</label>
-                        <input type="text" class="form-control text-center" id="inputPassword5" readonly value="<?php echo date('d/m/y');?>">
+                        <input type="text" class="form-control text-center" id="idFecha" readonly value="<?php echo date('d/m/y');?>">
                     </div>
 
 
@@ -84,7 +84,7 @@ include('cabecera.php');
 
                     <div class="col-3 text-center">
                         <button type="button" class="btn btn-outline-primary" id="idBotonBuscar" onclick="BuscarProductoPorId()"><i class="fa-solid fa-magnifying-glass me-1"></i>Buscar</button>
-                        <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus me-1"></i>Agregar</button>
+                        <button type="button" class="btn btn-outline-success" id="idBotonAgregar" onclick="AgregarToOrden()" disabled><i class="fa-solid fa-circle-plus me-1"></i>Agregar</button>
                        
 
                     </div>
@@ -96,7 +96,7 @@ include('cabecera.php');
                     <div class="col-2">
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-list-check"></i></span>
-                            <input type="text" value="1" class="form-control text-center" aria-label="Username" aria-describedby="basic-addon1" readonly>
+                            <input type="number" value="" id="idTotalProductos" class="form-control text-center" aria-label="Username" aria-describedby="basic-addon1" readonly>
                         </div>
 
                     </div>
@@ -126,7 +126,7 @@ include('cabecera.php');
                     </div>
 
                     <div class="col-1 ">
-                        <input type="number" class="form-control text-center" value=""></input>
+                        <input type="number" class="form-control text-center" value="" id="idCantidad"></input>
                     </div>
 
                     <div class="col-3  align-self-center  ">
@@ -146,7 +146,7 @@ include('cabecera.php');
 
                     <div class="col-12 ">
                         
-                        <table class="table table-striped text-center align-content-center">
+                        <table class="table table-striped text-center align-content-center" id="idTablaDetalle">
                                
                             <thead>
                           
@@ -158,16 +158,8 @@ include('cabecera.php');
 
                             </thead>
 
-                            <tbody  class="text-center">
-                                <tr>
-                                    <td>11134</td>
-                                    <td>Cafe sin Leche</td>
-                                    <td>1</td>
-                                    <td>13.45</td>
-                                    <td>
-                                    <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-                                    </td>
-                                </tr>
+                            <tbody  class="text-center" id="idTbody">
+                             
                             </tbody>
     
                         </table>
@@ -201,7 +193,7 @@ include('cabecera.php');
 </main>
 
     <script>
-     
+        const codigos =[];
 
         var inputCliente = document.getElementById("IdCliente");
         inputCliente.addEventListener("keypress", function(event){
@@ -221,7 +213,11 @@ include('cabecera.php');
 
 
         function GoResumen(){
-          window.location.href = 'detallepedido.php';
+            if(validar()){
+                window.location.href = 'detallepedido.php';
+            }
+
+           
         }
 
 
@@ -251,7 +247,7 @@ include('cabecera.php');
                                 $("#ContenedorIcon").empty();
                             setTimeout(function() {
                                 
-                                $("#AlertaPanel").hide(); 
+                                $("#AlertaPanel").remove(); 
                                 $("#IdCliente").prop('disabled', false);             
                             },1000);
                      
@@ -309,32 +305,160 @@ include('cabecera.php');
             var idproducto = $("#idproducto").val();
             
             $.post("../controllers/Productos/BuscarProductoPorIdController.php",{"idproducto":idproducto},
-            function(data){
-                var resp = JSON.parse(data);
-                console.log(resp);
-                var x = Object.keys(resp).length;
-                if(x==2){
+                function(data){
+                    var resp = JSON.parse(data);
+                    console.log(resp);
+                    var x = Object.keys(resp).length;
+                    if(x==2){
+                                
+                        $(document).ready(function(){
+                                $("#panelN").after("<div class=\"alert alert-danger mx-3\" id=\"AlertaPanel\" role=\"alert\">"+
+                                    "No se encontro el producto!</div>"); 
+                                    
                             
-                    $(document).ready(function(){
-                            $("#panelN").after("<div class=\"alert alert-danger mx-3\" id=\"AlertaPanel\" role=\"alert\">"+
-                                "No se encontro el producto!</div>"); 
-                                 
-                         
-                            setTimeout(function() {
-                                $("#idNombreProducto").val();
-                                $("#AlertaPanel").hide(); 
-                                $("#idBotonBuscar").prop('disabled', false);             
-                            },1500);
-                     
-                          
-                        });
-                }else{
-                        $("#idNombreProducto").val(resp.descripcion);
-                        $("#idBotonBuscar").prop('disabled', false);    
+                                setTimeout(function() {
+                                    $("#idNombreProducto").val();
+                                    $("#AlertaPanel").remove(); 
+                                    $("#idBotonBuscar").prop('disabled', false);             
+                                },1500);
+                        
+                            
+                            });
+                    }else{
+                            $("#idNombreProducto").val(resp.descripcion);
+                            $("#idBotonBuscar").prop('disabled', false);
+                            $("#idBotonAgregar").prop('disabled', false);
 
+                    }
+            
                 }
+            );
+        }
+
+
+        function AgregarToOrden(){
+            $("#idBotonAgregar").prop('disabled', true); 
+            var idproducto = $("#idproducto").val();
+            var cantidad = $("#idCantidad").val();
+         
+
+
+            $.post("../controllers/Productos/BuscarProductoPorIdController.php",{"idproducto":idproducto},
+                function(data){
+                    var resp = JSON.parse(data);
+                    var idfila = resp.codigo;
+                    var idcolumna = idfila+"c"
+                    var idcolcantidad = idfila+"cantidad"
+                    var validador="";
+                    var contador=0;
+                    $("#"+idcolumna).each(function(){
+                        validador = $(this).text();
+                    }); 
+
+                    if(idfila !=validador){
+                        var html = "<tr id="+idfila+"><td id="+idcolumna+">"+resp.codigo+"</td>"+
+                        "<td>"+resp.descripcion+"</td>"+
+                        "<td class=\"idcolumacantidad\">"+cantidad+"</td>"+
+                        "<td>"+resp.precio+"</td>"+
+                        "<td>"+
+                        "<button onclick=\"EliminarFromOrder("+idfila+")\" type=\"button\" class=\"btn btn-outline-danger\"><i class=\"fa-solid fa-trash\"></i></button>"+
+                        "</td></tr>";
+                        $("#idTbody").append(html);
+
+                        $(".idcolumacantidad").each(function(){
+                            contador =contador+parseInt($(this).text());
+                           
+                        }); 
+                        $("#idTotalProductos").val(contador);
+
+
+                    }else{
+                        $("#panelN").after("<div class=\"alert alert-danger mx-3\" id=\"AlertaPanel\" role=\"alert\">"+
+                                    "Ya hay producto seleccionado con este codigo, para modificarlo elimine el actual!</div>");
+                                    $("#idBotonAgregar").prop('disabled', true); 
+                                    setTimeout(function() {
+                              
+                                    $("#AlertaPanel").remove(); 
+                                    $("#idBotonAgregar").prop('disabled', false);             
+                                },1500);
+                    }
+
+                    
+                    
+
+                   
+                 
+            
+                }
+            );
+            
+        }
+
+
+        function EliminarFromOrder(idfila){
+         
           
-            });
+            $("#"+idfila+"").remove();
+            
+
+        }
+
+        function validar(){
+            var estado=true;
+            var rowCount = $("#idTablaDetalle tr").length-1;
+            if(rowCount==0){
+                $("#panelN").after("<div class=\"alert alert-danger mx-3\" id=\"AlertaPanel\" role=\"alert\">"+
+                                    "No ha agregado ningun producto a la orden!</div>");
+                       
+                                    setTimeout(function() {
+                              
+                                    $("#AlertaPanel").remove(); 
+                                              
+                                },1500);
+                estado=false;
+            }
+         
+            if ($('#idp').val() == "") {
+                estado= false;
+                $("#panelN").after("<div class=\"alert alert-danger mx-3\" id=\"AlertaPanel\" role=\"alert\">"+
+                                    "No hay pedidos disponibles, comunicarse con el Administrador!</div>");
+                       
+                                    setTimeout(function() {
+                              
+                                    $("#AlertaPanel").remove(); 
+                                              
+                                },1500);
+            } 
+
+            if ($('#IdCliente').val() == "" || $('#NameC').val() == "") {
+                estado= false;
+                $("#panelN").after("<div class=\"alert alert-danger mx-3\" id=\"AlertaPanel\" role=\"alert\">"+
+                                    "No ha ingresado el cliente!</div>");
+                       
+                                    setTimeout(function() {
+                              
+                                    $("#AlertaPanel").remove(); 
+                                              
+                                },1500);
+            } 
+
+            if ($('#idFecha').val() == "") {
+                estado= false;
+                $("#panelN").after("<div class=\"alert alert-danger mx-3\" id=\"AlertaPanel\" role=\"alert\">"+
+                                    "No ha ingresado la fecha!</div>");
+                       
+                                    setTimeout(function() {
+                              
+                                    $("#AlertaPanel").remove(); 
+                                              
+                                },1500);
+                
+            } 
+
+
+            
+            return estado;
+              
         }
 
  

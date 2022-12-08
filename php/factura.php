@@ -4,57 +4,48 @@ include("../Respuesta.php");
 
 class Factura{
 
-    public $idfactura;
+    public $codigoFactura;
+    public $fechaactual;
     public $idpedido;
-    public $fecha;
+    public $idcliente;
+    public $nombrecliente;
+    public $nombreempleado;
+
+    public $rtnfactura;
+    public $cai;
+    public $fechaVencimiento;
+    
+    public $productodescrip;
+    public $cantidad;
+    public $precio;
+    public $descuento;
+    public $subtotal;
+    public $isv;
     public $total;
 
 
-    function Constructor($idfactura, $idpedido, $fecha, $total){
-        $this->idfactura = $idfactura;
-        $this->idpedido = $idpedido;
-        $this->fecha = $fecha;
-        $this->total = $total;
-
+    function Constructor($codigoFactura, $fechaactual, $idpedido, $idcliente, $nombrecliente, $nombreempleado, $rtnfactura, $cai, $fechaVencimiento, 
+    $productodescrip, $cantidad, $precio,$descuento, $subtotal, $isv, $total){
+        
+        $this-> $codigoFactura = $codigoFactura; 
+        $this-> $fechaactual = $fechaactual;
+        $this-> $idpedido = $idpedido;
+        $this-> $idcliente = $idcliente;
+        $this-> $nombrecliente = $nombrecliente;
+        $this-> $nombreempleado =$nombreempleado;
+        $this-> $rtnfactura = $rtnfactura;
+        $this-> $cai = $cai;
+        $this-> $fechaVencimiento = $fechaVencimiento;
+        $this-> $productodescrip = $productodescrip;
+        $this-> $cantidad = $cantidad;
+        $this-> $precio = $precio;
+        $this-> $descuento = $descuento;
+        $this-> $subtotal = $subtotal;
+        $this-> $isv = $isv;
+        $this-> $total = $total;
     }
-
-
-    
-    function BuscarFacturaPorId($id,$conexion){
-        $respuestafactura = new Respuesta();
-        $query = "SELECT * FROM facturas WHERE codigoFactura=".$id.";";
-        $result = mysqli_query($conexion, $query);
-        if(mysqli_num_rows($result)==0){
-            $respuestafactura->NoExiste("No existe el registro");
-            return $respuestafactura;
-
-        }else{
-
-            while ($row = mysqli_fetch_array($result)){
-                $factura = new Factura();
-                $factura->Constructor($row[0], $row[1], $row[2], $row[3]);
-            
-    
-            }
-            return $factura;
-
-        }
-     
-    }
-
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 ?>
