@@ -32,10 +32,11 @@ include('../conexion.php');
             
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-1 2">
                   <table class="table text-center">
                     <thead>
                         <tr>
+                            
                             <th>Codigo Factura</th>
                             <th>Codigo Pedido</th>
                             <th>Fecha</th>
