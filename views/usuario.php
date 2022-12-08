@@ -46,7 +46,9 @@ if(isset($_SESSION['Rol'])){
 
       </div>-->
       <div class="section-usuario">
-        <div class=" card text-center d-flex mb-5" id="contener">
+        <div class=" card text-center d-flex mb-7" id="contener">
+
+
           <div class="card-header  bg-dark text-light">
             <h1>Registrar Usuario</h1>
           </div>
@@ -100,7 +102,7 @@ if(isset($_SESSION['Rol'])){
 
             </form>
 
-           
+
           </div>
           <!--<div class="card card-body" id="imagen">
             <img class="card-img-top" id="imag" src="../img/usuario.png" alt="usuario">
@@ -120,28 +122,28 @@ if(isset($_SESSION['Rol'])){
                 class=" form-control btn btn-warning mx-4 mb-3 " value="guardar">Modificar</button>
             </div>
 
-            
+
             <div class="col-md-4 d-flex ">
-              
+
               <div id="mostrar" style='display:none'>
 
                 <div class="form-group col-md-4  ">
 
-                  
+
 
                   <!-- <button type="button" onclick="EliminarUsuario ()" class=" form-control btn btn-default"
                       value="guardar">Eliminar</button>-->
                 </div>
               </div>
             </div>
-             
+
           </div>
         </div>
 
 
 
       </div>
-      <div class="row p-4">
+      <!--  <div class="row p-4">
                 <input class="form-control col-2" id="myInput" type="text" placeholder="Buscar..">
                 <table class="table">
                     <thead>
@@ -186,24 +188,26 @@ if(isset($_SESSION['Rol'])){
                 </script>
             </div>
 
-    </div>
+    </div>-->
+      <div class="bg-dark bg-gradient text-white p-2 mx-3 mt-3 ">
+        <p class="p1">Detalle de Usuarios</p>
+      </div>
+      <div class="px-3 mx-3  pb-4 bg-body shadow rounded">
 
-    <div class="px-3 mx-3  pb-4 bg-body shadow rounded">
 
 
 
+        <div class="row">
+          <div class="col-12">
+            <table class="table text-center" id="TablaU">
 
-      <div class="row">
-        <div class="col-12">
-          <table class="table text-center" id="TablaU">
+            </table>
+          </div>
 
-          </table>
         </div>
 
       </div>
-
     </div>
-  </div>
 
 
 
@@ -211,10 +215,12 @@ if(isset($_SESSION['Rol'])){
 
 
 </main>
+<script src="../js/jquery.min.js"></script>
 <!--- Creacion de funciones en javascript--->
-<script src="../js/jquery.min.js">
+
 </script>
-<script type="text/javascript">
+
+<script>
 (function() {
   Obtener();
 })();
@@ -222,11 +228,10 @@ if(isset($_SESSION['Rol'])){
 
 
 function Obtener() {
-  $.post("../controllers/buscarUsuario.php", {
-
-    },
+  $.post(
+    "../controllers/buscarUsuario.php", {},
     function(data) {
-      alert(data);
+      //alert(data);
       var resp = JSON.parse(data);
       console.log(resp);
       var html = "";
@@ -234,16 +239,16 @@ function Obtener() {
         "<tr>" +
         " <th>Codigo</th>" +
         "<th>Nombre</th>" +
-        "<th>Rol</th>" +
         "<th>Correo</th>" +
+        "<th>Rol</th>" +
         "<th>Accion</th>" +
         "</tr>";
 
 
       for (var i in resp) {
 
-        html = html + "<tr>td>" + resp[i].idusuarios +
-          "</td>" +
+        html = html +
+          "<tr><td>" + resp[i].idusuarios + "</td>" +
           "<td>" + resp[i].nombre + "</td>" +
           "<td>" + resp[i].correo + "</td>" +
           "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].idrol + "</td>" +
@@ -251,7 +256,7 @@ function Obtener() {
           "<i class=\"fa-solid fa-eye\"></i></a>" +
           "<a href=\"\" class=\"edit-form-data px-2\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
           "<i class=\"far fa-trash-alt\"></i></a>" +
-          "</td>/tr>";
+          "</td></tr>";
 
 
       }
@@ -304,15 +309,17 @@ function ModificarUsuario() {
   var usuario = document.getElementById("user").value;
   var nombre = document.getElementById("name").value;
   var contra = document.getElementById("contra").value;
-  var rol = document.getElementById("idrol").value;
   var correo = document.getElementById("correo").value;
+  var rol = document.getElementById("idrol").value;
+
   alert(usuario + nombre + correo);
   $.post("../controllers/EditarUsuarios.php", {
       'usuario': usuario,
       'nombre': nombre,
       "contra": contra,
-      "rol": rol,
-      "correo": correo
+      "correo": correo,
+      "rol": rol
+
 
 
 
@@ -331,8 +338,10 @@ function ModificarUsuario() {
 
 function BuscarUsuario() {
   var usuario = document.getElementById("user").value;
+  var rol = document.getElementById("idrol").value;
   $.post("../controllers/ObtenerUsuario.php", {
-      'usuario': usuario
+      'usuario': usuario,
+      'rol': 'rol'
 
 
     },
@@ -346,6 +355,8 @@ function BuscarUsuario() {
       document.getElementById('mostrar').style.display = 'block';
       document.getElementById('ocultar').style.display = 'none';
       $("#user").prop("disabled", true);
+      $("#idrol").prop("disabled", true);
+
       document.getElementById("user").value = resp.idusuarios;
       document.getElementById("name").value = resp.nombre;
       document.getElementById("contra").value = resp.password;
