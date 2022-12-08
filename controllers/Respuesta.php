@@ -10,5 +10,11 @@
       $this->Ok=1;
       $this->Data=$data;
     }
+
+    function NoExiste($data){
+      $this->Ok=3;
+      $this->Data=$data;
+
+    }
   }
 ?>

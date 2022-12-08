@@ -35,7 +35,7 @@ include('cabecera.php');
 
                     <div class="col-md-1 text-center">
                         <label for="inputPassword4" class="form-label">C. Cliente</label>
-                        <input type="text" class="form-control" name="IdCliente" value="1">
+                        <input type="text" class="form-control" name="IdCliente" id="IdCliente" value="2">
                     </div>
 
                     <div class="col-md-6 text-center">
@@ -91,7 +91,7 @@ include('cabecera.php');
                     <div class="col-4">
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fa-brands fa-product-hunt"></i></span>
-                            <input type="text" class="form-control" placeholder="Ingrese el codigo del producto" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" id="idCodigoProducto" placeholder="Ingrese el codigo del producto" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </div>
 
@@ -214,8 +214,47 @@ include('cabecera.php');
 </main>
 
     <script>
+
+
+        var inputCliente = document.getElementById("IdCliente");
+        inputCliente.addEventListener("keypress", function(event){
+            if(event.key==="Enter"){
+                BuscarClientePorId();
+                event.preventDefault();
+                
+            }
+        });
+
+
         function GoResumen(){
           window.location.href = 'detallepedido.php';
+        }
+
+
+
+        function AgregarProducto(){
+            $listaProducto = array();
+
+        }
+
+
+        function BuscarClientePorId(){
+            var idcliente = document.getElementById("IdCliente").value;
+            alert(idcliente);
+            $.post( "../controllers/Clientes/BuscarClienteController.php",
+                {"idcliente":idcliente
+                },
+                function(data){
+                    var resp = JSON.parse(data);
+                    console.log(resp);
+
+                }
+            );
+
+
+
+
+            
         }
     
     </script>
