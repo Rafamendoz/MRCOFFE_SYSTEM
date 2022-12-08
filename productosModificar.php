@@ -28,12 +28,35 @@ $resultado = $mysqli->query($consulta);
                 <!-- contenido-->
    
             
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Editar Productos</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Inventario de Productos</li>
-                        </ol>
-                        <div class="row">
+                    
+<div class="d-flex flex-column bd-highlight">
+    <div class=" bd-highlight align-items-center">
+        <div class="panelnav ">
+            <div class="shadow p-3 mb-1 bg-body rounded">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb cabecerap">
+                        <li class="breadcrumb-item"><a href="../panelp.php">Panel Principal</a></li>
+                        <li class="breadcrumb-item"><a href="productoss.php">producto</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Modificar producto </li>
+                    </ol>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid px-4">
+        <div class="card-header  bg-dark text-light">
+            <h3>Modificar producto</h3>
+
+        </div>
+        <div class="card mb-4">
+            <br>
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Datos del producto
+            </div>
+            <div class="card-body">
              
     <form method="POST" class="row">
             <?php
