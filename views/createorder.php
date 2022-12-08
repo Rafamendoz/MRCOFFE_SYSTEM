@@ -33,6 +33,8 @@ include('cabecera.php');
                         <input type="text" class="form-control text-center" name="Idpedido" id="idp"  readonly ></label>
                     </div>
 
+                 
+
                     <div class="col-md-1 text-center">
                         <label for="inputPassword4" class="form-label">C. Cliente</label>
                         <input type="number" class="form-control" name="IdCliente" id="IdCliente" value="">
@@ -67,7 +69,7 @@ include('cabecera.php');
                     
 
                   
-                </form>
+             
                 <hr class="hr" />
 
                 <div class="row mb-0">
@@ -177,6 +179,8 @@ include('cabecera.php');
                             <button type="button" onclick="GoResumen();" class="btn btn-primary">Generar PreOrden</button>
                     </div>
                 </div>
+            
+                </form>
             </div>
            
 
@@ -213,9 +217,11 @@ include('cabecera.php');
 
 
         function GoResumen(){
-            if(validar()){
-                window.location.href = 'detallepedido.php';
-            }
+           /* if(validar()){
+                var html = $("#idTbody").html();
+                $("#Linputhtml").val(html);
+                
+            }*/
 
            
         }
@@ -229,6 +235,7 @@ include('cabecera.php');
 
 
         function BuscarClientePorId(){
+           
             $("#IdCliente").prop('disabled', true);   
             var idcliente = document.getElementById("IdCliente").value;
             $.post( "../controllers/Clientes/BuscarClienteController.php",
