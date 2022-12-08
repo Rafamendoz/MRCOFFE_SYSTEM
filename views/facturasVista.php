@@ -1,10 +1,14 @@
 <?php
 include('cabecera.php'); 
-include('../conexion.php');
- 
 
 ?>
-
+<?php
+    include('../conexion.php');
+    $query = "select codigoFactura, facturas.idpedido, facturas.fecha, facturas.total
+    from facturas"; 
+    
+    $detalle = mysqli_query($mysqli, $query);
+?>
 <main>
 <div class=" bd-highlight align-items-center">
         <div class="panelnav">
@@ -13,7 +17,7 @@ include('../conexion.php');
                     <ol class="breadcrumb cabecerap">
                         <li class="breadcrumb-item">Panel Principal</li>
                         <li class="breadcrumb-item " aria-current="page"><a href="pedidos.php">Factura</a> </li>
-                        <li class="breadcrumb-item active" aria-current="page">Facturas</li>
+                        
                    
                     </ol>
                 </nav>
@@ -44,14 +48,18 @@ include('../conexion.php');
                         </tr>
                     </thead>
                     <tbody>
+                    <?php while ($row = mysqli_fetch_array($detalle)) {
+                            ?>
                         <tr>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>12/02/2022</td>
-                            <td>332</td>
+                            <td><?php echo $row['codigoFactura'] ?></td>
+                            <td><?php echo $row['idpedido'] ?></td>
+                            <td><?php echo $row['fecha'] ?></td>
+                            <td><?php echo $row['total'] ?></td>
                             <th><a href="#">Ver detalle</a></th>
                         </tr>
-
+                        <?php
+                            }
+                            ?>
                     </tbody>
                   </table>
                 </div>

@@ -125,7 +125,7 @@ include('cabecera.php');
 
                 <div class="row ">
                     <div class="col-2">
-                            <button type="button" onclick="();" class="btn btn-primary">Generar Factura</button>
+                            <button type="button" onclick="" class="btn btn-primary">Generar Factura</button>
                     </div>
                 </div>
             </div>
