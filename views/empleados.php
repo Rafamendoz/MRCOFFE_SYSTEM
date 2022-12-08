@@ -209,7 +209,7 @@ if (isset($_SESSION['Rol'])) {
                             window.open("../views/fpdf/ReporteEmpleados.php");
                         }
                     </script>
-                    
+
 
                     <button class="btn btn-warning col-2" onclick="return generarReporte()">Generar Reporte</button>
 
