@@ -8,7 +8,7 @@ include('../php/Pedidos/Pedidos.php');
         $ccliente=$_POST["IdCliente"];
         $fecha=$_POST["idfecha"];
         $idpedido = $_POST["Idpedido"];
-        
+        echo $fecha;
         $cabecerap = new Pedido();
 
         $cabecerap->Constructor($idpedido, 0, $fecha, 0 , $ccliente, 0);
@@ -24,9 +24,9 @@ include('../php/Pedidos/Pedidos.php');
         }
 
         print_r( json_encode($arrayDetalle));
-        print_r( );
+      
 
-        $json =json_encode($cabecerap);
+     
 
         
 
@@ -311,9 +311,33 @@ include('../php/Pedidos/Pedidos.php');
   }
 
   function ObtenerValores(){
-    var resp = JSON.parse(<?php echo json_encode($cabecerap);?>);
-    console.log(resp.idpedido);
-    alert("ELL");
+    var idpedido=<?php echo $idpedido;?>;
+    const fecha =  new Date();
+    var idfecha = formatoFecha(fecha, "yy-mm-dd");
+    var IdCliente=<?php echo $ccliente;?>;
+    alert(idpedido+""+""+IdCliente);
+    $.post("../controllers/DetalleP/ObtenerCabeceraPController.php",
+    {"idpedido":idpedido, "idfecha":idfecha, "IdCliente":IdCliente},
+    function(data){
+      var resp = JSON.parse(data);
+      console.log(resp);
+
+    });
+
+    function formatoFecha(fecha, formato) {
+    const map = {
+        dd: fecha.getDate(),
+        mm: fecha.getMonth() + 1,
+        yy: fecha.getFullYear().toString().slice(-2),
+        yyyy: fecha.getFullYear()
+    }
+
+    return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
+}
+
+    
+
+
 
 
   }
