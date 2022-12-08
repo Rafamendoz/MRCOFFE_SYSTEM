@@ -99,6 +99,8 @@ if(isset($_SESSION['Rol'])){
 
 
             </form>
+
+           
           </div>
           <!--<div class="card card-body" id="imagen">
             <img class="card-img-top" id="imag" src="../img/usuario.png" alt="usuario">
@@ -117,23 +119,72 @@ if(isset($_SESSION['Rol'])){
               <button id="mostrar" style='display:none' type="button" onclick="ModificarUsuario()"
                 class=" form-control btn btn-warning mx-4 mb-3 " value="guardar">Modificar</button>
             </div>
+
+            
             <div class="col-md-4 d-flex ">
+              
               <div id="mostrar" style='display:none'>
 
                 <div class="form-group col-md-4  ">
+
+                  
 
                   <!-- <button type="button" onclick="EliminarUsuario ()" class=" form-control btn btn-default"
                       value="guardar">Eliminar</button>-->
                 </div>
               </div>
             </div>
+             
           </div>
         </div>
 
 
 
       </div>
+      <div class="row p-4">
+                <input class="form-control col-2" id="myInput" type="text" placeholder="Buscar..">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Contraseña</th>
+                            <th scope="col">Correo Electronico</th>
+                            <th scope="col">Rol de Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable">
+                        
+                            <tr>
+                               
+                                <td>1212</td>
+                                <td>HelenO</td>
+                                <td>Helen123</td>
+                                <td>helen@gmail.com</td>
+                                <td>Administrador</td>
+                                <td>
+                                    <a href="" class="btn btn-warning">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <a href="" onclick="return eliminar()" class="btn btn-dark">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
 
+                <script>
+                    $(document).ready(function() {
+                        $("#myInput").on("keyup", function() {
+                            var value = $(this).val().toLowerCase();
+                            $("#myTable tr").filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script>
+            </div>
 
     </div>
   </div>
