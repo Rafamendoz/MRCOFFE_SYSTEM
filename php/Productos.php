@@ -113,7 +113,7 @@ class Productos{
 
 
 
- function BuscarClientePorId($id,$conexion){
+ function BuscarProductoPorId($id,$conexion){
   $Res= new Respuesta();
   $query = "SELECT * FROM produdto WHERE idproducto=".$id.";";
   $result = mysqli_query($conexion, $query);
