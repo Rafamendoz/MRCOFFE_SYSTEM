@@ -148,8 +148,9 @@ include('../php/Pedidos/Pedidos.php');
 
             <div class="col-4 align-self-center">
               <p class="p1"><?php 
-                                        $fechaActual = date('d/m/y');
-                                        echo $fechaActual;?></p>
+                                        $fechaActual = date('d-m-Y');
+                                        echo date("d-m-Y",strtotime($fechaActual."- 1 days"));
+                                        ?></p>
             </div>
             <br>
             <br>
@@ -326,7 +327,7 @@ include('../php/Pedidos/Pedidos.php');
       $("#idpedido").html(resp.idpedido);
       $("#idCliente").html(resp.idcliente);
       $("#idNCliente").html(resp.nombrecliente);
-
+      $("#idNCliente").html(resp.nombrecliente);
     });
 
     function formatoFecha(fecha, formato) {
