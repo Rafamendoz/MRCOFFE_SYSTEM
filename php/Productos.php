@@ -64,7 +64,7 @@ class Productos{
     return $Res;
 
    }
-   
+
  function modificarProducto($Conexion){
   $Res=new Respuesta();
     
@@ -119,7 +119,7 @@ class Productos{
 
  function BuscarProductoPorId($id,$conexion){
   $Res= new Respuesta();
-  $query = "SELECT * FROM produdto WHERE idproducto=".$id.";";
+  $query = "SELECT * FROM producto WHERE idproducto=".$id.";";
   $result = mysqli_query($conexion, $query);
   if(mysqli_num_rows($result)==0){
       $Res->NoExiste("No existe el registro");
@@ -128,8 +128,8 @@ class Productos{
   }else{
 
       while ($row = mysqli_fetch_array($result)){
-          $producto = new producto();
-          $producto->Constructor($row[0], $row[1], $row[2], $row[3]);
+          $producto = new Productos();
+          $producto->ConstructorSobrecargado($row[0], $row[1], $row[2], $row[3]);
       
 
       }

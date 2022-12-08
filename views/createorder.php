@@ -78,12 +78,12 @@ include('cabecera.php');
                     <div class="col-4">
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fa-brands fa-product-hunt"></i></span>
-                            <input type="text" class="form-control" id="idCodigoProducto" placeholder="Ingrese el codigo del producto" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" id="idproducto" placeholder="Ingrese el codigo del producto" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </div>
 
                     <div class="col-3 text-center">
-                        <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-magnifying-glass me-1"></i>Buscar</button>
+                        <button type="button" class="btn btn-outline-primary" id="idBotonBuscar" onclick="BuscarProductoPorId()"><i class="fa-solid fa-magnifying-glass me-1"></i>Buscar</button>
                         <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus me-1"></i>Agregar</button>
                        
 
@@ -118,7 +118,7 @@ include('cabecera.php');
                         <label for="labelNameProduct" class="text-center">Nombre del Producto</label>
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control text-center" value="Cafe sin leche" readonly></input>
+                        <input type="text" class="form-control text-center" id="idNombreProducto" value="" readonly></input>
                     </div>
 
                     <div class="col-1 align-self-center ">
@@ -233,6 +233,7 @@ include('cabecera.php');
 
 
         function BuscarClientePorId(){
+            $("#IdCliente").prop('disabled', true);   
             var idcliente = document.getElementById("IdCliente").value;
             $.post( "../controllers/Clientes/BuscarClienteController.php",
                 {"idcliente":idcliente
@@ -246,7 +247,7 @@ include('cabecera.php');
                         $(document).ready(function(){
                             $("#panelN").after("<div class=\"alert alert-danger mx-3\" id=\"AlertaPanel\" role=\"alert\">"+
                                 "No se encontro el cliente!</div>"); 
-                                $("#IdCliente").prop('disabled', true);   
+                               
                                 $("#ContenedorIcon").empty();
                             setTimeout(function() {
                                 
@@ -263,6 +264,7 @@ include('cabecera.php');
                     }else{
                         console.log(resp);
                         $("#NameC").val(resp.nombre+" "+resp.apellido);
+                        $("#IdCliente").prop('disabled', false);   
                         
                         $("#ContenedorIcon").empty();
                        
@@ -303,7 +305,36 @@ include('cabecera.php');
         }
 
         function BuscarProductoPorId(){
-            $.post("");
+            $("#idBotonBuscar").prop('disabled', true); 
+            var idproducto = $("#idproducto").val();
+            
+            $.post("../controllers/Productos/BuscarProductoPorIdController.php",{"idproducto":idproducto},
+            function(data){
+                var resp = JSON.parse(data);
+                console.log(resp);
+                var x = Object.keys(resp).length;
+                if(x==2){
+                            
+                    $(document).ready(function(){
+                            $("#panelN").after("<div class=\"alert alert-danger mx-3\" id=\"AlertaPanel\" role=\"alert\">"+
+                                "No se encontro el producto!</div>"); 
+                                 
+                         
+                            setTimeout(function() {
+                                $("#idNombreProducto").val();
+                                $("#AlertaPanel").hide(); 
+                                $("#idBotonBuscar").prop('disabled', false);             
+                            },1500);
+                     
+                          
+                        });
+                }else{
+                        $("#idNombreProducto").val(resp.descripcion);
+                        $("#idBotonBuscar").prop('disabled', false);    
+
+                }
+          
+            });
         }
 
  
