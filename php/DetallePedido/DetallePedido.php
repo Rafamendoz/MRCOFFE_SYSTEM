@@ -11,6 +11,7 @@ class DetallePedido{
     public $isv;
     public $subtotal;   
      public $total;
+     public $empleado;
 
 
 
@@ -40,6 +41,26 @@ class DetallePedido{
         }
         return $listadetalle;
     }
+    function ObtenerEmpleadoById($idemp,$Conexion){
+
+        $query = "SELECT e.nombre from usuarios as u INNER JOIN empleados e on e.idusuarios = u.idusuarios WHERE idusuarios="."'".$idemp."'";
+        $result = mysqli_query($Conexion, $query);
+        $Usuario = new Usuarios();
+    
+            while ($row = mysqli_fetch_array($result))
+            {
+              
+              $Usuario->SetUser($idemp);
+          
+            
+            }
+        
+          
+        
+        return $Usuario;
+      }
+      
 
 }
+
 ?>

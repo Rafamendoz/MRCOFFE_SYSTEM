@@ -63,13 +63,14 @@ if(!empty($_POST)){
 </head>
 
 <body>
-  <div class="container d-flex justify-content-center ">
+  <div class="container d-flex justify-content-center col-12 ">
     <div id="loginbox bg-warning" style="margin-top:15%; margin-left:10%;" class=" card
-        mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-3">
+        mainbox col-md-10 col-md-offset-2 col-md-10 col-sm-offset-2">
       <div class="card-body">
-        <div class="card-header">
-          <div class="panel-title text-warning font-effect-emboss"> Recuperar Password</div>
-          <div style="float:right; font-size: 70%; position: relative; top:-20px"><a href="index.php">Iniciar Sesión</a>
+        <div class="card-header  bg-dark text-light">
+          <div class="panel-title  font-effect-emboss "> Recuperar Password</div>
+          <div style=" font-size:70%; position: relative; left:70%; top:-25%"><a class="text-light"
+              href="index.php">Iniciar Sesión</a>
           </div>
         </div>
 
@@ -105,7 +106,7 @@ if(!empty($_POST)){
                   </div>
                 </div>
               </form>
-              <?php #print_r($errors);?>
+              <?php ?>
             </div>
         </div>
       </div>

@@ -25,12 +25,9 @@ if(isset($_SESSION['Rol'])){
       </div>
     </div>
 
-    <div class="p-2 bd-highlight text-dark">
-      <p>Gestión de Usuarios</p>
 
-    </div>
 
-    <div class="px-5 bd-highlight">
+    <div class="px-7 bd-highlight">
 
       <!-- <div class="row caja">
         <div class="col-xl-3 col-md-6">
