@@ -50,21 +50,8 @@ include('cabecera.php');
 
 
                     <div class="col-md-1 text-center align-items-center">
-                        <div class="m-3">
-                            <?php $gener=1 ;
-                                if($gener==1){
-                                    echo <<< EOT
-                                                <i class="fa-solid fa-user-tie fa-3x"></i>
-                                                EOT;
-                                }else{
-
-                                    echo <<< EOT
-                                    <i class="fa-solid fa-person-dress fa-3x"></i>
-                                    EOT;
-
-                                }
-                                
-                            ?>
+                        <div class="m-3" id="ContenedorIcon">
+                        
 
                         </div>
                        
@@ -260,7 +247,9 @@ include('cabecera.php');
                             $("#panelN").after("<div class=\"alert alert-danger mx-3\" id=\"AlertaPanel\" role=\"alert\">"+
                                 "No se encontro el cliente!</div>"); 
                                 $("#IdCliente").prop('disabled', true);   
+                                $("#ContenedorIcon").empty();
                             setTimeout(function() {
+                                
                                 $("#AlertaPanel").hide(); 
                                 $("#IdCliente").prop('disabled', false);             
                             },1000);
@@ -274,6 +263,21 @@ include('cabecera.php');
                     }else{
                         console.log(resp);
                         $("#NameC").val(resp.nombre+" "+resp.apellido);
+                        
+                        $("#ContenedorIcon").empty();
+                       
+                        if(resp.idgenero==1){
+                                
+                           
+                                $("#ContenedorIcon").append("<i class=\"fa-solid fa-user-tie fa-3x\"></i>");
+                               
+                                                
+                                                
+                        }else{
+                               
+                                $("#ContenedorIcon").append("<i class=\"fa-solid fa-person-dress fa-3x\"></i>"); 
+                        }
+                        
                        
                     }
 
@@ -296,6 +300,10 @@ include('cabecera.php');
                 }
             );
 
+        }
+
+        function BuscarProductoPorId(){
+            $.post("");
         }
 
  

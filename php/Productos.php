@@ -25,8 +25,11 @@ class Productos{
   function SetId($id){
     $this->codigo=$id;
   }
+
+ 
+  
   function insertarProducto($Conexion){
-  $Res=new Respuesta();
+    $Res=new Respuesta();
     
     if (strlen($this->codigo)!=4){
 
@@ -61,6 +64,7 @@ class Productos{
     return $Res;
 
    }
+   
  function modificarProducto($Conexion){
   $Res=new Respuesta();
     
