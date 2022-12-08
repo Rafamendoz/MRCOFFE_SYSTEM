@@ -28,6 +28,12 @@ class Usuarios{
         $this->correo=$email;
         $this->idrol=$rol;
       }
+      function ConstructorSob($iduser, $name,$email, $rol){
+        $this->idusuarios=$iduser;
+        $this->nombre=$name;
+        $this->correo=$email;
+        $this->idrol=$rol;
+      }
   
       function SetAdd($iduser, $name, $pass,$email, $rol){
         $this->idusuarios=$iduser;
@@ -155,7 +161,7 @@ class Usuarios{
       $result = mysqli_query($conexion, $query);
       while ($row = mysqli_fetch_array($result)){
         $Usuario = new Usuarios();
-          $Usuario->Constructor($row['idusuarios'],$row['nombre'],$row['correo'],$row['rol']);
+        $Usuario->ConstructorSob($row['idusuarios'],$row['nombre'],$row['correo'],$row['rol']);
           $listadetalle[] = $Usuario;
 
       }
@@ -163,6 +169,6 @@ class Usuarios{
   }
 
 }
-}
+
 
 ?>
