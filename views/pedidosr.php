@@ -95,7 +95,7 @@ include('../php/Pedidos/pedidos.php');
                     html =html+ "<tr><td>"+resp[i].idpedido+"</td>"+
                     "<td>"+resp[i].idcliente+"</td>"+
                     "<td>"+resp[i].nombrecliente+"</td>"+
-                    "<td>"+resp[i].nombreempleado+"</td>"+
+                    "<td> <input hidden type=\"text\" value=\"1\"></input>"+resp[i].nombreempleado+"</td>"+
                     "<td>"+resp[i].total+"</td>"+
                     "<td>"+"<a href=\"\" class=\"edit-form-data\" data-toggle=\"modal\" data-target=\"#editMdl\">"+
                     "<i class=\"fa-solid fa-eye\"></i></a>"+

@@ -51,6 +51,35 @@ class Pedido{
         return $listPedido;
     }
 
+    function GuardarPedido($conexion){
+        $respuesta = new Respuesta();
+        $query = "INSERT INTO pedidos (idpedido, idempleados, fechapedido, horapedido, idcliente, idTipoPago, idEstadoPedido)"+ 
+        "VALUES($this->idpedido,$this->idempleado,'$this->fechapedido','$this->horapedido',$this->idcliente,$this->idtipopago,1)";
+        if($mysqli_query($conexion,$query)==true){
+            
+            $respuesta->Succes("Pedido con codigo ".$this->idpedido.", guardado exitosamente");
+
+        }else{
+            $respuesta->NoSucces("Error al guardar pedido");
+        }
+
+        return $respuesta;
+  
+    }
+
+    function ObtenerIdPedido($conexion){
+        $query = "SELECT MAX(idpedido) FROM pedido;"; 
+        $resultado = mysqli_query($conexion, $query);
+        while($row = mysqli_fetch_array($resultado)){
+            $idpedidon = $row[0]+1;
+
+        }
+        return $idpedidon;
+
+    }
+
+   
+
 }
 
 

@@ -6,7 +6,7 @@ include('cabecera.php');
 
 
     <div class=" bd-highlight align-items-center">
-        <div class="panelnav ">
+        <div class="panelnav " id="panelN">
             <div class="shadow p-3 mb-1 bg-body rounded">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb cabecerap">
@@ -30,22 +30,22 @@ include('cabecera.php');
                 <form class="row g-3 " method="get" action="detallepedido.php">
                     <div class="col-md-1 text-center">
                         <label for="inputIdPedido" class="form-label">N. Pedido</label>
-                        <input type="text" class="form-control" name="Idpedido" value="11101"  readonly ></label>
+                        <input type="text" class="form-control text-center" name="Idpedido" id="idp"  readonly ></label>
                     </div>
 
                     <div class="col-md-1 text-center">
                         <label for="inputPassword4" class="form-label">C. Cliente</label>
-                        <input type="text" class="form-control" name="IdCliente" value="1">
+                        <input type="number" class="form-control" name="IdCliente" id="IdCliente" value="">
                     </div>
 
                     <div class="col-md-6 text-center">
                         <label for="inputPassword4" class="form-label" >Nombre del Cliente</label>
-                        <input type="text" class="form-control" id="inputPassword5" value="Edwin Rafael"  readonly>
+                        <input type="text" class="form-control" id="NameC" readonly >
                     </div>
 
                     <div class="col-md-3   text-center">
                         <label for="inputDate" class="form-label" >Fecha</label>
-                        <input type="date" class="form-control" id="inputPassword5" readonly>
+                        <input type="text" class="form-control text-center" id="inputPassword5" readonly value="<?php echo date('d/m/y');?>">
                     </div>
 
 
@@ -91,7 +91,7 @@ include('cabecera.php');
                     <div class="col-4">
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fa-brands fa-product-hunt"></i></span>
-                            <input type="text" class="form-control" placeholder="Ingrese el codigo del producto" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" id="idCodigoProducto" placeholder="Ingrese el codigo del producto" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </div>
 
@@ -214,10 +214,106 @@ include('cabecera.php');
 </main>
 
     <script>
+     
+
+        var inputCliente = document.getElementById("IdCliente");
+        inputCliente.addEventListener("keypress", function(event){
+            if(event.key==="Enter"){
+                BuscarClientePorId();
+                event.preventDefault();
+                
+            }
+        });
+
+        window.onload=function() {
+			ObtenerUltimoIdPedido();
+		}
+
+      
+        
+
+
         function GoResumen(){
           window.location.href = 'detallepedido.php';
         }
-    
+
+
+
+        function AgregarProducto(){
+            $listaProducto = array();
+
+        }
+
+
+        function BuscarClientePorId(){
+            var idcliente = document.getElementById("IdCliente").value;
+            $.post( "../controllers/Clientes/BuscarClienteController.php",
+                {"idcliente":idcliente
+                },
+                function(data){
+                    var resp = JSON.parse(data);
+                    var x = Object.keys(resp).length;
+                    if(x==2){
+                        $("#NameC").val("");
+                        
+                        $(document).ready(function(){
+                            $("#panelN").after("<div class=\"alert alert-danger mx-3\" id=\"AlertaPanel\" role=\"alert\">"+
+                                "No se encontro el cliente!</div>"); 
+                                $("#IdCliente").prop('disabled', true);   
+                            setTimeout(function() {
+                                $("#AlertaPanel").hide(); 
+                                $("#IdCliente").prop('disabled', false);             
+                            },1000);
+                     
+                          
+                        });
+
+                       
+
+
+                    }else{
+                        console.log(resp);
+                        $("#NameC").val(resp.nombre+" "+resp.apellido);
+                       
+                    }
+
+                }
+                   
+                    
+                    
+
+                
+            );
+        }
+
+        function ObtenerUltimoIdPedido(){
+            $.post("../controllers/Pedidos/BuscarIdPedidoDisponible.php",
+            {"idcliente":2},
+                function(data){
+                var resp = JSON.parse(data);
+                console.log(resp);
+                $("#idp").val(resp);
+                }
+            );
+
+        }
+
+ 
+
+      
+
+     
+
+      
+       
+
+        
+        
+
+
+
+
+
     </script>
 
 

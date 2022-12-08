@@ -92,11 +92,15 @@ echo <<<EOT
 
           </div>
           <div class="sb-sidenav-menu-heading">Pedidos</div>
+          <a class="nav-link" href="../productos.php">
+              <div class="sb-nav-link-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+              Productos
+          </a>
           <a class="nav-link" href="pedidos.php">
             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
             Pedido
           </a>
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="facturasVista.php">
             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
             Factura
           </a>
