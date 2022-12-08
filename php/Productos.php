@@ -1,6 +1,7 @@
 <?php 
-include("Respuesta.php");
+include("../Respuesta.php");
 class Productos{
+
   public $codigo;
   public $descripcion;
   public $producto;
@@ -23,11 +24,8 @@ class Productos{
   
   function SetId($id){
     $this->codigo=$id;
-
-
-
-}
-function insertarProducto($Conexion){
+  }
+  function insertarProducto($Conexion){
   $Res=new Respuesta();
     
     if (strlen($this->codigo)!=4){
@@ -41,7 +39,7 @@ function insertarProducto($Conexion){
             }
             if (strlen($this->producto) < 3) {
                 echo "<div class='alert alert-warning'>El nombre del producto es demasiado corto debe contener al menos 3 caracteres</div>";
-                return;
+               
             
     }else{
       mysqli_query($Conexion,
@@ -62,8 +60,8 @@ function insertarProducto($Conexion){
     }
     return $Res;
 
-}
-function modificarProducto($Conexion){
+   }
+ function modificarProducto($Conexion){
   $Res=new Respuesta();
     
     if (strlen($this->codigo)!=4){
@@ -99,7 +97,45 @@ function modificarProducto($Conexion){
     }
     return $Res;
 
+ }
+ function BuscarProducto($conexion){
+  $query = "SELECT * FROM producto";
+  $listprod = array();
+  $result = mysqli_query($conexion, $query);
+  while ($row = mysqli_fetch_array($result)){
+      $producto = new producto();
+      $cliente->Constructor($row[0], $row[1], $row[2], $row[3]);
+      $listprod[] = $pedido;
+
+  }
+  return $listprod;
+ }
+
+
+
+ function BuscarClientePorId($id,$conexion){
+  $Res= new Respuesta();
+  $query = "SELECT * FROM produdto WHERE idproducto=".$id.";";
+  $result = mysqli_query($conexion, $query);
+  if(mysqli_num_rows($result)==0){
+      $Res->NoExiste("No existe el registro");
+      return $Res;
+
+  }else{
+
+      while ($row = mysqli_fetch_array($result)){
+          $producto = new producto();
+          $producto->Constructor($row[0], $row[1], $row[2], $row[3]);
+      
+
+      }
+      return $producto;
+
+  }
+
+  }
+
 }
 
 
-  }
+?>
