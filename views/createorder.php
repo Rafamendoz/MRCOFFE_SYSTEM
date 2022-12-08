@@ -158,6 +158,7 @@ include('cabecera.php');
                                 <th>Nombre del Producto</td>
                                 <th>Cantidad</td>
                                 <th>Precio</td>
+                                <th>Subtotal</td>
                                 <th>Accion</td>
 
                             </thead>
@@ -359,6 +360,8 @@ include('cabecera.php');
                     var idcolcantidad = idfila+"cantidad"
                     var validador="";
                     var contador=0;
+                    var subtotal = cantidad * resp.precio;
+                    alert(subtotal);
 
                    
                     
@@ -372,8 +375,8 @@ include('cabecera.php');
                         "<td class=\"nombre\"><input hidden name=\"f"+contador2+"c2\" value="+resp.descripcion+"/>"+resp.descripcion+"</td>"+
                         "<td class =\"cantidad\" >  <input hidden class=\"idcolumacantidad\" name=\"f"+contador2+"c3\" value="+cantidad+">"+cantidad+"</td>"+
                         "<td class =\"precio\"> <input hidden name=\"f"+contador2+"c4\" value="+resp.precio+">"+resp.precio+"</td>"+
-                        "<td>"+
-                        "<button onclick=\"EliminarFromOrder("+idfila+")\" type=\"button\" class=\"btn btn-outline-danger\"><i class=\"fa-solid fa-trash\"></i></button>"+
+                        "<td><input hidden name=\"f"+contador2+"c5\" value="+subtotal+">"+subtotal+"</td>"+
+                        "<td><button onclick=\"EliminarFromOrder("+idfila+")\" type=\"button\" class=\"btn btn-outline-danger\"><i class=\"fa-solid fa-trash\"></i></button>"+
                         "</td></tr>";
                         $("#idTbody").append(html);
 

@@ -8,21 +8,18 @@ class DetallePedido{
     public $idproducto;
     public $cantidad;
     public $descuento;
-    public $isv;
     public $subtotal;   
-     public $total;
-     public $empleado;
+ 
 
 
 
-    function Constructor($idpedido,$idproducto,$cantidad,$descuento,$isv, $subtotal, $total){
+    function Constructor($idpedido,$idproducto,$cantidad,$descuento, $subtotal){
         $this->idpedido=$idpedido;
         $this->idproducto=$idproducto;
         $this->cantidad=$cantidad;
         $this->descuento=$descuento;
-        $this->isv=$isv;
         $this->subtotal=$subtotal;
-        $this->total=$total;
+
     }
 
    

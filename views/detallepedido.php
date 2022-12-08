@@ -19,7 +19,7 @@ include('../php/Pedidos/Pedidos.php');
        
           
           $dp = new DetallePedido();
-          $dp->Constructor($_POST["Idpedido"],$_POST["f".$i."c1"], $_POST["f".$i."c3"], 0.00, 0.00, 0.00, 0.00);
+          $dp->Constructor($_POST["Idpedido"],$_POST["f".$i."c1"], $_POST["f".$i."c3"], 0.00, $_POST["f".$i."c5"]);
           array_push($arrayDetalle, $dp);
         }
 
