@@ -6,14 +6,16 @@
                         <div class="nav">
                             
                             <div class="sb-sidenav-menu-heading">Personas</div>
-                            <a <?php if($_SESSION['Rol'] != 1){ ?>  style="display:none;"  <?php } ?> class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div  class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            <a href="views/usuario.php" <?php if ($_SESSION['Rol'] != 1) { ?> style="display:none;" <?php } ?> class="nav-link"
+                                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Usuarios
                                 <div class="sb-sidenav-collapse-arrow"></div>
                             </a>
                      
-                            <a <?php if($_SESSION['Rol'] != 1){ ?>  style="display:none;"  <?php } ?> class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div  class="sb-nav-link-icon"><i class="fas fa-book-open" ></i></div>
+                            <a <?php if ($_SESSION['Rol'] != 1) { ?> style="display:none;" <?php } ?> class="nav-link collapsed" href="views/clientes.php"
+                                data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Clientes
                                 <div class="sb-sidenav-collapse-arrow"></div>
                             </a>
@@ -30,11 +32,11 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
                                 Productos
                             </a>
-                            <a class="nav-link" href="charts.html">
+                            <a class="nav-link" href="views/pedidos.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Pedido
                             </a>
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="views/facturasVista.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Factura
                             </a>
