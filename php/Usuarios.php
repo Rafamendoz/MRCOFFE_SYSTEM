@@ -106,8 +106,8 @@ class Usuarios
     } else {
       mysqli_query(
         $Conexion,
-        "INSERT into usuarios (idusuarios, nombre, password, idrol, correo)
-              values('$this->idusuarios','$this->nombre','$this->password','$this->idrol','$this->correo')"
+        "INSERT into usuarios (idusuarios, nombre, password, idrol, correo, idestado)
+              values('$this->idusuarios','$this->nombre','$this->password','$this->idrol','$this->correo',1)"
       );
       if (mysqli_error($Conexion)) {
 
@@ -125,7 +125,7 @@ class Usuarios
 
   function ObtenerUsuariosById($iduser, $Conexion)
   {
-    $query = "SELECT idusuarios,nombre, password, correo,idrol from usuarios where nombre='$iduser'";
+    $query = "SELECT idusuarios,nombre, password, correo,idrol from usuarios where nombre='$iduser' AND idestado=1";
     $result = mysqli_query($Conexion, $query);
     $Usuario = new Usuarios();
     if ($row = mysqli_fetch_array($result)) {
@@ -138,7 +138,7 @@ class Usuarios
   function ObtenerPassByUser($user, $Conexion)
   {
 
-    $query = "SELECT password, idrol from usuarios WHERE nombre=" . "'" . $user . "'";
+    $query = "SELECT password, idrol from usuarios WHERE nombre=" . "'" . $user . "' AND idestado=1";
     $result = mysqli_query($Conexion, $query);
     $Usuario = new Usuarios();
 
@@ -156,7 +156,7 @@ class Usuarios
 
   function BuscarUsuarios($Conexion)
   {
-    $query = "SELECT u.idusuarios,u.nombre, u.correo, iu.rol FROM usuarios as u INNER JOIN rol iu on iu.idrol = u.idrol";
+    $query = "SELECT u.idusuarios,u.nombre, u.correo, iu.rol FROM usuarios as u INNER JOIN rol iu on iu.idrol = u.idrol WHERE idestado=1";
     $listadetalle = array();
     $result = mysqli_query($Conexion, $query);
     while ($row = mysqli_fetch_array($result)) {

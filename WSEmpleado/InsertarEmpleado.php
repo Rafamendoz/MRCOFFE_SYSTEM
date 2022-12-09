@@ -27,9 +27,9 @@
 
 			mysqli_query($mysqli,
 				"insert into empleados(nombre, apellido, identidad, fechaContratacion, direccion, 
-				telefono, idcargo, idusuarios, idempleados )
+				telefono, idcargo, idusuarios, idempleados, idestado )
 					values('".$nombre."','".$apellido."',".$identidad.",'".$fechaContratacion."','".$direccion."'
-					,'".$telefono."','".$idcargo."', '".$idusuarios."','".$idempleados."' )"
+					,'".$telefono."','".$idcargo."', '".$idusuarios."','".$idempleados."',1 )"
 			);
 
 

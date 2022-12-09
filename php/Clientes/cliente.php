@@ -34,7 +34,7 @@ class Cliente{
 
 
     function BuscarCliente($conexion){
-        $query = "SELECT * FROM cliente";
+        $query = "SELECT * FROM cliente WHERE idestado=1";
         $listCliente = array();
         $result = mysqli_query($conexion, $query);
         while ($row = mysqli_fetch_array($result)){
@@ -50,7 +50,7 @@ class Cliente{
     
     function BuscarClientePorId($id,$conexion){
         $respuestaCliente = new Respuesta();
-        $query = "SELECT * FROM cliente WHERE idcliente=".$id.";";
+        $query = "SELECT * FROM cliente WHERE idcliente=".$id." AND idestado=1;";
         $result = mysqli_query($conexion, $query);
         if(mysqli_num_rows($result)==0){
             $respuestaCliente->NoExiste("No existe el registro");
