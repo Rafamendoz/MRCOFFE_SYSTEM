@@ -75,7 +75,7 @@ include('../php/Pedidos/pedidos.php');
             "../controllers/Pedidos/BuscarPedidosR.php",
             {},
             function(data){
-                alert(data);
+              
                 var resp = JSON.parse(data);
                 console.log(resp);
                 var html="";

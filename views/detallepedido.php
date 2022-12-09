@@ -23,10 +23,12 @@ include('../php/Pedidos/Pedidos.php');
           $descripcion = $_POST["f".$i."c2"];
           $preciode = $_POST["f".$i."c3"];
           $quanty = $_POST["f".$i."c4"];
-          $subtot = $_POST["f".$i."c5"];
+          $descuento = 0.00;
+          $subtot = $_POST["f".$i."c5"]-$descuento;
+          
           $subtotalF = $subtotalF+$subtot;
           $html= $html.
-          "<tr><td><input hidden id='f$i"."c1"."' value='$descripcion'></input>$descripcion</td> <td><input hidden id='f$i"."c2"." value='$quanty'></input>$quanty</td><td><input hidden id='f$i"."c3"." value='$preciode'></input>$preciode</td><td>0.00</td><td><input hidden id='f$i"."c5"." value='$subtot'></input>$subtot</td></tr>";
+          "<tr><td><input hidden id='f$i"."c1"."' value='$productcode'></input>$descripcion</td> <td><input hidden id='f$i"."c2"."' value='$quanty'></input>$quanty</td><td><input hidden id='f$i"."c3"."' value='$preciode'></input>$preciode</td><td><input hidden id='f$i"."c4"."' value='$descuento'></input>0.00</td><td><input hidden id='f$i"."c5"."' value='$subtot'></input>$subtot</td></tr>";
           $dp = new DetallePedido();
           $dp->Constructor($_POST["Idpedido"], $productcode, $quanty, 0.00,   $subtot, $subtot);  
           echo json_encode($dp);
@@ -116,7 +118,7 @@ include('../php/Pedidos/Pedidos.php');
             </div>
 
             <div class="col-3 align-self-center">
-              <p class="p2" id="idpedido">11101</p>
+              <p class="p2" id="idpedido"></p>
             </div>
 
 
@@ -174,7 +176,7 @@ include('../php/Pedidos/Pedidos.php');
           </div>
 
           <div class="row">
-            <table class="table  table-striped text-center align-content-center">
+            <table class="table  table-striped text-center align-content-center" id="idTDetalle">
               <thead>
                 <tr>
                   <th>Descripcion</th>
@@ -294,7 +296,8 @@ include('../php/Pedidos/Pedidos.php');
   <script type="text/javascript">
       window.onload = function() {
         ObtenerValores();
-        Isv()
+        Isv();
+        
       }
 
       function Total() {
@@ -320,7 +323,8 @@ include('../php/Pedidos/Pedidos.php');
         var IdCliente = "<?php echo $ccliente;?>";
         var nombreCliente = "<?php echo $namec;?>";
 
-        alert(idpedido + "" + "" + IdCliente);
+      
+
         $.post("../controllers/DetalleP/ObtenerCabeceraPController.php", {
             "idpedido": idpedido,
             "idfecha": idfecha,
@@ -369,14 +373,14 @@ include('../php/Pedidos/Pedidos.php');
       }
 
 
-    function GuardarPedido(){
+    function GuardarCabezeraPedido(){
         var idpedido="<?php echo $idpedido;?>";
         const fecha =  new Date();
         var now = fecha.toLocaleTimeString('en-US');
         var idfecha = formatoFecha(fecha, "yy-mm-dd");
         var IdCliente="<?php echo $ccliente;?>";
         var nombreCliente="<?php echo $namec;?>";
-        alert(idpedido+IdCliente+idfecha+nombreCliente+now);
+        
         $.post("../controllers/Pedidos/GuardarPedidoController.php",
           {"idpedido":idpedido, "idfecha":idfecha, "IdCliente":IdCliente, "NombreCliente":nombreCliente, "Hora":now}
           , function(data){
@@ -386,6 +390,52 @@ include('../php/Pedidos/Pedidos.php');
             
             }
         );
+    }
+
+    function GuardarDetallePedido(){
+      let colCount = $("#idTbody tr").length;
+      alert("TOTAL FILAS"+colCount);
+      for(var i= 1; i<=colCount; i++){
+        let idpedido = $("#idpedido").text();
+        let idproducto = $("#f"+i+"c1").val();
+        let cantidad = $("#f"+i+"c3").val();
+        let descuento = $("#f"+i+"c4").val();
+        let subtotal = $("#f"+i+"c5").val();
+
+        var total = subtotal-descuento;
+        /*alert("IDPEDIDO: "+idpedido+ "IDPRODUCTO: "+idproducto+ "CANTIDAD: "+ cantidad+ "DESCUENTO: "+ descuento + "SUBTOTAL: "+subtotal+ " Total: "+ total);*/
+        enviar(idpedido,idproducto,cantidad, descuento,subtotal, total);
+
+   
+
+
+    }
+
+    function enviar(idpedido,idproducto,cantidad, descuento, subtotal,total){
+      $.post("../controllers/DetalleP/GuardarDetallesController.php",
+          {
+            "idpedido":idpedido, 
+            "idproducto":idproducto,
+            "cantidad":cantidad, 
+            "descuento":descuento, 
+            "subtotal":subtotal, 
+            "total":total},
+            function(data){
+              var res = data;
+              console.log(res);
+              
+
+            }
+          );
+
+        
+        }
+
+    }
+
+    function GuardarPedido(){
+      GuardarCabezeraPedido();
+      GuardarDetallePedido();
     }
 
 

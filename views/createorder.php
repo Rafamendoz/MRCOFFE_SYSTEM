@@ -130,7 +130,7 @@ include('cabecera.php');
                     </div>
 
                     <div class="col-1 ">
-                        <input type="number" class="form-control text-center" value="" id="idCantidad"></input>
+                        <input type="number" class="form-control text-center" min="1"  pattern="[0-3]"  id="idCantidad"></input>
                     </div>
 
                     <div class="col-3  align-self-center  ">

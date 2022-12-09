@@ -71,7 +71,8 @@ class DetallePedido{
 
       function GuardarDetalle($conexion){
         $respuesta = "eeee";
-        $query = "INSERT INTO detallepedido (idpedido, idproducto, cantidad, descuento, isv, subtotal, total) values($this->idpedido,$this->idproducto,$this->cantidad,$this->descuento,$this->subtotal,$this->total)";
+        $query = "INSERT INTO detallepedido (idpedido, idproducto, cantidad, descuento, subtotal, total)".
+        "values($this->idpedido,$this->idproducto,$this->cantidad,$this->descuento,$this->subtotal,$this->total)";
     
        
         if(mysqli_query($conexion,$query)==true){
