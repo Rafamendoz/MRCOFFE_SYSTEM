@@ -97,7 +97,16 @@ class PDF extends FPDF
         $this->Cell(95); // Movernos a la derecha
         $this->SetTextColor(0, 0, 0); //color
         //creamos una celda o fila
-        $this->Cell(110, 15, utf8_decode('Mr Coffee'), 1, 1, 'C', 0); // AnchoCelda,AltoCelda,titulo,borde(1-0),saltoLinea(1-0),posicion(L-C-R),ColorFondo(1-0)
+
+        $this->SetFont('Arial', 'B', 15);
+        $this->Cell(100, 10, utf8_decode("FACTURA"), 0, 1, 'C', 0);
+        $this->Ln(3);
+
+
+
+
+
+        $this->Cell(110, 15, utf8_decode('Mr Coffee'), 0, 1, 'C', 0); // AnchoCelda,AltoCelda,titulo,borde(1-0),saltoLinea(1-0),posicion(L-C-R),ColorFondo(1-0)
         $this->Ln(3); // Salto de línea
         $this->SetTextColor(103); //color
 
@@ -147,24 +156,20 @@ class PDF extends FPDF
         $this->Ln(10);
 
         //color
-        $this->SetTextColor(228, 161, 27);
-        $this->Cell(100); // mover a la derecha
-        $this->SetFont('Arial', 'B', 15);
-        $this->Cell(100, 10, utf8_decode("FACTURA"), 0, 1, 'C', 0);
-        $this->Ln(7);
-
+    
         /* CAMPOS DE LA TABLA */
         //color
         $this->SetFillColor(228, 161, 27); //colorFondo
         $this->SetTextColor(0, 0, 0); //colorTexto
         $this->SetDrawColor(0, 0, 0); //colorBorde
         $this->SetFont('Arial', 'B', 11);
-        $this->Cell(40, 10, utf8_decode('PRODUCTO'), 1, 0, 'C', 1);
-        $this->Cell(40, 10, utf8_decode('PRECIO'), 1, 0, 'C', 1);
-        $this->Cell(40, 10, utf8_decode('CANTIDAD'), 1, 0, 'C', 1);
-        $this->Cell(40, 10, utf8_decode('DESCUENTO'), 1, 0, 'C', 1);
-        $this->Cell(40, 10, utf8_decode('SUBTOTAL'), 1, 0, 'C', 1);
-        $this->Cell(50, 10, utf8_decode('ISV'), 1, 1, 'C', 1);
+        $this->Cell(12);
+        $this->Cell(50, 10, utf8_decode('PRODUCTO'), 1, 0, 'C', 1);
+        $this->Cell(50, 10, utf8_decode('PRECIO'), 1, 0, 'C', 1);
+        $this->Cell(50, 10, utf8_decode('CANTIDAD'), 1, 0, 'C', 1);
+        $this->Cell(50, 10, utf8_decode('DESCUENTO'), 1, 0, 'C', 1);
+        $this->Cell(50, 10, utf8_decode('SUBTOTAL'), 1, 0, 'C', 1);
+
     }
 
     // Pie de página
@@ -188,7 +193,7 @@ SELECT * from detallepedido d
 
 join producto p 
 on d.idproducto = p.idproducto
-where idpedido =
+where d.idpedido =
 " . $informacion->idpedido;
 $consulta_info = $mysqli->query($query);
 
@@ -202,23 +207,24 @@ $i = 0;
 $pdf->SetFont('Arial', '', 12);
 $pdf->SetDrawColor(163, 163, 163); //colorBorde
 
+$pdf->Cell(40, 10, utf8_decode(""), 0, 1 , 'C', 0); //salto de linea
 /*$consulta_reporte_alquiler = $conexion->query("  ");*/
 
 while ($row = $consulta_info->fetch_object()) {
     $i = $i + 1;
     /* TABLA */
-    $pdf->Cell(40, 10, utf8_decode($row->nombreproducto), 1, 0, 'C', 0);
-    $pdf->Cell(40, 10, utf8_decode($row->precio), 1, 0, 'C', 0);
-    $pdf->Cell(40, 10, utf8_decode($row->cantidad), 1, 0, 'C', 0);
-    $pdf->Cell(40, 10, utf8_decode($row->descuento), 1, 0, 'C', 0);
-    $pdf->Cell(40, 10, utf8_decode($row->isv), 1, 0, 'C', 0);
+    $pdf->Cell(12);
+    $pdf->Cell(50, 10, utf8_decode($row->nombreproducto), 1, 0, 'C', 0);
+    $pdf->Cell(50, 10, utf8_decode($row->precio), 1, 0, 'C', 0);
+    $pdf->Cell(50, 10, utf8_decode($row->cantidad), 1, 0, 'C', 0);
+    $pdf->Cell(50, 10, utf8_decode($row->descuento), 1, 0, 'C', 0);
     $pdf->Cell(50, 10, utf8_decode($row->cantidad * $row->precio), 1, 1, 'C', 0);
-    $pdf->Cell(50, 10, utf8_decode(""), 0, 1 , 'C', 0); //salto de linea
+    
 }
-// align right 
-
-$pdf->Cell(40, 10, utf8_decode("Total"), 1, 1, 'C', 0);
-$pdf->Cell(40, 10, utf8_decode($informacion->total), 1, 0, 'C', 0);
+// align center 
+$pdf->Cell(12);
+$pdf->Cell(200, 10, utf8_decode("Total"), 1, 0, 'C', 0);
+$pdf->Cell(50, 10, utf8_decode($informacion->total), 1, 0, 'C', 0);
 
 
 $pdf->Output('Reporte Empleados.pdf', 'I');//nombreDescarga, Visor(I->visualizar - D->descargar)

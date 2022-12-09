@@ -5,7 +5,6 @@ if (isset($_SESSION['Rol'])){
 } else {
  
     header("Location: http://localhost/PROYECTODW/index.php", TRUE, 301);
-
     die();
   
 
