@@ -111,7 +111,7 @@ if (isset($_SESSION['Rol'])) {
               <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
               Pedido
             </a>
-            <a class="nav-link" href="tables.html">
+            <a class="nav-link" href="views/facturasVista.php">
               <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
               Factura
             </a>
