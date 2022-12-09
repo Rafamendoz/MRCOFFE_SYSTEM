@@ -9,6 +9,7 @@ include('../php/Pedidos/Pedidos.php');
         $fecha=$_POST["idfecha"];
         $idpedido = $_POST["Idpedido"];
         $namec = $_POST["NameC"]; 
+        $subtotalF =0.00;
 
 
        
@@ -20,6 +21,7 @@ include('../php/Pedidos/Pedidos.php');
           $preciode = $_POST["f".$i."c3"];
           $quanty = $_POST["f".$i."c4"];
           $subtot = $_POST["f".$i."c5"];
+          $subtotalF = $subtotalF+$subtot;
           $html= $html."<tr><td>$descripcion</td> <td>$quanty</td><td>$preciode</td><td>0.00</td><td>$subtot</td><tr>";
           
           $dp = new DetallePedido();
@@ -27,7 +29,8 @@ include('../php/Pedidos/Pedidos.php');
           array_push($arrayDetalle, $dp);
         }
 
-        echo $html;
+        echo $subtotalF;
+
 
         print_r( json_encode($arrayDetalle));
       
@@ -194,9 +197,7 @@ include('../php/Pedidos/Pedidos.php');
         <div class="col-4  p-3 mx-4 ">
           <div class="row">
             <div class="col-12 shadow-lg p-3 mb-3  btn-primary">
-              <p class="p1"><i class="fa-solid fa-coins fa-xl mx-2"></i>ISV: <input type="text"
-                  class=" form-control-plaintext border-0 p-0 text-center text-light" name="" id="isv"
-                  aria-describedby="helpId" placeholder=""></p>
+              <p class="p1" id="PIsv"><i class="fa-solid fa-coins fa-xl mx-2"></i>ISV: L </p>
 
             </div>
           </div>
@@ -204,9 +205,7 @@ include('../php/Pedidos/Pedidos.php');
           <div class="row">
             <div class="col-12 shadow-lg p-3  mb-3 btn-danger">
               <p class="p1">
-                <i class="fa-solid fa-percent fa-xl mx-2"></i>Descuento:<input type="text"
-                  class=" form-control-plaintext border-0 p-0 text-center text-light" name="" id="desc"
-                  aria-describedby="helpId" placeholder="">
+                <i class="fa-solid fa-percent fa-xl mx-2"></i>Descuento: L. <label id="idLDes">0.00</label>
 
 
               </p>
@@ -293,6 +292,7 @@ include('../php/Pedidos/Pedidos.php');
   
   window.onload=function() {
     ObtenerValores();
+    Isv()
 		}
 
   function Total() {
@@ -301,14 +301,14 @@ include('../php/Pedidos/Pedidos.php');
 
   }
 
-  function SubTotal() {
-    let precio = document.getElementById("cantidad").value;
-    let cant = document.getElementById("precio").value;
+  function Isv() {
+    let subtotal = document.getElementById("subtotal").innerHTML;
+
 
 
     // Calculo del subtotal
-    let subtotal = precio * cantidad;
-    document.getElementById("subtotal").innerHTML = subtotal;
+    let isv = subtotal * 0.15;
+    $("#PIsv").append("<label id=\"idLIsv\">"+isv);
   }
 
   function ObtenerValores(){
@@ -333,6 +333,7 @@ include('../php/Pedidos/Pedidos.php');
     );
 
     $("#idTbody").append("<?php echo $html;?>");
+    $("#subtotal").html("<?php echo $subtotalF;?>"); 
 
 
 
