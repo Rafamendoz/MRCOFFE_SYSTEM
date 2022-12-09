@@ -6,8 +6,10 @@ if (isset($_SESSION['Rol'])) {
   include('../conexion.php');
   $query = "SELECT idrol, rol from rol";
   $result = mysqli_query($mysqli, $query);
-
+  $query1 = "SELECT idEstado, valor from Estado";
+  $results = mysqli_query($mysqli, $query1);
   ?>
+
 
 <main>
   <div class="d-flex flex-column bd-highlight">
@@ -62,7 +64,7 @@ if (isset($_SESSION['Rol'])) {
 
               </div>
               <div class="form-row d-flex justify-content-between text-center m-5-t" id="forma">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6 ">
                   <label for="nomal">Usuario</label>
                   <input type="text" class="form-control  " id="name" placeholder="Ingrese el usuario" name="user">
                 </div>
@@ -73,12 +75,12 @@ if (isset($_SESSION['Rol'])) {
                 </div>
               </div>
 
-              <div class="form-row d-flex justify-content-between text-center m-md-2">
-                <div class="form-group col-md-6">
+              <div class="form-row d-flex justify-content-evenly text-center m-md-2">
+                <div class="form-group col-md-4">
                   <label for="correo">Correo Electronico</label>
                   <input type="email" class="form-control" name="email" id="correo" placeholder="john@example.com">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4 mx-1">
                   <label for="rol">Rol de Usuario</label>
                   <select id="idrol" name="idrol" title="Roles" class="form-control" data-live-search="true">
                     <?php
@@ -90,6 +92,23 @@ if (isset($_SESSION['Rol'])) {
                       }
                       ?>
                   </select>
+
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="rol">Estado
+                    de Usuario
+                  </label>
+                  <select id="idestado" name="idestado" title="Estado" class="form-control" data-live-search="true">
+                    <?php
+                      while ($row = mysqli_fetch_array($results)) {
+                      ?>
+
+                    <option value="<?php echo $row['idEstado'] ?>"><?php echo $row['valor']; ?></option>
+                    <?php
+                      }
+                      ?>
+                  </select>
+
 
                 </div>
 
@@ -204,8 +223,8 @@ function Obtener() {
           "<td>" + resp[i].correo + "</td>" +
           "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].idrol + "</td>" +
           "<td>" +
-          "<a href=\"\" class=\"edit-form-data px-2 mx-2 btn btn-warning\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
-          "<i class=\"fa-solid fa-pen-to-square \"></i></a>" +
+          "<a href=\"javascript:BuscarUsuario()\" class=\"edit-form-data px-2 mx-2 btn btn-warning\" data-toggle=\"modal\" data-target=\"#editMdl\" onclick=\"BuscarUsuario();\" >" +
+          "<i class=\"fa-solid fa-pen-to-square \" ></i></a>" +
           "<a href=\"\" class=\"edit-form-data px-2 btn btn-dark\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
           "<i class=\"far fa-trash-alt\"></i></a>" +
           "</td></tr>";
@@ -250,6 +269,7 @@ function RegistrarUsuario() {
       console.log(data);
       var resp = JSON.parse(data);
       console.log(resp);
+
       window.location.href = "../views/usuario.php";
 
     }
@@ -262,14 +282,15 @@ function ModificarUsuario() {
   var nombre = document.getElementById("name").value;
   var contra = document.getElementById("contra").value;
   var correo = document.getElementById("correo").value;
-  //var rol = document.getElementById("idrol").value;
+  var estado = document.getElementById("idestado").value;
 
   alert(usuario + nombre + correo);
   $.post("../controllers/EditarUsuarios.php", {
       'usuario': usuario,
       'nombre': nombre,
       "contra": contra,
-      "correo": correo
+      "correo": correo,
+      "estado": estado,
 
 
 
@@ -315,6 +336,7 @@ function BuscarUsuario() {
       document.getElementById("contra").value = resp.password;
       document.getElementById("correo").value = resp.correo;
       document.getElementById("idrol").value = resp.idrol;
+      document.getElementById("idestado").value = resp.idEstado;
 
 
 
@@ -339,6 +361,7 @@ function cancelar() {
 <?php
 } else {
   header("Location: http://localhost/PROYECTODW/index.php", TRUE, 301);
-  die();}
+  die();
+}
 
 ?>

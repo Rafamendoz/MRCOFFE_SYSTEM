@@ -9,6 +9,7 @@ class Usuarios
   public $password;
   public $correo;
   public $idrol;
+  public $idEstado;
 
 
 
@@ -21,13 +22,14 @@ class Usuarios
     $this->correo = $email;
     $this->idrol = $rol;
   }
-  function ConstructorSobrecargado($iduser, $name, $pass, $email, $rol)
+  function ConstructorSobrecargado($iduser, $name, $pass, $email, $rol, $idEstado)
   {
     $this->idusuarios = $iduser;
     $this->nombre = $name;
     $this->password = $pass;
     $this->correo = $email;
     $this->idrol = $rol;
+    $this->idEstado = $idEstado;
   }
   function ConstructorSob($iduser, $name, $email, $rol)
   {
@@ -45,12 +47,13 @@ class Usuarios
     $this->correo = $email;
     $this->idrol = $rol;
   }
-  function Setup($iduser, $name, $pass, $email)
+  function Setup($iduser, $name, $pass, $email, $idEstado)
   {
     $this->idusuarios = $iduser;
     $this->nombre = $name;
     $this->password = $pass;
     $this->correo = $email;
+    $this->idEstado = $idEstado;
   }
 
   function SetUser($user)
@@ -80,7 +83,7 @@ class Usuarios
 
       mysqli_query(
         $Conexion,
-        "UPDATE  usuarios SET nombre='$this->nombre',password='$this->password',correo='$this->correo'
+        "UPDATE  usuarios SET nombre='$this->nombre',password='$this->password',correo='$this->correo',idestado='$this->idEstado'
           where idusuarios='$this->idusuarios'"
       );
       if (mysqli_error($Conexion)) {
@@ -125,12 +128,12 @@ class Usuarios
 
   function ObtenerUsuariosById($iduser, $Conexion)
   {
-    $query = "SELECT idusuarios,nombre, password, correo,idrol from usuarios where nombre='$iduser' AND idestado=1";
+    $query = "SELECT idusuarios,nombre, password, correo,idrol,idestado from usuarios where nombre='$iduser' AND idestado=1";
     $result = mysqli_query($Conexion, $query);
     $Usuario = new Usuarios();
     if ($row = mysqli_fetch_array($result)) {
 
-      $Usuario->ConstructorSobrecargado($row['idusuarios'], $row['nombre'], $row['password'], $row['correo'], $row['idrol']);
+      $Usuario->ConstructorSobrecargado($row['idusuarios'], $row['nombre'], $row['password'], $row['correo'], $row['idrol'], $row['idestado']);
     }
     return  $Usuario;
   }

@@ -5,16 +5,10 @@ include('../php/DetallePedido/DetallePedido.php');
 include('../php/Pedidos/Pedidos.php');
 
 
-$ccliente = $_POST["IdCliente"];
-$fecha = $_POST["idfecha"];
-$idpedido = $_POST["Idpedido"];
-$namec = $_POST["NameC"];
-$subtotalF = 0.00;
 
 
 
-
-$arrayDetalle = array();
+/*$arrayDetalle = array();
 $html = "";
 $len = $_POST["len"];
 for ($i = 1; $i <= $len; $i++) {
@@ -28,7 +22,7 @@ for ($i = 1; $i <= $len; $i++) {
   $subtotalF = $subtotalF + $subtot;
   $html = $html .
     "<tr><td><input hidden id='f$i" . "c1" . "' value='$productcode'></input>$descripcion</td> <td><input hidden id='f$i" . "c2" . "' value='$quanty'></input>$quanty</td><td><input hidden id='f$i" . "c3" . "' value='$preciode'></input>$preciode</td><td><input hidden id='f$i" . "c4" . "' value='$descuento'></input>0.00</td><td><input hidden id='f$i" . "c5" . "' value='$subtot'></input>$subtot</td></tr>";
-}
+}*/
 
 
 
@@ -75,7 +69,7 @@ for ($i = 1; $i <= $len; $i++) {
         <div class="col-7 shadow-lg p-3 mb-0 bg-primary rounded">
           <div class="fcabera"></div>
           </br>
-          <p class="p1" style="font-size: 1.4em; color:white;"><b>PRE-FACTURA</b></p>
+          <p class="p1" style="font-size: 1.4em; color:white;"><b>Detalle de Pedido</b></p>
 
         </div>
 
@@ -227,8 +221,8 @@ for ($i = 1; $i <= $len; $i++) {
 
           <div class="row">
             <div class="col-6  p-3 d-grid gap-2 btn-light">
-              <button type="button" id="ocultar" class="btn btn-primary" onclick="GuardarPedido()"><i
-                  class="fa-regular fa-circle-right fa-lg mx-2"></i>Procesar</button>
+              <button type="button" id="ocultar" class="btn btn-primary" onclick="regresar()"><i
+                  class="fa-regular fa-circle-right fa-lg mx-2"></i>Regresar</button>
 
             </div>
 
@@ -321,6 +315,10 @@ function Total() {
   // Calculo del subtotal
   let total = parseFloat(subtotal) - parseFloat(disc) + parseFloat(isv);
   $("#idLTotal").html(total.toFixed(2));
+}
+
+function regresar() {
+  window.location.href = "../views/pedidosr.php";
 }
 
 function ObtenerValores() {
@@ -523,7 +521,7 @@ function GuardarPedido() {
           clearInterval(timerInterval)
         }
       }).then((result) => {
-        /* Read more about handling dismissals below */
+        /* Read more about handling dismissals below*/
         if (result.dismiss === Swal.DismissReason.timer) {
           console.log('I was closed by the timer')
           GuardarCabezeraPedido();

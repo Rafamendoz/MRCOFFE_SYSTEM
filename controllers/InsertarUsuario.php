@@ -11,4 +11,3 @@
 	  $Usuario-> SetAdd($iduser, $name, $pass, $email, $rol);
 		echo json_encode($Usuario->InsertarUsuario($mysqli));
 }
-?>

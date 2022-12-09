@@ -97,7 +97,8 @@ function ObtenerPedidosRealizados() {
           "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].nombreempleado + "</td>" +
           "<td>" + resp[i].total + "</td>" +
           "<td>" +
-          "<a href=\"../views/detallePedidos.php\" class=\"edit-form-data\" data-toggle=\"modal\" data-target=\"../views/detallePedidos.php\">" +
+          "<a href=\"../views/detallesf.php?" + resp[i].idpedido +
+          "\" class=\"edit-form-data\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
           "<i class=\"fa-solid fa-eye\"></i></a>" +
           "<a href=\"\" class=\"edit-form-data px-2\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
           "<i class=\"far fa-trash-alt\"></i></a>" +
