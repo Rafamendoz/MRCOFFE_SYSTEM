@@ -7,13 +7,7 @@ if (isset($_SESSION['Rol'])) {
 <!DOCTYPE html>
 <html lang="en">
 <!-- sidebar-->
-<?php
-    require("header.php");
-    ?>
-<!-- sidebar-->
-<?php
-    require("sidebar.php");
-    ?>
+
 
 <div id="layoutSidenav_content">
 
@@ -23,7 +17,7 @@ if (isset($_SESSION['Rol'])) {
 
 
   <div class="container-fluid px-4">
-    <h1 class="mt-4">Productos</h1>
+    <h1 class="mt-4">Produjhjchjcctos</h1>
     <ol class="breadcrumb mb-4">
       <li class="breadcrumb-item active">Inventario de Productos</li>
     </ol>
@@ -74,7 +68,9 @@ if (isset($_SESSION['Rol'])) {
           <button type="reset" class="btn btn-dark">Cancelar</button>
         </div>
       </form>
+      </div>
 
+</div>
       <div class="card-body">
 
         <table id="datatablesSimple">
@@ -122,16 +118,12 @@ if (isset($_SESSION['Rol'])) {
         <button class="btn btn-warning col-2" onclick="return generarReporte()">Generar Reporte</button>
       </div>
 
-    </div>
-
-  </div>
+  
 
   <!-- fin contenido-->
 
   <!-- footer-->
-  <?php
-        require("footer.php");
-        ?>
+
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
@@ -150,6 +142,9 @@ if (isset($_SESSION['Rol'])) {
 </body>
 
 </html>
+<?php
+    include('views/pie.php');
+  ?>
 <?php
 } else {
   header("Location: http://localhost/PROYECTODW/index.php", TRUE, 301);

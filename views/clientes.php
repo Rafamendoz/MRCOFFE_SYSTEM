@@ -28,58 +28,63 @@ if (isset($_SESSION['Rol'])) {
     window.open("../views/fpdf/ReporteClientes.php");
   }
   </script>
-  <div class="container-fluid row m-2">
-    <div class="card-header  bg-dark text-light">
-      <h1>Registrar Clientes</h1>
-    </div>
 
-
-    <form method="POST" class="row">
-      <?php
-                include '../conexion.php';
-                include '../controllers/EliminarCliente.php';
-                include '../controllers/AgregarClienteController.php';
-                ?>
-      <div class="col-6">
-        <div class="form-group">
-          <label for="nombres">Nombre</label>
-          <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Ingrese los nombres" />
-        </div>
-        <div class="form-group">
-          <label for="apellidos">Apellidos</label>
-          <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Ingrese los apellidos" />
-        </div>
-        <div class="form-group">
-          <label for="direccion">Dirección</label>
-          <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingrese la direccion" />
-        </div>
+  <div class="px-5 bd-highlight">
+    
+    <div class="card d-flex mb-5" id="contener">
+      <div class="card-header  bg-dark text-light">
+        <h1>Registrar Clientes</h1>
       </div>
 
-      <div class="col-6">
-        <div class="form-group">
-          <label for="telefono">Teléfono</label>
-          <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el telefono" />
-        </div>
-        <div class="form-group">
-          <label for="correo">Correo Electrónico</label>
-          <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese el correo" />
-        </div>
-        <div class="form-group">
-          <label for="identidad">RTN</label>
-          <input type="text" class="form-control" id="identidad" name="identidad"
-            placeholder="Ingrese el numero de identidad" />
-        </div>
+      <div class="container-fluid px-5">
+        <form method="POST" class="row">
+          <?php
+                    include '../conexion.php';
+                    include '../controllers/EliminarCliente.php';
+                    include '../controllers/AgregarClienteController.php';
+                    ?>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="nombres">Nombre</label>
+              <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Ingrese los nombres" />
+            </div>
+            <div class="form-group">
+              <label for="apellidos">Apellidos</label>
+              <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Ingrese los apellidos" />
+            </div>
+            <div class="form-group">
+              <label for="direccion">Dirección</label>
+              <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingrese la direccion" />
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el telefono" />
+            </div>
+            <div class="form-group">
+              <label for="correo">Correo Electrónico</label>
+              <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese el correo" />
+            </div>
+            <div class="form-group">
+              <label for="identidad">RTN</label>
+              <input type="text" class="form-control" id="identidad" name="identidad"
+                placeholder="Ingrese el numero de identidad" />
+            </div>
+          </div>
+          <div class="mt-2">
+            <button type="submit" class="btn btn-warning" onsubmit="" name="registrar" value="ok">
+              Agregar Cliente
+            </button>
+            <button type="reset" class="btn btn-dark">Cancelar</button>
+          </div>
+        </form>
       </div>
-      <div class="mt-2">
-        <button type="submit" class="btn btn-warning" onsubmit="" name="registrar" value="ok">
-          Agregar Cliente
-        </button>
-        <button type="reset" class="btn btn-dark">Cancelar</button>
-      </div>
-    </form>
+  </div>
+
     <div class="row p-4">
-      <input class="form-control col-2" id="myInput" type="text" placeholder="Buscar..">
-      <table class="table text-center">
+      <table id="datatablesSimple">
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -141,6 +146,10 @@ if (isset($_SESSION['Rol'])) {
     <button class="btn btn-warning col-2" onclick="return generarReporte()">Generar Reporte</button>
   </div>
 
+
+
+
+</div>
   <?php
         include('pie.php');
         ?>
