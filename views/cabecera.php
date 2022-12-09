@@ -1,6 +1,17 @@
 <?php
 session_start();
-if (isset($_SESSION['Rol']))
+if (isset($_SESSION['Rol'])){
+
+} else {
+ 
+    header("Location: http://localhost/PROYECTODW/index.php", TRUE, 301);
+
+    die();
+  
+
+}
+   
+?>
 
 
 
@@ -11,6 +22,7 @@ if (isset($_SESSION['Rol']))
 
 <?php
 echo <<<EOT
+      
         <!DOCTYPE html>
         <html lang="en">
         <head>
