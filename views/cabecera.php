@@ -17,7 +17,7 @@ if (isset($_SESSION['Rol'])){
 
 
 
-?>
+
 
 
 <?php
