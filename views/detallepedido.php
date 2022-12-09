@@ -233,7 +233,7 @@ include('../php/Pedidos/Pedidos.php');
             </div>
 
             <div class=" col-6 p-3 d-grid gap-2 btn-light">
-              <button type="button" id="ocultar" class="btn btn-danger"><i
+              <button type="button" id="ocultar" onclick="Cancelar()" class="btn btn-danger"><i
                   class="fa-solid fa-ban fa-lg mx-2"></i>Cancelar</button>
 
 
@@ -357,7 +357,14 @@ include('../php/Pedidos/Pedidos.php');
     return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
 }
 
+
+function Cancelar(){
+  window.location.href = "createorder.php";
+}
+
 </script>
+
+
 
 
 
