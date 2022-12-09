@@ -76,12 +76,12 @@ if (isset($_SESSION['Rol'])) {
 
                             <div class="col-sm-3 ">
                                 <label for="nomal">Nombre:</label>
-                                <input type="text" maxlength="60" required class="form-control" id="nombre" placeholder="Ingrese el nombre" name="nombre">
+                                <input type="text" maxlength="60" required pattern="[A-Za-z]" class="form-control" id="nombre" placeholder="Ingrese el nombre" name="nombre">
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="nomal">Apellido:</label>
-                                <input type="text" maxlength="60" required pattern="[a-z]{1,15}" class="form-control" id="apellido" placeholder="Ingrese el Apellido" name="apellido">
+                                <input type="text" maxlength="60" required pattern="[A-Za-z]" class="form-control" id="apellido" placeholder="Ingrese el Apellido" name="apellido">
                             </div>
 
                         </div>
@@ -237,8 +237,14 @@ if (isset($_SESSION['Rol'])) {
             var telefono = document.getElementById("telefono").value;
             var idcargo = document.getElementById("idcargo").value;
             var idusuarios = document.getElementById("idusuarios").value;
-            //alert(nombre+'-'+apellido+'-'+identidad+'-'+fechaContratacion+'-'+ 
-            //direccion+'-'+ telefono+'-'+ idcargo+'-'+ idusuarios);
+          
+            //para validar 
+            cnom = document.getElementById("nombre");
+            cape = document.getElementById("apellido");
+            cide = document.getElementById("identidad");
+            cdir = document.getElementById("direccion");
+            ctel = document.getElementById("telefono");
+            // 
             $.post(
                 "../WSEmpleado/InsertarEmpleado.php", {
                     'idempleados': idempleados,
@@ -252,9 +258,44 @@ if (isset($_SESSION['Rol'])) {
                     "idusuarios": idusuarios,
                 },
                 function(data) {
+                    if(nombre.length < 3 ){
+                        alert("El NOMBRE es demasiado corto");
+                        cnom.style.borderColor = "red";
 
-                    Validar(data);
+                    }else if(apellido.length < 3 ){
+                        cnom.style.borderColor = "";
+                        alert("El APELLIDO es demasiado corto");                      
+                        cape.style.borderColor = "red";
 
+                    }else if(identidad.length != 13 ){
+                        cnom.style.borderColor = "";
+                        cape.style.borderColor = "";
+                        alert("La IDENTIDAD debe ser de 13 digitos");
+                        cide.style.borderColor = "red";
+
+                    }else if(direccion.length < 4 ){
+                        cnom.style.borderColor = "";
+                        cape.style.borderColor = "";
+                        cide.style.borderColor = "";
+                        alert("La DIRECCION es demasiado corta");
+                        cdir.style.borderColor = "red";
+
+                    }else if(telefono.length != 8 ){
+                        cnom.style.borderColor = "";
+                        cape.style.borderColor = "";
+                        cide.style.borderColor = "";
+                        cdir.style.borderColor = "";
+                        alert("El TELEFONO debe ser de 8 digitos");
+                        ctel.style.borderColor = "red";
+
+                    }else{
+                        cnom.style.borderColor = "";
+                        cape.style.borderColor = "";
+                        cide.style.borderColor = "";
+                        cdir.style.borderColor = "";
+                        ctel.style.borderColor = "";
+                        Validar(data);
+                    }
                 }
             );
 
