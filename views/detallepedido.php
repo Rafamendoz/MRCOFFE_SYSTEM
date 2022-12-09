@@ -1,12 +1,4 @@
-<?php
-session_start();
-if (isset($_SESSION['Rol']))
 
-
-
-
-
-?>
 
 <?php
 include('cabecera.php'); 
@@ -238,7 +230,7 @@ include('../php/Pedidos/Pedidos.php');
           <div class="row">
             <div class="col-6  p-3 d-grid gap-2 btn-light">
               <button type="button" id="ocultar" class="btn btn-primary"><i
-                  class="fa-regular fa-circle-right fa-lg mx-2" onclick="mostrar()"></i>Procesar</button>
+                  class="fa-regular fa-circle-right fa-lg mx-2" onclick="GuardarPedido()"></i>Procesar</button>
 
             </div>
 
@@ -385,6 +377,8 @@ function GuardarPedido(){
   $.post("../controllers/Pedidos/GuardarPedidoController.php",
    {"idpedido":idpedido, "idfecha":idfecha, "IdCliente":IdCliente, "NombreCliente":nombreCliente, "Hora":now}
     , function(data){
+      var resp = JSON.parse(data);
+      console.log(resp);
 
      }
 
