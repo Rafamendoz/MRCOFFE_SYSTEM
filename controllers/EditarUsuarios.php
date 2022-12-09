@@ -6,9 +6,8 @@
 	  $name= @$_POST["nombre"];
 	  $pass= @$_POST["contra"];
 	  $email= @$_POST["correo"];
-		$rol=@$_POST["rol"];
+		//$rol=@$_POST["rol"];
 	  $Usuario = new Usuarios();
-	  $Usuario->SetAdd($iduser, $name, $pass,$rol, $email);
+	  $Usuario->Setup($iduser, $name, $pass,$email);
 		echo json_encode($Usuario->modificarUsuario( $mysqli ));
 }
-?>
