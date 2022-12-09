@@ -9,6 +9,7 @@ class DetallePedido{
     public $cantidad;
     public $descuento;
     public $subtotal;   
+    public $idEmpleado;
  
 
 
@@ -19,9 +20,15 @@ class DetallePedido{
         $this->cantidad=$cantidad;
         $this->descuento=$descuento;
         $this->subtotal=$subtotal;
+    
 
     }
+    function SetUser($user){
+        $this->idEmpleado=$user;
 
+   
+
+    }
    
 
     
@@ -42,12 +49,12 @@ class DetallePedido{
 
         $query = "SELECT e.nombre from usuarios as u INNER JOIN empleados e on e.idusuarios = u.idusuarios WHERE idusuarios="."'".$idemp."'";
         $result = mysqli_query($Conexion, $query);
-        $Usuario = new Usuarios();
+        $Usuario = new DetallePedido();
     
             while ($row = mysqli_fetch_array($result))
             {
               
-              $Usuario->SetUser($idemp);
+              $Usuario->Set($idemp);
           
             
             }
