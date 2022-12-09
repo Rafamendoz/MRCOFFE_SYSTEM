@@ -401,7 +401,7 @@ include('../php/Pedidos/Pedidos.php');
                         Swal.showLoading()
                         const b = Swal.getHtmlContainer().querySelector('b')
                         timerInterval = setInterval(() => {
-                          b.textContent = Swal.getTimerLeft()
+                         
                         }, 100)
                       },
                       willClose: () => {
@@ -516,7 +516,7 @@ include('../php/Pedidos/Pedidos.php');
                       Swal.showLoading()
                       const b = Swal.getHtmlContainer().querySelector('b')
                       timerInterval = setInterval(() => {
-                        b.textContent = Swal.getTimerLeft()
+                     
                       }, 100)
                     },
                     willClose: () => {
@@ -533,7 +533,6 @@ include('../php/Pedidos/Pedidos.php');
                         icon: 'success',
                         title: 'Resultado Existoso',
                         width: 400,
-                        height: 200,
                         padding: '1em',
                         color: '#454541',
                         background: '#fff url(/images/trees.png)',
