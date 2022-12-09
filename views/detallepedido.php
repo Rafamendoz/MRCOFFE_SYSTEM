@@ -12,7 +12,7 @@ include('../php/Pedidos/Pedidos.php');
         $idpedido = $_POST["Idpedido"];
         $namec = $_POST["NameC"]; 
         $subtotalF =0.00;
-        echo $idpedido;
+     
 
 
        
