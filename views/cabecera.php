@@ -47,7 +47,7 @@ echo <<<EOT
                       <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                           <li><a class="dropdown-item" href="#!">Settings</a></li>
-                          <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                          <li><a class="dropdown-item" href="../views/logs.php">Activity Log</a></li>
                           <li><hr class="dropdown-divider" /></li>
                           <li><a class="dropdown-item"  href="../salir.php">Logout</a></li>
                       </ul>
@@ -61,55 +61,55 @@ echo <<<EOT
                           <div class="nav">
                               
                               <div class="sb-sidenav-menu-heading">Personas</div>                       
-      EOT; 
-      ?>
+      EOT;
+?>
 
-          <a href="usuario.php" <?php if ($_SESSION['Rol'] != 1) { ?> style="display:none;" <?php } ?> class="nav-link"
-            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-            Usuarios
-            <div class="sb-sidenav-collapse-arrow"></div>
-          </a>
-          <!--  <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+<a href="usuario.php" <?php if ($_SESSION['Rol'] != 1) { ?> style="display:none;" <?php } ?> class="nav-link"
+  data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+  Usuarios
+  <div class="sb-sidenav-collapse-arrow"></div>
+</a>
+<!--  <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                           <nav class="sb-sidenav-menu-nested nav"><i class="fas fa-angle-down"></i>
                                               <a class="nav-link" href="layout-static.html">Static Navigation</a>
                                               <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                                           </nav>
                                       </div>-->
-          <a <?php if ($_SESSION['Rol'] != 1) { ?> style="display:none;" <?php } ?> class="nav-link collapsed" href="clientes.php"
-            data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-            Clientes
-            <div class="sb-sidenav-collapse-arrow"></div>
-          </a>
-          <a <?php if($_SESSION['Rol'] != 1){ ?> style="display:none;" <?php } ?> class="nav-link collapsed" href="empleados.php"
-            aria-expanded="false" aria-controls="collapsePages">
-            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-            Empleado
-            <div class="sb-sidenav-collapse-arrow"></div>
-          </a>
-          <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+<a <?php if ($_SESSION['Rol'] != 1) { ?> style="display:none;" <?php } ?> class="nav-link collapsed" href="clientes.php"
+  data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+  <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+  Clientes
+  <div class="sb-sidenav-collapse-arrow"></div>
+</a>
+<a <?php if ($_SESSION['Rol'] != 1) { ?> style="display:none;" <?php } ?> class="nav-link collapsed"
+  href="empleados.php" aria-expanded="false" aria-controls="collapsePages">
+  <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+  Empleado
+  <div class="sb-sidenav-collapse-arrow"></div>
+</a>
+<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 
-          </div>
-          <div class="sb-sidenav-menu-heading">Pedidos</div>
-          <a class="nav-link" href="../productos.php">
-              <div class="sb-nav-link-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-              Productos
-          </a>
-          <a class="nav-link" href="pedidos.php">
-            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-            Pedido
-          </a>
-          <a class="nav-link" href="facturasVista.php">
-            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-            Factura
-          </a>
-          </div>
-          </div>
-          <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            <?php echo $_SESSION['User']; ?>
-          </div>
-          </nav>
-          </div>
-          <div id="layoutSidenav_content">
+</div>
+<div class="sb-sidenav-menu-heading">Pedidos</div>
+<a class="nav-link" href="../productos.php">
+  <div class="sb-nav-link-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+  Productos
+</a>
+<a class="nav-link" href="pedidos.php">
+  <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+  Pedido
+</a>
+<a class="nav-link" href="facturasVista.php">
+  <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+  Factura
+</a>
+</div>
+</div>
+<div class="sb-sidenav-footer">
+  <div class="small">Logged in as:</div>
+  <?php echo $_SESSION['User']; ?>
+</div>
+</nav>
+</div>
+<div id="layoutSidenav_content">
