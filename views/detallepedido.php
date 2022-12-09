@@ -9,19 +9,25 @@ include('../php/Pedidos/Pedidos.php');
         $fecha=$_POST["idfecha"];
         $idpedido = $_POST["Idpedido"];
         $namec = $_POST["NameC"]; 
-        echo $fecha;
+
 
        
         $arrayDetalle = array();
-
+        $html ="";
         $len = $_POST["len"];
         for($i=1; $i<=$len; $i++){
-       
+          $descripcion = $_POST["f".$i."c2"];
+          $preciode = $_POST["f".$i."c3"];
+          $quanty = $_POST["f".$i."c4"];
+          $subtot = $_POST["f".$i."c5"];
+          $html= $html."<tr><td>$descripcion</td> <td>$quanty</td><td>$preciode</td><td>0.00</td><td>$subtot</td><tr>";
           
           $dp = new DetallePedido();
           $dp->Constructor($_POST["Idpedido"],$_POST["f".$i."c1"], $_POST["f".$i."c3"], 0.00, $_POST["f".$i."c5"]);
           array_push($arrayDetalle, $dp);
         }
+
+        echo $html;
 
         print_r( json_encode($arrayDetalle));
       
@@ -165,21 +171,15 @@ include('../php/Pedidos/Pedidos.php');
               <thead>
                 <tr>
                   <th>Descripcion</th>
-                  <th>Cantidad</th>
                   <th>Precio</th>
+                  <th>Cantidad</th>
                   <th>Descuento</th>
                   <th>Subtotal</th>
                 </tr>
               </thead>
 
-              <tbody>
-                <tr>
-                  <td>Cafe Sin Leche</td>
-                  <td id="cantidad">1</td>
-                  <td id="precio">12.93</td>
-                  <td>0.00</td>
-                  <td id="subtotal">12.93</td>
-                </tr>
+              <tbody id="idTbody">
+              
 
               </tbody>
             </table>
@@ -317,20 +317,35 @@ include('../php/Pedidos/Pedidos.php');
     var idfecha = formatoFecha(fecha, "yy-mm-dd");
     var IdCliente=<?php echo $ccliente;?>;
     var nombreCliente="<?php echo $namec;?>";
+    
     alert(idpedido+""+""+IdCliente);
     $.post("../controllers/DetalleP/ObtenerCabeceraPController.php",
     {"idpedido":idpedido, "idfecha":idfecha, "IdCliente":IdCliente, "NombreCliente":nombreCliente},
-    function(data){
-      var resp = JSON.parse(data);
-      console.log(resp);
+      function(data){
+        var resp = JSON.parse(data);
+        console.log(resp);
 
-      $("#idpedido").html(resp.idpedido);
-      $("#idCliente").html(resp.idcliente);
-      $("#idNCliente").html(resp.nombrecliente);
-      $("#idNCliente").html(resp.nombrecliente);
-    });
+        $("#idpedido").html(resp.idpedido);
+        $("#idCliente").html(resp.idcliente);
+        $("#idNCliente").html(resp.nombrecliente);
+        $("#idNCliente").html(resp.nombrecliente);
+      }
+    );
 
-    function formatoFecha(fecha, formato) {
+    $("#idTbody").append("<?php echo $html;?>");
+
+
+
+    
+
+
+
+
+  }
+
+
+  
+  function formatoFecha(fecha, formato) {
     const map = {
         dd: fecha.getDate(),
         mm: fecha.getMonth() + 1,
@@ -340,13 +355,6 @@ include('../php/Pedidos/Pedidos.php');
 
     return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
 }
-
-    
-
-
-
-
-  }
 
 </script>
 
