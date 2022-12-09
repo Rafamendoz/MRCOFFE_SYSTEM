@@ -1,0 +1,18 @@
+[E][09-12-2022 01:14:23]: Se ha producido un error
+[I][09-12-2022 01:14:23]: Mensaje de informacion
+[E][09-12-2022 01:14:39]: Se ha producido un error
+[I][09-12-2022 01:14:39]: Mensaje de informacion
+[E][09-12-2022 01:14:59]: Se ha producido un error
+[I][09-12-2022 01:14:59]: Mensaje de informacion
+[E][09-12-2022 01:15:02]: Se ha producido un error
+[I][09-12-2022 01:15:02]: Mensaje de informacion
+[E][09-12-2022 01:15:02]: Se ha producido un error
+[I][09-12-2022 01:15:02]: Mensaje de informacion
+[E][09-12-2022 01:15:03]: Se ha producido un error
+[I][09-12-2022 01:15:03]: Mensaje de informacion
+[E][09-12-2022 01:16:02]: Se ha producido un error
+[I][09-12-2022 01:16:02]: Array
+[E][09-12-2022 01:17:33]: Se ha producido un error
+[I][09-12-2022 01:17:33]: 
+[E][09-12-2022 01:20:45]: Se ha producido un error
+[I][09-12-2022 01:20:45]: 1

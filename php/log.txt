@@ -1,0 +1,4 @@
+[E][09-12-2022 01:09:04]: Se ha producido un error
+[I][09-12-2022 01:09:04]: Mensaje de informacion
+[E][09-12-2022 01:09:10]: Se ha producido un error
+[I][09-12-2022 01:09:10]: Mensaje de informacion

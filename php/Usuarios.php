@@ -70,10 +70,7 @@ class Usuarios{
         $Res->NoSucces("El nombre o usuario no puede ir en blanco");}
         if (trim($this->password)==""){
           $Res->NoSucces("Ingrese una contraseña"); }
-          if (trim($this->idusuarios)==""){
-            $Res->NoSucces("El ID no puede ir en blanco");
-        
-        }else{
+        else{
 
         mysqli_query($Conexion,
           "UPDATE  usuarios SET nombre='$this->nombre',password='$this->password',correo='$this->correo'
