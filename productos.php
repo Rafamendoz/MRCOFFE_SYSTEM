@@ -1,10 +1,19 @@
 <?php
-
 session_start();
+  if (isset($_SESSION['Rol'])){
 
-if (isset($_SESSION['Rol'])) {
+  } else {
+  
+    header("Location: http://localhost/PROYECTODW/inde1x.php", TRUE, 301);
+
+    die();
+
+
+  }
+
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- sidebar-->
@@ -173,8 +182,3 @@ if (isset($_SESSION['Rol'])) {
   </body>
 
 </html>
-<?php
-} else {
-    header("Location:index.php");
-}
-?>
