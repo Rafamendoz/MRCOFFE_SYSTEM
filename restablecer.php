@@ -4,39 +4,37 @@ require 'funciones.php';
 
 
 
-if(!empty($_POST)){
-    $email=$mysqli-> real_escape_string($_POST['email']);
+if (!empty($_POST)) {
+  $email = $mysqli->real_escape_string($_POST['email']);
 
-    if(isEmail($email)){
+  if (isEmail($email)) {
 
-  
-        
-        if(emailExiste($email)){
-            $user_id = getValor('correo','correo',$email);
-           $nombre = getValor('nombre','correo',$email);
 
-           $token = generaTokenPass($email);
-           $url='http://localhost/PROYECTODW/cambia_pass.php?user_id='.$user_id.'&token='.$token;
-           $asunto='Recuperar Password';
-           $cuerpo="Hola $nombre:<br/><br/> Se ha solicitado un reinicio de  contrase&ntilde;a, visita la siguiente direcci&oacute;n: <a href='$url'>$url</a>";
 
-           if(enviarEmail($email,$nombre, $asunto, $cuerpo))    {
-            echo "Hemos enviado un correo electronico a la direccion $email para restablecer tu password. <br/>";
-            echo "<a href='index.php>Iniciar Sesion</a>";
-            exit;
+    if (emailExiste($email)) {
+      $user_id = getValor('correo', 'correo', $email);
+      $nombre = getValor('nombre', 'correo', $email);
 
-           }else {
-            $errors[] = "Error al Enviar el  Email";
-      
-           }
-        }else{
-            $errors[] = "No Existe el correo";
-        }
-    }else{
-        echo 'error';
+      $token = generaTokenPass($email);
+      $url = 'http://localhost/PROYECTODW/cambia_pass.php?user_id=' . $user_id . '&token=' . $token;
+      $asunto = 'Recuperar Password';
+      $cuerpo = "Hola $nombre:<br/><br/> Se ha solicitado un reinicio de  contrase&ntilde;a, visita la siguiente direcci&oacute;n: <a href='$url'>$url</a>";
+
+      if (enviarEmail($email, $nombre, $asunto, $cuerpo)) {
+        echo "Hemos enviado un correo electronico a la direccion $email para restablecer tu password. <br/>";
+        echo "<a href='index.php>Iniciar Sesion</a>";
+        exit;
+      } else {
+        $errors[] = "Error al Enviar el  Email";
+      }
+    } else {
+      $errors[] = "No Existe el correo";
     }
-}else{
-    echo 'error';
+  } else {
+    //echo 'error';
+  }
+} else {
+  //echo 'error';
 }
 
 ?>

@@ -1,13 +1,13 @@
 <?php
-include('cabecera.php'); 
+include('cabecera.php');
 
 ?>
 <?php
-    include('../conexion.php');
-    $query = "SELECT *
-    FROM detallepedido"; 
-    
-    $detalle = mysqli_query($mysqli, $query);
+include('../conexion.php');
+$query = "SELECT *
+    FROM detallepedido";
+
+$detalle = mysqli_query($mysqli, $query);
 ?>
 <main>
   <div class=" bd-highlight align-items-center">
@@ -61,8 +61,6 @@ include('cabecera.php');
   Obtenerdetalle();
 })();
 
-
-
 function Obtenerdetalle() {
   $.post(
     "../controllers/DetalleP/MostrardetallePedido.php", {},
@@ -77,7 +75,6 @@ function Obtenerdetalle() {
         "<th>Producto</th>" +
         "<th>Cantidad</th>" +
         "<th>Descuento</th>" +
-        "<th>ISV</th>" +
         "<th>SubTotal</th>" +
         "<th>Total</th>" +
         "<th>Accion</th>" +
@@ -90,7 +87,6 @@ function Obtenerdetalle() {
           "<td>" + resp[i].idproducto + "</td>" +
           "<td>" + resp[i].cantidad + "</td>" +
           "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].descuento + "</td>" +
-          "<td>" + resp[i].isv + "</td>" +
           "<td>" + resp[i].subtotal + "</td>" +
           "<td>" + resp[i].total + "</td>" +
           "<td>" + "<a href=\"\" class=\"edit-form-data\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
@@ -119,5 +115,5 @@ function Obtenerdetalle() {
 
 
 <?php
-include('pie.php'); 
+include('pie.php');
 ?>
