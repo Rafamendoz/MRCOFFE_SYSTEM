@@ -362,6 +362,13 @@ function Cancelar(){
   window.location.href = "createorder.php";
 }
 
+
+function GuardarPedido(){
+  $.post(
+    
+  );
+}
+
 </script>
 
 
