@@ -1,13 +1,13 @@
 <?php
 include('cabecera.php');
-if(isset($_SESSION['Rol'])){
+if (isset($_SESSION['Rol'])) {
 ?>
 <?php
-	include('../conexion.php');
-			$query = "SELECT idrol, rol from rol";
-			$result = mysqli_query($mysqli, $query);
+  include('../conexion.php');
+  $query = "SELECT idrol, rol from rol";
+  $result = mysqli_query($mysqli, $query);
 
-?>
+  ?>
 
 <main>
   <div class="d-flex flex-column bd-highlight">
@@ -82,14 +82,13 @@ if(isset($_SESSION['Rol'])){
                   <label for="rol">Rol de Usuario</label>
                   <select id="idrol" name="idrol" title="Roles" class="form-control" data-live-search="true">
                     <?php
-                  while ($row = mysqli_fetch_array($result))
-                  {
-                  ?>
+                      while ($row = mysqli_fetch_array($result)) {
+                      ?>
 
-                    <option value="<?php echo $row['idrol']?>"><?php echo $row ['rol'];?></option>
+                    <option value="<?php echo $row['idrol'] ?>"><?php echo $row['rol']; ?></option>
                     <?php
-                  }
-                  ?>
+                      }
+                      ?>
                   </select>
 
                 </div>
@@ -251,7 +250,7 @@ function RegistrarUsuario() {
       console.log(data);
       var resp = JSON.parse(data);
       console.log(resp);
-
+      window.location.href = "../views/usuario.php";
 
     }
   );
@@ -263,15 +262,14 @@ function ModificarUsuario() {
   var nombre = document.getElementById("name").value;
   var contra = document.getElementById("contra").value;
   var correo = document.getElementById("correo").value;
-  var rol = document.getElementById("idrol").value;
+  //var rol = document.getElementById("idrol").value;
 
   alert(usuario + nombre + correo);
   $.post("../controllers/EditarUsuarios.php", {
       'usuario': usuario,
       'nombre': nombre,
       "contra": contra,
-      "correo": correo,
-      "rol": rol
+      "correo": correo
 
 
 
@@ -283,9 +281,11 @@ function ModificarUsuario() {
       console.log(data);
       var resp = JSON.parse(data);
       console.log(resp);
+      window.location.href = "../views/usuario.php";
 
 
     }
+
   );
 }
 
@@ -334,10 +334,10 @@ function cancelar() {
 </script>
 
 <?php
-include('pie.php'); 
-?>
+  include('pie.php');
+  ?>
 <?php
-    }else{
-        header("Location:index.php");
-    }
+} else {
+  header("Location:index.php");
+}
 ?>
