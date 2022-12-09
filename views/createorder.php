@@ -361,7 +361,8 @@ include('cabecera.php');
                     var validador="";
                     var contador=0;
                     var subtotal = cantidad * resp.precio;
-                    alert(subtotal);
+                
+
 
                    
                     
@@ -384,7 +385,7 @@ include('cabecera.php');
                             contador =contador+parseInt($(this).val());
                          
                         }); 
-                        alert(contador);
+                     
                         $("#idTotalProductos").val(contador);
 
 

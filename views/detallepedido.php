@@ -29,9 +29,7 @@ include('../php/Pedidos/Pedidos.php');
           $subtotalF = $subtotalF+$subtot;
           $html= $html.
           "<tr><td><input hidden id='f$i"."c1"."' value='$productcode'></input>$descripcion</td> <td><input hidden id='f$i"."c2"."' value='$quanty'></input>$quanty</td><td><input hidden id='f$i"."c3"."' value='$preciode'></input>$preciode</td><td><input hidden id='f$i"."c4"."' value='$descuento'></input>0.00</td><td><input hidden id='f$i"."c5"."' value='$subtot'></input>$subtot</td></tr>";
-          $dp = new DetallePedido();
-          $dp->Constructor($_POST["Idpedido"], $productcode, $quanty, 0.00,   $subtot, $subtot);  
-          echo json_encode($dp);
+         
   
          
         }
@@ -126,7 +124,7 @@ include('../php/Pedidos/Pedidos.php');
 
           <div class="row">
             <div class="col-3 align-self-center">
-              <p class="p2"><b>C.Cliente:</b></p>
+              <p class="p2"><b>RTN:</b></p>
             </div>
 
             <div class="col-3 align-self-center">
@@ -223,8 +221,7 @@ include('../php/Pedidos/Pedidos.php');
 
           <div class="row">
             <div class="col-12 shadow-lg p-3 btn-light">
-              <p class="p1"><i class="fa-solid fa-money-bill fa-xl mx-2"></i></i>Total: L<label
-                  id="total">120.00</label></p>
+              <p class="p1" id="PTotal"><i class="fa-solid fa-money-bill fa-xl mx-2"></i></i>Total: L <label id="idLTotal">0.00</label></p>
 
             </div>
           </div>
@@ -297,10 +294,11 @@ include('../php/Pedidos/Pedidos.php');
       window.onload = function() {
         ObtenerValores();
         Isv();
+        Total();
         
       }
 
-      function Total() {
+      function Preordenar() {
         document.getElementById('mostrar').style.display = 'block';
         document.getElementById('ocultar').style.display = 'none';
 
@@ -308,12 +306,24 @@ include('../php/Pedidos/Pedidos.php');
 
       function Isv() {
         let subtotal = document.getElementById("subtotal").innerHTML;
+        let disc = document.getElementById("idLDes").innerHTML;
+
+
+        // Calculo del subtotal
+        let isv = (parseFloat(subtotal) - parseFloat(disc)) * 0.15;
+        $("#PIsv").append("<label id=\"idLIsv\">" + isv.toFixed(2));
+      }
+
+      function Total() {
+        let subtotal = document.getElementById("subtotal").innerHTML;
+        let isv = document.getElementById("idLIsv").innerHTML;
+        let disc = document.getElementById("idLDes").innerHTML;
 
 
 
         // Calculo del subtotal
-        let isv = subtotal * 0.15;
-        $("#PIsv").append("<label id=\"idLIsv\">" + isv);
+        let total = parseFloat(subtotal) - parseFloat(disc) + parseFloat(isv);
+        $("#idLTotal").html(total.toFixed(2));
       }
 
       function ObtenerValores() {
@@ -322,7 +332,7 @@ include('../php/Pedidos/Pedidos.php');
         var idfecha = formatoFecha(fecha, "yy-mm-dd");
         var IdCliente = "<?php echo $ccliente;?>";
         var nombreCliente = "<?php echo $namec;?>";
-
+        var subtot = "<?php echo $subtotalF;?>";
       
 
         $.post("../controllers/DetalleP/ObtenerCabeceraPController.php", {
@@ -343,7 +353,7 @@ include('../php/Pedidos/Pedidos.php');
         );
 
           $("#idTbody").append("<?php echo $html;?>");
-          $("#subtotal").html("<?php echo $subtotalF;?>");
+          $("#subtotal").html(parseFloat(subtot).toFixed(2));
 
 
 
@@ -369,74 +379,188 @@ include('../php/Pedidos/Pedidos.php');
 
 
       function Cancelar() {
-        window.location.href = "createorder.php";
+        Swal.fire({
+                title: '¿Esta seguro de continuar?',
+                text: "No podra revertir los cambios!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, Cancelar orden',
+                cancelButtonText: 'Regresar!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                      Swal.fire({
+                      icon: 'info',
+                      title: 'Cancelando Orden',
+                      html: 'Por favor espere...',
+                      timer: 2300,
+                      timerProgressBar: true,
+                      didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                          b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                      },
+                      willClose: () => {
+                        clearInterval(timerInterval)
+                      }
+                    }).then((result) => {
+                      /* Read more about handling dismissals below */
+                      if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer');
+                        Swal.fire(
+                          'Orden Cancelada!',
+                          'La orden ha sido cancelada.',
+                          'success'
+                        ).then((result)=>{
+                          if (result.isConfirmed){
+                            window.location.href = "createorder.php";
+                          }
+
+                        })
+                     
+
+                      
+                      }
+                    })
+                }
+              })
+        
       }
 
 
-    function GuardarCabezeraPedido(){
-        var idpedido="<?php echo $idpedido;?>";
-        const fecha =  new Date();
-        var now = fecha.toLocaleTimeString('en-US');
-        var idfecha = formatoFecha(fecha, "yy-mm-dd");
-        var IdCliente="<?php echo $ccliente;?>";
-        var nombreCliente="<?php echo $namec;?>";
-        
-        $.post("../controllers/Pedidos/GuardarPedidoController.php",
-          {"idpedido":idpedido, "idfecha":idfecha, "IdCliente":IdCliente, "NombreCliente":nombreCliente, "Hora":now}
-          , function(data){
-              var resp = data;
-              console.log(resp);
-           
+      function GuardarCabezeraPedido(){
+          var idpedido="<?php echo $idpedido;?>";
+          const fecha =  new Date();
+          var now = fecha.toLocaleTimeString('en-US');
+          var idfecha = formatoFecha(fecha, "yy-mm-dd");
+          var IdCliente="<?php echo $ccliente;?>";
+          var nombreCliente="<?php echo $namec;?>";
+          var totalP = $("#idLTotal").html();
+          $.post("../controllers/Pedidos/GuardarPedidoController.php",
+            {"idpedido":idpedido, "idfecha":idfecha, "IdCliente":IdCliente, "NombreCliente":nombreCliente, "Hora":now, "Total":totalP}
+            , function(data){
+                var resp = data;
+                console.log(resp);
             
-            }
-        );
-    }
-
-    function GuardarDetallePedido(){
-      let colCount = $("#idTbody tr").length;
-      alert("TOTAL FILAS"+colCount);
-      for(var i= 1; i<=colCount; i++){
-        let idpedido = $("#idpedido").text();
-        let idproducto = $("#f"+i+"c1").val();
-        let cantidad = $("#f"+i+"c3").val();
-        let descuento = $("#f"+i+"c4").val();
-        let subtotal = $("#f"+i+"c5").val();
-
-        var total = subtotal-descuento;
-        /*alert("IDPEDIDO: "+idpedido+ "IDPRODUCTO: "+idproducto+ "CANTIDAD: "+ cantidad+ "DESCUENTO: "+ descuento + "SUBTOTAL: "+subtotal+ " Total: "+ total);*/
-        enviar(idpedido,idproducto,cantidad, descuento,subtotal, total);
-
-   
-
-
-    }
-
-    function enviar(idpedido,idproducto,cantidad, descuento, subtotal,total){
-      $.post("../controllers/DetalleP/GuardarDetallesController.php",
-          {
-            "idpedido":idpedido, 
-            "idproducto":idproducto,
-            "cantidad":cantidad, 
-            "descuento":descuento, 
-            "subtotal":subtotal, 
-            "total":total},
-            function(data){
-              var res = data;
-              console.log(res);
               
-
-            }
+              }
           );
+      }
 
-        
-        }
+      function GuardarDetallePedido(){
+        let colCount = $("#idTbody tr").length;
+      
+        for(var i= 1; i<=colCount; i++){
+          let idpedido = $("#idpedido").text();
+          let idproducto = $("#f"+i+"c1").val();
+          let cantidad = $("#f"+i+"c3").val();
+          let descuento = $("#f"+i+"c4").val();
+          let subtotal = $("#f"+i+"c5").val();
 
-    }
+          var total = subtotal-descuento;
+          /*alert("IDPEDIDO: "+idpedido+ "IDPRODUCTO: "+idproducto+ "CANTIDAD: "+ cantidad+ "DESCUENTO: "+ descuento + "SUBTOTAL: "+subtotal+ " Total: "+ total);*/
+          enviar(idpedido,idproducto,cantidad, descuento,subtotal, total);
 
-    function GuardarPedido(){
-      GuardarCabezeraPedido();
-      GuardarDetallePedido();
-    }
+    
+
+
+      }
+
+      function enviar(idpedido,idproducto,cantidad, descuento, subtotal,total){
+        $.post("../controllers/DetalleP/GuardarDetallesController.php",
+            {
+              "idpedido":idpedido, 
+              "idproducto":idproducto,
+              "cantidad":cantidad, 
+              "descuento":descuento, 
+              "subtotal":subtotal, 
+              "total":total},
+              function(data){
+                var res = data;
+                console.log(res);
+                
+
+              }
+            );
+
+          
+          }
+
+      }
+
+      function GuardarPedido(){
+
+              Swal.fire({
+                title: '¿Esta seguro de continuar?',
+                text: "No podra revertir los cambios!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, confirmado!',
+                cancelButtonText: 'Cancelar'  
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  let timerInterval
+                  Swal.fire({
+            
+                    title: 'Ejecutando Accion',
+                    html: 'Por favor espere...',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                      Swal.showLoading()
+                      const b = Swal.getHtmlContainer().querySelector('b')
+                      timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                      }, 100)
+                    },
+                    willClose: () => {
+                      clearInterval(timerInterval)
+                    }
+                  }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                      console.log('I was closed by the timer')
+                      GuardarCabezeraPedido();
+                      GuardarDetallePedido();
+
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'Resultado Existoso',
+                        width: 400,
+                        height: 200,
+                        padding: '1em',
+                        color: '#454541',
+                        background: '#fff url(/images/trees.png)',
+                        backdrop: `
+                        rgba(0,28,50,0.5)
+                        url('../img/pedido.gif')
+                        left bottom
+                        no-repeat
+                        `
+                      }).then((result)=>{
+                        if(result.isConfirmed){
+                          window.location.href = "pedidosr.php";
+                          
+
+                        }
+                      })
+                    }
+                  })
+                  
+              
+                }else{
+                  
+                
+
+                }
+  
+              });
+      }
 
 
   
