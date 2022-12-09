@@ -31,10 +31,7 @@ include('../php/Pedidos/Pedidos.php');
           array_push($arrayDetalle, $dp);
         }
 
-        echo $subtotalF;
-
-
-        print_r( json_encode($arrayDetalle));
+     
       
 
      
