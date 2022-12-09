@@ -1,4 +1,14 @@
 <?php
+session_start();
+if (isset($_SESSION['Rol']))
+
+
+
+
+
+?>
+
+<?php
 include('cabecera.php'); 
 include('../conexion.php');
 include('../php/DetallePedido/DetallePedido.php');
@@ -148,7 +158,7 @@ include('../php/Pedidos/Pedidos.php');
             </div>
 
             <div class="col-3 align-self-center">
-              <p class="p1">Juana la cubana</p>
+              <p class="p1"><?php echo $_SESSION['User']; ?></p>
             </div>
 
             <div class="col-2 align-self-center">
@@ -182,7 +192,7 @@ include('../php/Pedidos/Pedidos.php');
               </thead>
 
               <tbody id="idTbody">
-              
+
 
               </tbody>
             </table>
@@ -288,77 +298,79 @@ include('../php/Pedidos/Pedidos.php');
 <!--- Creacion de funciones en javascript--->
 
 <script type="text/javascript">
+window.onload = function() {
+  ObtenerValores();
+  Isv()
+}
 
-  
-  window.onload=function() {
-    ObtenerValores();
-    Isv()
-		}
+function Total() {
+  document.getElementById('mostrar').style.display = 'block';
+  document.getElementById('ocultar').style.display = 'none';
 
-  function Total() {
-    document.getElementById('mostrar').style.display = 'block';
-    document.getElementById('ocultar').style.display = 'none';
+}
 
-  }
-
-  function Isv() {
-    let subtotal = document.getElementById("subtotal").innerHTML;
+function Isv() {
+  let subtotal = document.getElementById("subtotal").innerHTML;
 
 
 
-    // Calculo del subtotal
-    let isv = subtotal * 0.15;
-    $("#PIsv").append("<label id=\"idLIsv\">"+isv);
-  }
+  // Calculo del subtotal
+  let isv = subtotal * 0.15;
+  $("#PIsv").append("<label id=\"idLIsv\">" + isv);
+}
 
-  function ObtenerValores(){
-    var idpedido=<?php echo $idpedido;?>;
-    const fecha =  new Date();
-    var idfecha = formatoFecha(fecha, "yy-mm-dd");
-    var IdCliente=<?php echo $ccliente;?>;
-    var nombreCliente="<?php echo $namec;?>";
-    
-    alert(idpedido+""+""+IdCliente);
-    $.post("../controllers/DetalleP/ObtenerCabeceraPController.php",
-    {"idpedido":idpedido, "idfecha":idfecha, "IdCliente":IdCliente, "NombreCliente":nombreCliente},
-      function(data){
-        var resp = JSON.parse(data);
-        console.log(resp);
+function ObtenerValores() {
+  var idpedido = <?php echo $idpedido;?>;
+  const fecha = new Date();
+  var idfecha = formatoFecha(fecha, "yy-mm-dd");
+  var IdCliente = <?php echo $ccliente;?>;
+  var nombreCliente = "<?php echo $namec;?>";
 
-        $("#idpedido").html(resp.idpedido);
-        $("#idCliente").html(resp.idcliente);
-        $("#idNCliente").html(resp.nombrecliente);
-        $("#idNCliente").html(resp.nombrecliente);
-      }
-    );
+  alert(idpedido + "" + "" + IdCliente);
+  $.post("../controllers/DetalleP/ObtenerCabeceraPController.php", {
+      "idpedido": idpedido,
+      "idfecha": idfecha,
+      "IdCliente": IdCliente,
+      "NombreCliente": nombreCliente
+    },
+    function(data) {
+      var resp = JSON.parse(data);
+      console.log(resp);
 
-    $("#idTbody").append("<?php echo $html;?>");
-    $("#subtotal").html("<?php echo $subtotalF;?>"); 
-
-
-
-    
-
-
-
-
-  }
-
-
-  
-  function formatoFecha(fecha, formato) {
-    const map = {
-        dd: fecha.getDate(),
-        mm: fecha.getMonth() + 1,
-        yy: fecha.getFullYear().toString().slice(-2),
-        yyyy: fecha.getFullYear()
+      $("#idpedido").html(resp.idpedido);
+      $("#idCliente").html(resp.idcliente);
+      $("#idNCliente").html(resp.nombrecliente);
+      $("#idNCliente").html(resp.nombrecliente);
     }
+  );
 
-    return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
+  $("#idTbody").append("<?php echo $html;?>");
+  $("#subtotal").html("<?php echo $subtotalF;?>");
+
+
+
+
+
+
+
+
 }
 
 
-function Cancelar(){
+
+function formatoFecha(fecha, formato) {
+  const map = {
+    dd: fecha.getDate(),
+    mm: fecha.getMonth() + 1,
+    yy: fecha.getFullYear().toString().slice(-2),
+    yyyy: fecha.getFullYear()
+  }
+
+  return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
+}
+
+
+function Cancelar() {
   window.location.href = "createorder.php";
 }
 
@@ -378,7 +390,6 @@ function GuardarPedido(){
 
   );
 }
-
 </script>
 
 
