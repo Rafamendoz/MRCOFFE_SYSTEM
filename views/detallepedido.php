@@ -1,12 +1,4 @@
-<?php
-session_start();
-if (isset($_SESSION['Rol']))
 
-
-
-
-
-?>
 
 <?php
 include('cabecera.php'); 
@@ -39,10 +31,7 @@ include('../php/Pedidos/Pedidos.php');
           array_push($arrayDetalle, $dp);
         }
 
-        echo $subtotalF;
-
-
-        print_r( json_encode($arrayDetalle));
+     
       
 
      
@@ -238,7 +227,7 @@ include('../php/Pedidos/Pedidos.php');
           <div class="row">
             <div class="col-6  p-3 d-grid gap-2 btn-light">
               <button type="button" id="ocultar" class="btn btn-primary"><i
-                  class="fa-regular fa-circle-right fa-lg mx-2" onclick="mostrar()"></i>Procesar</button>
+                  class="fa-regular fa-circle-right fa-lg mx-2" onclick="GuardarPedido()"></i>Procesar</button>
 
             </div>
 
@@ -375,8 +364,20 @@ function Cancelar() {
 }
 
 
-function GuardarPedido() {
-  $.post(
+function GuardarPedido(){
+    var idpedido=<?php echo $idpedido;?>;
+    const fecha =  new Date();
+    var now = fecha.toLocaleTimeString('en-US');
+    var idfecha = formatoFecha(fecha, "yy-mm-dd");
+    var IdCliente=<?php echo $ccliente;?>;
+    var nombreCliente="<?php echo $namec;?>";
+  $.post("../controllers/Pedidos/GuardarPedidoController.php",
+   {"idpedido":idpedido, "idfecha":idfecha, "IdCliente":IdCliente, "NombreCliente":nombreCliente, "Hora":now}
+    , function(data){
+      var resp = JSON.parse(data);
+      console.log(resp);
+
+     }
 
   );
 }
