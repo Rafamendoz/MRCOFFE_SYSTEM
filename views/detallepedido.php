@@ -364,8 +364,18 @@ function Cancelar(){
 
 
 function GuardarPedido(){
-  $.post(
-    
+    var idpedido=<?php echo $idpedido;?>;
+    const fecha =  new Date();
+    var now = fecha.toLocaleTimeString('en-US');
+    var idfecha = formatoFecha(fecha, "yy-mm-dd");
+    var IdCliente=<?php echo $ccliente;?>;
+    var nombreCliente="<?php echo $namec;?>";
+  $.post("../controllers/Pedidos/GuardarPedidoController.php",
+   {"idpedido":idpedido, "idfecha":idfecha, "IdCliente":IdCliente, "NombreCliente":nombreCliente, "Hora":now}
+    , function(data){
+
+     }
+
   );
 }
 
