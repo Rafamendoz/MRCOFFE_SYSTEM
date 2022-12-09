@@ -11,10 +11,11 @@ class Pedido{
     public $idcliente;
     public $idtipopago;
     public $nombrecliente;
+    public $total;
 
 
 
-    function Constructor($idpedido, $idempleado, $fechapedido, $horapedido, $idcliente, $idtipopago, $nombrecliente){
+    function Constructor($idpedido, $idempleado, $fechapedido, $horapedido, $idcliente, $idtipopago, $nombrecliente, $total){
         $this->idpedido=$idpedido;
         $this->idempleado=$idempleado;
         $this->fechapedido=$fechapedido;
@@ -22,6 +23,7 @@ class Pedido{
         $this->idcliente=$idcliente;
         $this->idtipopago=$idtipopago;
         $this->nombrecliente=$nombrecliente;
+        $this->total=$total;
     }
 
    
@@ -54,16 +56,16 @@ class Pedido{
     }
 
     function GuardarPedido($conexion){
-        $respuesta = "";
-        $query = "INSERT INTO pedidos (idpedido, idempleados, fechapedido, horapedido, idcliente, idTipoPago, idEstadoPedido) values($this->idpedido,$this->idempleado,'$this->fechapedido','$this->horapedido',$this->idcliente,$this->idtipopago,1)";
-        mysqli_query($conexion,$query);
+        $respuesta = "eeee";
+        $query = "INSERT INTO pedido (idpedido, idempleados, fechapedido, horapedido, idcliente, idTipoPago, idEstadoPedido, Total) values($this->idpedido,$this->idempleado,'$this->fechapedido','$this->horapedido',$this->idcliente,$this->idtipopago,1, $this->total)";
+    
        
-        if(mysqli_error($conexion)==true){
+        if(mysqli_query($conexion,$query)==true){
             
-            $respuesta="Error";
+            $respuesta="Exito";
 
         }else{
-            $respuesta="Exito";
+            $respuesta="Error";
         }
 
         return $respuesta;

@@ -183,13 +183,13 @@ class PDF extends FPDF
 
 /* CONSULTA INFORMACION DEL HOSPEDAJE */
 include("../../conexion.php"); //llamamos a la conexion BD
-$query = "SELECT * from detallepedido d 
+$query = " 
+SELECT * from detallepedido d 
 
-join pedido p 
-on d.idpedido = p.idpedido 
-join producto prod
-on d.idproducto = prod.nombreproducto 
-where p.idpedido =" . $informacion->idpedido;
+join producto p 
+on d.idproducto = p.idproducto
+where idpedido =
+" . $informacion->idpedido;
 $consulta_info = $mysqli->query($query);
 
 //$dato_info = $consulta_info->fetch_object();
@@ -213,10 +213,12 @@ while ($row = $consulta_info->fetch_object()) {
     $pdf->Cell(40, 10, utf8_decode($row->descuento), 1, 0, 'C', 0);
     $pdf->Cell(40, 10, utf8_decode($row->isv), 1, 0, 'C', 0);
     $pdf->Cell(50, 10, utf8_decode($row->cantidad * $row->precio), 1, 1, 'C', 0);
+    $pdf->Cell(50, 10, utf8_decode(""), 0, 1 , 'C', 0); //salto de linea
 }
+// align right 
 
-$pdf->Cell(40, 10, utf8_decode("Total"), 1, 0, 'C', 0);
-$pdf->Cell(40, 10, utf8_decode($informacion->total), 0, 1, 'C', 0);
+$pdf->Cell(40, 10, utf8_decode("Total"), 1, 1, 'C', 0);
+$pdf->Cell(40, 10, utf8_decode($informacion->total), 1, 0, 'C', 0);
 
 
 $pdf->Output('Reporte Empleados.pdf', 'I');//nombreDescarga, Visor(I->visualizar - D->descargar)

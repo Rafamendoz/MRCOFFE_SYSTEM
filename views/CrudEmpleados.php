@@ -330,6 +330,7 @@ if(isset($_SESSION['Rol'])){
 
   <?php
     }else{
-        header("Location:index.php");
-    }
+      header("Location: http://localhost/PROYECTODW/index.php", TRUE, 301);
+      die();}
+    
 ?>

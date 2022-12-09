@@ -10,16 +10,18 @@ class DetallePedido{
     public $descuento;
     public $subtotal;   
     public $idEmpleado;
+    public $total;
  
 
 
 
-    function Constructor($idpedido,$idproducto,$cantidad,$descuento, $subtotal){
+    function Constructor($idpedido,$idproducto,$cantidad,$descuento, $subtotal, $total){
         $this->idpedido=$idpedido;
         $this->idproducto=$idproducto;
         $this->cantidad=$cantidad;
         $this->descuento=$descuento;
         $this->subtotal=$subtotal;
+        $this->total = $total;
     
 
     }
@@ -45,24 +47,45 @@ class DetallePedido{
         }
         return $listadetalle;
     }
+
+
     function ObtenerEmpleadoById($idemp,$Conexion){
 
         $query = "SELECT e.nombre from usuarios as u INNER JOIN empleados e on e.idusuarios = u.idusuarios WHERE idusuarios="."'".$idemp."'";
         $result = mysqli_query($Conexion, $query);
-        $Usuario = new DetallePedido();
+        $Dempleado = new DetallePedido();
     
             while ($row = mysqli_fetch_array($result))
             {
               
-              $Usuario->Set($idemp);
+                $Dempleado->SetUser($idemp);
           
             
             }
         
           
         
-        return $Usuario;
+        return $Dempleado;
       }
+
+
+      function GuardarDetalle($conexion){
+        $respuesta = "eeee";
+        $query = "INSERT INTO detallepedido (idpedido, idproducto, cantidad, descuento, subtotal, total)".
+        "values($this->idpedido,$this->idproducto,$this->cantidad,$this->descuento,$this->subtotal,$this->total)";
+    
+       
+        if(mysqli_query($conexion,$query)==true){
+            
+            $respuesta="Exito";
+
+        }else{
+            $respuesta="Error";
+        }
+
+        return $respuesta;
+  
+    }
       
 
 }

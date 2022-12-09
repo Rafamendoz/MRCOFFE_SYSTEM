@@ -44,7 +44,7 @@
     }
 
     function GetEmpleado($mysqli, $idempleados){
-      $query = "SELECT * from empleados where idempleados='$idempleados'";
+      $query = "SELECT * from empleados where idempleados='$idempleados' AND idestado=1";
       $result = mysqli_query($mysqli, $query);
       $lista = array();
       while ($row = mysqli_fetch_array($result))
@@ -63,10 +63,10 @@
         $Res->NoSucces("Debe rellenar los campos");
       }else{
         mysqli_query($mysqli,
-          "INSERT into empleados(nombre, apellido, identidad, fechaContratacion, direccion, telefono, idCargo, idusuarios)
+          "INSERT into empleados(nombre, apellido, identidad, fechaContratacion, direccion, telefono, idCargo, idusuarios, idestado)
             values('$this->Nombre', '$this->Apellido', '$this->Identidad', '$this->FechaContratacion',
                '$this->Direccion', '$this->Telefono', '$this->IdCargo', 
-               '$this->Idusuarios')"
+               '$this->Idusuarios',1)"
         );
         if (mysqli_error($mysqli)){
           $Res->NoSucces("Error al Insertar");

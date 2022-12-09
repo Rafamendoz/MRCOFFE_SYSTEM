@@ -17,7 +17,7 @@ if (isset($_SESSION['Rol'])) {
     $row1 = mysqli_fetch_array($total);
     $query2 = "select empleados.idempleados, empleados.nombre, empleados.apellido, empleados.identidad,
     empleados.fechaContratacion, empleados.direccion, empleados.telefono, empleados.idCargo,
-    empleados.idusuarios from empleados
+    empleados.idusuarios from empleados WHERE idestado=1;
         
     "; //Orden de la tabla
     $detalle = mysqli_query($mysqli, $query2);
@@ -29,7 +29,7 @@ if (isset($_SESSION['Rol'])) {
     $result = mysqli_query($mysqli, $query);
 
 
-    $query2 = "SELECT idusuarios, nombre from usuarios";
+    $query2 = "SELECT idusuarios, nombre from usuarios  WHERE idestado=1";
     $result2 = mysqli_query($mysqli, $query2);
 
     ?>
@@ -339,6 +339,7 @@ if (isset($_SESSION['Rol'])) {
 
 <?php
 } else {
-    header("Location:index.php");
-}
+    header("Location: http://localhost/PROYECTODW/index.php", TRUE, 301);
+  die();}
+
 ?>
