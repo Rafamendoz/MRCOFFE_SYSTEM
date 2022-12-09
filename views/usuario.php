@@ -57,7 +57,7 @@ if(isset($_SESSION['Rol'])){
               <div class="input-group " id="busca">
                 <input class="form-control" type="text" id="user" placeholder="Ingrese la id "
                   aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button" onclick="BuscarUsuario()"><i
+                <button class="btn btn-warning" id="btnNavbarSearch" type="button" onclick="BuscarUsuario()"><i
                     class="fas fa-search"></i></button>
 
               </div>
@@ -140,56 +140,11 @@ if(isset($_SESSION['Rol'])){
 
 
       </div>
-      <!--  <div class="row p-4">
-                <input class="form-control col-2" id="myInput" type="text" placeholder="Buscar..">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Usuario</th>
-                            <th scope="col">Contraseña</th>
-                            <th scope="col">Correo Electronico</th>
-                            <th scope="col">Rol de Usuario</th>
-                        </tr>
-                    </thead>
-                    <tbody id="myTable">
-                        
-                            <tr>
-                               
-                                <td>1212</td>
-                                <td>HelenO</td>
-                                <td>Helen123</td>
-                                <td>helen@gmail.com</td>
-                                <td>Administrador</td>
-                                <td>
-                                    <a href="" class="btn btn-warning">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                    <a href="" onclick="return eliminar()" class="btn btn-dark">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                    </tbody>
-                </table>
 
-                <script>
-                    $(document).ready(function() {
-                        $("#myInput").on("keyup", function() {
-                            var value = $(this).val().toLowerCase();
-                            $("#myTable tr").filter(function() {
-                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                            });
-                        });
-                    });
-                </script>
-            </div>
-
-    </div>-->
-      <div class="bg-dark bg-gradient text-white p-2 mx-3 mt-3 ">
-        <p class="p1">Detalle de Usuarios</p>
+      <div class="bg-dark bg-gradient text-white p-2 mx-5 mt-1 ">
+        <p class="p1">Listas de Usuarios</p>
       </div>
-      <div class="px-3 mx-3  pb-4 bg-body shadow rounded">
+      <div class="px-2 mx-5  pb-4 bg-body shadow rounded">
 
 
 
@@ -249,9 +204,10 @@ function Obtener() {
           "<td>" + resp[i].nombre + "</td>" +
           "<td>" + resp[i].correo + "</td>" +
           "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].idrol + "</td>" +
-          "<td>" + "<a href=\"\" class=\"edit-form-data\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
-          "<i class=\"fa-solid fa-eye\"></i></a>" +
-          "<a href=\"\" class=\"edit-form-data px-2\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
+          "<td>" +
+          "<a href=\"\" class=\"edit-form-data px-2 mx-2 btn btn-warning\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
+          "<i class=\"fa-solid fa-pen-to-square \"></i></a>" +
+          "<a href=\"\" class=\"edit-form-data px-2 btn btn-dark\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
           "<i class=\"far fa-trash-alt\"></i></a>" +
           "</td></tr>";
 
