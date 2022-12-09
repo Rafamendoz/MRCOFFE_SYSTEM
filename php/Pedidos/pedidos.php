@@ -54,16 +54,16 @@ class Pedido{
     }
 
     function GuardarPedido($conexion){
-        $respuesta = "";
-        $query = "INSERT INTO pedidos (idpedido, idempleados, fechapedido, horapedido, idcliente, idTipoPago, idEstadoPedido) values($this->idpedido,$this->idempleado,'$this->fechapedido','$this->horapedido',$this->idcliente,$this->idtipopago,1)";
-        mysqli_query($conexion,$query);
+        $respuesta = "eeee";
+        $query = "INSERT INTO pedido (idpedido, idempleados, fechapedido, horapedido, idcliente, idTipoPago, idEstadoPedido, Total) values($this->idpedido,$this->idempleado,'$this->fechapedido','$this->horapedido',$this->idcliente,$this->idtipopago,1, 100.00)";
+    
        
-        if(mysqli_error($conexion)==true){
+        if(mysqli_query($conexion,$query)==true){
             
-            $respuesta="Error";
+            $respuesta="Exito";
 
         }else{
-            $respuesta="Exito";
+            $respuesta="Error";
         }
 
         return $respuesta;

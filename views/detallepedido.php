@@ -226,8 +226,8 @@ include('../php/Pedidos/Pedidos.php');
 
           <div class="row">
             <div class="col-6  p-3 d-grid gap-2 btn-light">
-              <button type="button" id="ocultar" class="btn btn-primary"><i
-                  class="fa-regular fa-circle-right fa-lg mx-2" onclick="GuardarPedido()"></i>Procesar</button>
+              <button type="button" id="ocultar" class="btn btn-primary" onclick="GuardarPedido()"><i
+                  class="fa-regular fa-circle-right fa-lg mx-2" ></i>Procesar</button>
 
             </div>
 
@@ -287,76 +287,76 @@ include('../php/Pedidos/Pedidos.php');
 <!--- Creacion de funciones en javascript--->
 
 <script type="text/javascript">
-window.onload = function() {
-  ObtenerValores();
-  Isv()
-}
-
-function Total() {
-  document.getElementById('mostrar').style.display = 'block';
-  document.getElementById('ocultar').style.display = 'none';
-
-}
-
-function Isv() {
-  let subtotal = document.getElementById("subtotal").innerHTML;
-
-
-
-  // Calculo del subtotal
-  let isv = subtotal * 0.15;
-  $("#PIsv").append("<label id=\"idLIsv\">" + isv);
-}
-
-function ObtenerValores() {
-  var idpedido = <?php echo $idpedido;?>;
-  const fecha = new Date();
-  var idfecha = formatoFecha(fecha, "yy-mm-dd");
-  var IdCliente = <?php echo $ccliente;?>;
-  var nombreCliente = "<?php echo $namec;?>";
-
-  alert(idpedido + "" + "" + IdCliente);
-  $.post("../controllers/DetalleP/ObtenerCabeceraPController.php", {
-      "idpedido": idpedido,
-      "idfecha": idfecha,
-      "IdCliente": IdCliente,
-      "NombreCliente": nombreCliente
-    },
-    function(data) {
-      var resp = JSON.parse(data);
-      console.log(resp);
-
-      $("#idpedido").html(resp.idpedido);
-      $("#idCliente").html(resp.idcliente);
-      $("#idNCliente").html(resp.nombrecliente);
-      $("#idNCliente").html(resp.nombrecliente);
-    }
-  );
-
-  $("#idTbody").append("<?php echo $html;?>");
-  $("#subtotal").html("<?php echo $subtotalF;?>");
-
-
-
-
-
-
-
-
-}
-
-
-
-function formatoFecha(fecha, formato) {
-  const map = {
-    dd: fecha.getDate(),
-    mm: fecha.getMonth() + 1,
-    yy: fecha.getFullYear().toString().slice(-2),
-    yyyy: fecha.getFullYear()
+  window.onload = function() {
+    ObtenerValores();
+    Isv()
   }
 
-  return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
-}
+  function Total() {
+    document.getElementById('mostrar').style.display = 'block';
+    document.getElementById('ocultar').style.display = 'none';
+
+  }
+
+  function Isv() {
+    let subtotal = document.getElementById("subtotal").innerHTML;
+
+
+
+    // Calculo del subtotal
+    let isv = subtotal * 0.15;
+    $("#PIsv").append("<label id=\"idLIsv\">" + isv);
+  }
+
+  function ObtenerValores() {
+    var idpedido = "<?php echo $idpedido;?>";
+    const fecha = new Date();
+    var idfecha = formatoFecha(fecha, "yy-mm-dd");
+    var IdCliente = "<?php echo $ccliente;?>";
+    var nombreCliente = "<?php echo $namec;?>";
+
+    alert(idpedido + "" + "" + IdCliente);
+    $.post("../controllers/DetalleP/ObtenerCabeceraPController.php", {
+        "idpedido": idpedido,
+        "idfecha": idfecha,
+        "IdCliente": IdCliente,
+        "NombreCliente": nombreCliente
+      },
+      function(data) {
+        var resp = JSON.parse(data);
+        console.log(resp);
+
+        $("#idpedido").html(resp.idpedido);
+        $("#idCliente").html(resp.idcliente);
+        $("#idNCliente").html(resp.nombrecliente);
+        $("#idNCliente").html(resp.nombrecliente);
+      }
+    );
+
+    $("#idTbody").append("<?php echo $html;?>");
+    $("#subtotal").html("<?php echo $subtotalF;?>");
+
+
+
+
+
+
+
+
+  }
+
+
+
+  function formatoFecha(fecha, formato) {
+    const map = {
+      dd: fecha.getDate(),
+      mm: fecha.getMonth() + 1,
+      yy: fecha.getFullYear().toString().slice(-2),
+      yyyy: fecha.getFullYear()
+    }
+
+    return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
+  }
 
 
 function Cancelar() {
@@ -364,23 +364,23 @@ function Cancelar() {
 }
 
 
-function GuardarPedido(){
-    var idpedido=<?php echo $idpedido;?>;
-    const fecha =  new Date();
-    var now = fecha.toLocaleTimeString('en-US');
-    var idfecha = formatoFecha(fecha, "yy-mm-dd");
-    var IdCliente=<?php echo $ccliente;?>;
-    var nombreCliente="<?php echo $namec;?>";
-  $.post("../controllers/Pedidos/GuardarPedidoController.php",
-   {"idpedido":idpedido, "idfecha":idfecha, "IdCliente":IdCliente, "NombreCliente":nombreCliente, "Hora":now}
-    , function(data){
-      var resp = JSON.parse(data);
-      console.log(resp);
+  function GuardarPedido(){
+      var idpedido="<?php echo $idpedido;?>";
+      const fecha =  new Date();
+      var now = fecha.toLocaleTimeString('en-US');
+      var idfecha = formatoFecha(fecha, "yy-mm-dd");
+      var IdCliente="<?php echo $ccliente;?>";
+      var nombreCliente="<?php echo $namec;?>";
+      alert(idpedido+IdCliente+idfecha+nombreCliente+now);
+      $.post("../controllers/Pedidos/GuardarPedidoController.php",
+        {"idpedido":idpedido, "idfecha":idfecha, "IdCliente":IdCliente, "NombreCliente":nombreCliente, "Hora":now}
+        , function(data){
+            var resp = data;
+            console.log(resp);
 
-     }
-
-  );
-}
+          }
+      );
+  }
 </script>
 
 
