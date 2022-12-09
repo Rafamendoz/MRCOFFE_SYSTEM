@@ -31,10 +31,10 @@ if (!empty($_POST)) {
       $errors[] = "No Existe el correo";
     }
   } else {
-    //echo 'error';
+    echo 'error';
   }
 } else {
-  //echo 'error';
+  echo 'error';
 }
 
 ?>
