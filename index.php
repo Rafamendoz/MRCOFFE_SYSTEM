@@ -75,7 +75,7 @@
         </div>
         <div class="forma">
             <h1 id="title-2">LOGIN</h1>
-                <form action="Rol.php" method="POST" >
+                <form action="Rol.php" method="POST" id="idFormLogin" >
                     <div class="input">
                         <input type="text" name="usuario" id="usuario"> 
                     </div>
@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="btn">
-                            <input type="submit" class="btnlogin"  value="LOGIN" id="enviar"><br>
+                            <input type="button" class="btnlogin"  onclick="Logearse();" value="LOGIN" id="enviar"><br>
                         
                     </div>
                     <a href="restablecer.php">¿Ha olvidado la contraseña?</a>
@@ -106,6 +106,18 @@
 
 
     <script>
+
+           
+
+
+           
+
+            function Logearse(){
+       
+                $("#idFormLogin").submit();
+
+            }
+
         
     </script>
 
