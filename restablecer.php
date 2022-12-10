@@ -22,7 +22,7 @@ if (!empty($_POST)) {
 
       if (enviarEmail($email, $nombre, $asunto, $cuerpo)) {
         echo "Hemos enviado un correo electronico a la direccion $email para restablecer tu password. <br/>";
-        echo "<a href='index.php>Iniciar Sesion</a>";
+        echo "<a href='index.php'>Iniciar Sesion</a>";
         exit;
       } else {
         $errors[] = "Error al Enviar el  Email";
