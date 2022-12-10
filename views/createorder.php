@@ -277,6 +277,8 @@ function BuscarClientePorId() {
         console.log(resp);
         $("#NameC").val(resp.nombre + " " + resp.apellido);
         $("#IdCliente").prop('disabled', false);
+        Vitacora(7,"EL USUARIO BUSCO UN CLIENTE CON EL EVENTO ENTER", 1, 1, hora(), fecha() );
+   
 
         $("#ContenedorIcon").empty();
 
@@ -502,6 +504,42 @@ function CrearListaProductos() {
   $("#formularioG").append("<input hidden name=\"len\" value=" + rowCount + ">");
 
   $("#formularioG").submit();
+
+}
+
+function hora(){
+  const fecha = new Date();
+  var now = fecha.toLocaleTimeString('en-GB');
+  return now;
+}
+
+function fecha(){
+  const fecha = new Date();
+  var idfecha = formatoFecha(fecha, "yy-mm-dd");
+  return idfecha;
+}
+
+function formatoFecha(fecha, formato) {
+  const map = {
+    dd: fecha.getDate(),
+    mm: fecha.getMonth() + 1,
+    yy: fecha.getFullYear().toString().slice(-2),
+    yyyy: fecha.getFullYear()
+  }
+
+  return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
+}
+
+
+function Vitacora(modulo, descripcion, usuarioResponsable, accion, hora, fecha){
+  $.post("../controllers/Vitacora/InsertarItemVitacoraController.php",
+  {"modulo":modulo,"descripcion":descripcion, "usuarioResponsable":usuarioResponsable, "accion":accion, "hora":hora, "fecha":fecha}, 
+  function(data)
+  {
+    var resp = data;/*JSON.parse(data);*/
+    console.log(resp);
+
+  });
 
 }
 </script>
