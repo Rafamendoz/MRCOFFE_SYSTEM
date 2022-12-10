@@ -131,9 +131,13 @@ if (isset($_SESSION['Rol'])) {
 
 
         <div class="container-fluid px-4">
-          <h1 class="mt-4">Administrador</h1>
+          <?php if ($_SESSION['Rol'] != 1) { ?>
+            <h1 class="mt-4">Usuario</h1>
+          <?php } else {?>
+            <h1 class="mt-4">Administrador</h1>
+          <?php }?>
           <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Administrador</li>
+            <li class="breadcrumb-item active"></li>
           </ol>
           <div class="row">
             <div class="col-xl-3 col-md-6">

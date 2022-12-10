@@ -66,7 +66,7 @@ $resultado = $mysqli->query($consulta);
             <?php
             while ($datos = $resultado->fetch_object()) {
             ?>
-            <div class="col-6">
+            <div class="col-4">
                 
                     <input type="hidden"  class="form-control" id="id" name="id" placeholder="Ingrese el Código" value="<?php echo $datos->idproducto; ?>" />
                 
@@ -81,7 +81,7 @@ $resultado = $mysqli->query($consulta);
                 </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-4">
                 <div class="form-group">
                     <label for="producto">Producto</label>
                     <input type="text" class="form-control" id="producto" name="producto" placeholder="Ingrese el Producto" value="<?php echo $datos->nombreproducto; ?>"/>
