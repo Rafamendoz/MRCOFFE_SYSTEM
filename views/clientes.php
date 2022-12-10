@@ -81,8 +81,10 @@ if (isset($_SESSION['Rol'])) {
           </div>
         </form>
       </div>
-  </div>
-
+    </div>
+    <div class="bg-dark bg-gradient text-white p-2 mx-3 mt-3 ">
+      <h3 class="">Listado de Clientes</h3>
+    </div>
     <div class="row p-4">
       <table id="datatablesSimple">
         <thead>

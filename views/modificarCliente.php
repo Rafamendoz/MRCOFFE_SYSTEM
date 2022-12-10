@@ -78,12 +78,17 @@ $resultado = $mysqli->query($consulta);
                                 Modificar Cliente
                             </button>
                         <?php } ?>
-                        <button type="reset" class="btn btn-dark">Cancelar</button>
+                        <button  type="button" onclick="regresar()" class="btn btn-dark">Cancelar</button>
                         </div>
                 </form>
             </div>    
         </div>
     </div>
+    <script type="text/javascript">
+        function regresar() {
+            window.location = "clientes.php";
+        }
+    </script>
     <?php
     include('pie.php');
     ?>
