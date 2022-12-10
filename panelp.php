@@ -120,6 +120,7 @@ if (isset($_SESSION['Rol'])) {
         <div class="sb-sidenav-footer">
           <div class="small">Logged in as:</div>
           <?php echo $_SESSION['User']; ?>
+          <?php echo "ELOO".$_SESSION['iduser']; ?>
         </div>
       </nav>
     </div>
@@ -209,33 +210,7 @@ if (isset($_SESSION['Rol'])) {
 
   </script>
 
-  <script>
-  function GoPedido() {
-    .$post('pedidos.php'
-
-      , {
-
-      },
-      function(data) {
-
-      }
-
-    );
-  }
-
-  function GoUsuario() {
-    .$post('usuario.php'
-
-      , {
-
-      },
-      function(data) {
-
-      }
-
-    );
-  }
-  </script>
+ 
 
 </body>
 

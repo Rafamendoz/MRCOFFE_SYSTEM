@@ -16,6 +16,7 @@
     }elseif($query->rowCount() == 1){
         $_SESSION['User'] = $datos->nombre;
         $_SESSION['Rol'] = $datos->idrol;	
+        $_SESSION['iduser'] = $datos->idusuarios;
         header ('location:panelp.php');
     }
 ?>	

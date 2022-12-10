@@ -277,7 +277,7 @@ function BuscarClientePorId() {
         console.log(resp);
         $("#NameC").val(resp.nombre + " " + resp.apellido);
         $("#IdCliente").prop('disabled', false);
-        Vitacora(7,"EL USUARIO BUSCO UN CLIENTE CON EL EVENTO ENTER", 1, 1, hora(), fecha() );
+        Vitacora(7,"EL USUARIO BUSCO UN CLIENTE CON EL EVENTO ENTER", GetIdUser(), 1, hora(), fecha() );
    
 
         $("#ContenedorIcon").empty();
@@ -528,6 +528,11 @@ function formatoFecha(fecha, formato) {
   }
 
   return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
+}
+
+function GetIdUser(){
+  let idusuario = <?php echo $_SESSION['iduser']; ?>;
+  return idusuario;
 }
 
 
