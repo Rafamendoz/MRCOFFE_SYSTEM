@@ -284,309 +284,381 @@ for ($i = 1; $i <= $len; $i++) {
   </div>
 
 </main>
-<script src="../js/jquery.min.js"></script>
-<!--- Creacion de funciones en javascript--->
+  <script src="../js/jquery.min.js"></script>
+  <!--- Creacion de funciones en javascript--->
 
-<script type="text/javascript">
-window.onload = function() {
-  ObtenerValores();
-  Isv();
-  Total();
+  <script type="text/javascript">
 
-}
+      window.onload = function() {
+        ObtenerValores();
+        Isv();
+        Total();
 
-function Preordenar() {
-  document.getElementById('mostrar').style.display = 'block';
-  document.getElementById('ocultar').style.display = 'none';
+      }
 
-}
+      function Preordenar() {
+        document.getElementById('mostrar').style.display = 'block';
+        document.getElementById('ocultar').style.display = 'none';
 
-function Isv() {
-  let subtotal = document.getElementById("subtotal").innerHTML;
-  let disc = document.getElementById("idLDes").innerHTML;
+      }
 
-
-  // Calculo del subtotal
-  let isv = (parseFloat(subtotal) - parseFloat(disc)) * 0.15;
-  $("#PIsv").append("<label id=\"idLIsv\">" + isv.toFixed(2));
-}
-
-function Total() {
-  let subtotal = document.getElementById("subtotal").innerHTML;
-  let isv = document.getElementById("idLIsv").innerHTML;
-  let disc = document.getElementById("idLDes").innerHTML;
+      function Isv() {
+        let subtotal = document.getElementById("subtotal").innerHTML;
+        let disc = document.getElementById("idLDes").innerHTML;
 
 
+        // Calculo del subtotal
+        let isv = (parseFloat(subtotal) - parseFloat(disc)) * 0.15;
+        $("#PIsv").append("<label id=\"idLIsv\">" + isv.toFixed(2));
+      }
 
-  // Calculo del subtotal
-  let total = parseFloat(subtotal) - parseFloat(disc) + parseFloat(isv);
-  $("#idLTotal").html(total.toFixed(2));
-}
-
-function ObtenerValores() {
-  var idpedido = "<?php echo $idpedido; ?>";
-  const fecha = new Date();
-  var idfecha = formatoFecha(fecha, "yy-mm-dd");
-  var IdCliente = "<?php echo $ccliente; ?>";
-  var nombreCliente = "<?php echo $namec; ?>";
-  var subtot = "<?php echo $subtotalF; ?>";
-
-
-  $.post("../controllers/DetalleP/ObtenerCabeceraPController.php", {
-      "idpedido": idpedido,
-      "idfecha": idfecha,
-      "IdCliente": IdCliente,
-      "NombreCliente": nombreCliente
-    },
-    function(data) {
-      var resp = JSON.parse(data);
-      console.log(resp);
-
-      $("#idpedido").html(resp.idpedido);
-      $("#idCliente").html(resp.idcliente);
-      $("#idNCliente").html(resp.nombrecliente);
-      $("#idNCliente").html(resp.nombrecliente);
-    }
-  );
-
-  $("#idTbody").append("<?php echo $html; ?>");
-  $("#subtotal").html(parseFloat(subtot).toFixed(2));
+      function Total() {
+        let subtotal = document.getElementById("subtotal").innerHTML;
+        let isv = document.getElementById("idLIsv").innerHTML;
+        let disc = document.getElementById("idLDes").innerHTML;
 
 
 
+        // Calculo del subtotal
+        let total = parseFloat(subtotal) - parseFloat(disc) + parseFloat(isv);
+        $("#idLTotal").html(total.toFixed(2));
+      }
+
+      function ObtenerValores() {
+        var idpedido = "<?php echo $idpedido; ?>";
+        const fecha = new Date();
+        var idfecha = formatoFecha(fecha, "yy-mm-dd");
+        var IdCliente = "<?php echo $ccliente; ?>";
+        var nombreCliente = "<?php echo $namec; ?>";
+        var subtot = "<?php echo $subtotalF; ?>";
+
+
+        $.post("../controllers/DetalleP/ObtenerCabeceraPController.php", {
+            "idpedido": idpedido,
+            "idfecha": idfecha,
+            "IdCliente": IdCliente,
+            "NombreCliente": nombreCliente
+          },
+          function(data) {
+            var resp = JSON.parse(data);
+            console.log(resp);
+
+            $("#idpedido").html(resp.idpedido);
+            $("#idCliente").html(resp.idcliente);
+            $("#idNCliente").html(resp.nombrecliente);
+            $("#idNCliente").html(resp.nombrecliente);
+          }
+        );
+
+        $("#idTbody").append("<?php echo $html; ?>");
+        $("#subtotal").html(parseFloat(subtot).toFixed(2));
 
 
 
 
 
-}
-
-
-
-function formatoFecha(fecha, formato) {
-  const map = {
-    dd: fecha.getDate(),
-    mm: fecha.getMonth() + 1,
-    yy: fecha.getFullYear().toString().slice(-2),
-    yyyy: fecha.getFullYear()
-  }
-
-  return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
-}
-
-
-function Cancelar() {
-  Swal.fire({
-    title: '¿Esta seguro de continuar?',
-    text: "No podra revertir los cambios!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, Cancelar orden',
-    cancelButtonText: 'Regresar!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire({
-        icon: 'info',
-        title: 'Cancelando Orden',
-        html: 'Por favor espere...',
-        timer: 2300,
-        timerProgressBar: true,
-        didOpen: () => {
-          Swal.showLoading()
-          const b = Swal.getHtmlContainer().querySelector('b')
-          timerInterval = setInterval(() => {
-
-          }, 100)
-        },
-        willClose: () => {
-          clearInterval(timerInterval)
-        }
-      }).then((result) => {
-        /* Read more about handling dismissals below */
-        if (result.dismiss === Swal.DismissReason.timer) {
-          console.log('I was closed by the timer');
-          Swal.fire(
-            'Orden Cancelada!',
-            'La orden ha sido cancelada.',
-            'success'
-          ).then((result) => {
-            if (result.isConfirmed) {
-              window.location.href = "createorder.php";
-            }
-
-          })
-
-
-
-        }
-      })
-    }
-  })
-
-}
-
-
-function GuardarCabezeraPedido() {
-  var idpedido = "<?php echo $idpedido; ?>";
-  const fecha = new Date();
-  var now = fecha.toLocaleTimeString('en-US');
-  var idfecha = formatoFecha(fecha, "yy-mm-dd");
-  var IdCliente = "<?php echo $ccliente; ?>";
-  var nombreCliente = "<?php echo $namec; ?>";
-  var totalP = $("#idLTotal").html();
-  let estado = 0;
-  $.post("../controllers/Pedidos/GuardarPedidoController.php", {
-    "idpedido": idpedido,
-    "idfecha": idfecha,
-    "IdCliente": IdCliente,
-    "NombreCliente": nombreCliente,
-    "Hora": now,
-    "Total": totalP
-  }, function(data) {
-    var resp = JSON.parse(data);
-    console.log(resp.Ok);
-    GuardarDetallePedido();
-    
-    
-
-
-  });
-  console.log("Este es el estado: "+ estado);
-  return estado;
-}
-
-function GuardarDetallePedido() {
-  GuardarFactura();
-  let colCount = $("#idTbody tr").length;
-
-  for (var i = 1; i <= colCount; i++) {
-    let idpedido = $("#idpedido").text();
-    let idproducto = $("#f" + i + "c1").val();
-    let cantidad = $("#f" + i + "c3").val();
-    let descuento = $("#f" + i + "c4").val();
-    let subtotal = $("#f" + i + "c5").val();
-
-    var total = subtotal - descuento;
-    /*alert("IDPEDIDO: "+idpedido+ "IDPRODUCTO: "+idproducto+ "CANTIDAD: "+ cantidad+ "DESCUENTO: "+ descuento + "SUBTOTAL: "+subtotal+ " Total: "+ total);*/
-    enviar(idpedido, idproducto, cantidad, descuento, subtotal, total);
-
-
-
-
-  }
-
-  function enviar(idpedido, idproducto, cantidad, descuento, subtotal, total) {
-    $.post("../controllers/DetalleP/GuardarDetallesController.php", {
-        "idpedido": idpedido,
-        "idproducto": idproducto,
-        "cantidad": cantidad,
-        "descuento": descuento,
-        "subtotal": subtotal,
-        "total": total
-      },
-      function(data) {
-        var res = data;
-        console.log(res);
 
 
 
       }
-    );
 
-
-  }
-
-}
-
-
-function GuardarFactura(){
-  const fecha = new Date();
-  var idpedido = "<?php echo $idpedido; ?>";
-  var totalP = $("#idLTotal").html();
-  var idfecha = formatoFecha(fecha, "yy-mm-dd");
-  $.post("../controllers/Factura/GuardarFacturaController.php",
-   {"idpedido":idpedido, "totalp":totalP, "idfecha":idfecha}, 
-   function(data){
-    resp = data;
-    console.log(resp);
-
-  });
-}
-
-function GuardarPedido() {
-
-  Swal.fire({
-    title: '¿Esta seguro de continuar?',
-    text: "No podra revertir los cambios!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, confirmado!',
-    cancelButtonText: 'Cancelar'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      let timerInterval
-      Swal.fire({
-
-        title: 'Ejecutando Accion',
-        html: 'Por favor espere...',
-        timer: 2000,
-        timerProgressBar: true,
-        didOpen: () => {
-          Swal.showLoading()
-          const b = Swal.getHtmlContainer().querySelector('b')
-          timerInterval = setInterval(() => {
-
-          }, 100)
-        },
-        willClose: () => {
-          clearInterval(timerInterval)
+      function formatoFecha(fecha, formato) {
+        var map = {
+          dd: fecha.getDate(),
+          mm: fecha.getMonth() + 1,
+          yy: fecha.getFullYear().toString().slice(-2),
+          yyyy: fecha.getFullYear()
         }
-      }).then((result) => {
-        /* Read more about handling dismissals below */
-        if (result.dismiss === Swal.DismissReason.timer) {
-          console.log('I was closed by the timer')
-          GuardarCabezeraPedido();
-           
-       
+
+        return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
+      }
+
+      function fecha(){
+          var fecha = new Date();
+          var idfecha = formatoFecha(fecha, "yy-mm-dd");
+          return idfecha;
+        }
+
+
+        function Getfecha(){
+          var fecha = new Date();
+          var idfecha = formatoFecha(fecha, "yy-mm-dd");
+          return idfecha;
+        }
+
+
+    
+
+
+
+
+        function hora(){
+          var fecha = new Date();
+          var now = fecha.toLocaleTimeString('en-GB');
+          return now;
+        }
+
+
+      
+
+
+      function GetIdUser(){
+          var idusuario = "<?php echo $_SESSION['iduser']; ?>";
+          return idusuario;
+      }
+
+
+
+
+
+      function Vitacora(modulo, descripcion, usuarioResponsable, accion, hora, fecha){
+          $.post("../controllers/Vitacora/InsertarItemVitacoraController.php",
+          {"modulo":modulo,"descripcion":descripcion, "usuarioResponsable":usuarioResponsable, "accion":accion, "hora":hora, "fecha":fecha}, 
+          function(data)
+          {
+            var resp = data;/*JSON.parse(data);*/
+            console.log(resp);
+
+          });
+
+      }
+
+
+      function Cancelar() {
+        Vitacora(2,"EL USUARIO PRESIONO EL BOTON CANCELAR ORDEN", GetIdUser(), 7, hora(), fecha() );
+        Swal.fire({
+          title: '¿Esta seguro de continuar?',
+          text: "No podra revertir los cambios!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, Cancelar orden',
+          cancelButtonText: 'Regresar!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              icon: 'info',
+              title: 'Cancelando Orden',
+              html: 'Por favor espere...',
+              timer: 2300,
+              timerProgressBar: true,
+              didOpen: () => {
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+
+                }, 100)
+              },
+              willClose: () => {
+                clearInterval(timerInterval)
+              }
+            }).then((result) => {
+              /* Read more about handling dismissals below */
+              if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer');
+                Swal.fire(
+                  'Orden Cancelada!',
+                  'La orden ha sido cancelada.',
+                  'success'
+                ).then((result) => {
+                  if (result.isConfirmed) {
+                    Vitacora(2,"LA ORDEN SE CANCELO", GetIdUser(), 7, hora(), fecha() );
+                    window.location.href = "createorder.php";
+                    Vitacora(2,"EL USUARIO FUE REDIRECCIONADO A createorder.php", GetIdUser(), 7, hora(), Getfecha() );
+
+                  }
+
+                })
+
+
+
+              }
+            })
+          }else{
+            Vitacora(2,"EL USUARIO PRESIONO EL BOTON REGRESAR", GetIdUser(), 7, hora(), fecha() );
+
+          }
+        })
+
+      }
+
+
+      function GuardarCabezeraPedido() {
+        Vitacora(2,"EL USUARIO PRESIONO EL BOTON SI, CONFIRMADO Y GENERO UN PEDIDO ", GetIdUser(), 3, hora(), Getfecha() );
+        var idpedido = "<?php echo $idpedido; ?>";
+        const fecha = new Date();
+        var now = fecha.toLocaleTimeString('en-US');
+        var idfecha = formatoFecha(fecha, "yy-mm-dd");
+        var IdCliente = "<?php echo $ccliente; ?>";
+        var nombreCliente = "<?php echo $namec; ?>";
+        var totalP = $("#idLTotal").html();
+        let estado = 0;
+        $.post("../controllers/Pedidos/GuardarPedidoController.php", {
+          "idpedido": idpedido,
+          "idfecha": idfecha,
+          "IdCliente": IdCliente,
+          "NombreCliente": nombreCliente,
+          "Hora": now,
+          "Total": totalP
+        }, function(data) {
+          var resp = JSON.parse(data);
+          console.log(resp.Ok);
+          GuardarDetallePedido();
+          
           
 
-          Swal.fire({
-            icon: 'success',
-            title: 'Resultado Existoso',
-            width: 400,
-            padding: '1em',
-            color: '#454541',
-            background: '#fff url(/images/trees.png)',
-            backdrop: `
-                        rgba(0,28,50,0.5)
-                        url('../img/pedido.gif')
-                        left bottom
-                        no-repeat
-                        `
-          }).then((result) => {
-            if (result.isConfirmed) {
-              window.location.href = "pedidosr.php";
+
+        });
+        console.log("Este es el estado: "+ estado);
+        return estado;
+      }
+
+      function GuardarDetallePedido() {
+        Vitacora(2,"AL GENERAR EL PEDIDO SE GENERO EL DETALLE DEL PEDIDO", GetIdUser(), 3, hora(), fecha() );
+        GuardarFactura();
+        let colCount = $("#idTbody tr").length;
+
+        for (var i = 1; i <= colCount; i++) {
+          let idpedido = $("#idpedido").text();
+          let idproducto = $("#f" + i + "c1").val();
+          let cantidad = $("#f" + i + "c3").val();
+          let descuento = $("#f" + i + "c4").val();
+          let subtotal = $("#f" + i + "c5").val();
+
+          var total = subtotal - descuento;
+          /*alert("IDPEDIDO: "+idpedido+ "IDPRODUCTO: "+idproducto+ "CANTIDAD: "+ cantidad+ "DESCUENTO: "+ descuento + "SUBTOTAL: "+subtotal+ " Total: "+ total);*/
+          enviar(idpedido, idproducto, cantidad, descuento, subtotal, total);
+
+
+
+
+        }
+
+        function enviar(idpedido, idproducto, cantidad, descuento, subtotal, total) {
+          $.post("../controllers/DetalleP/GuardarDetallesController.php", {
+              "idpedido": idpedido,
+              "idproducto": idproducto,
+              "cantidad": cantidad,
+              "descuento": descuento,
+              "subtotal": subtotal,
+              "total": total
+            },
+            function(data) {
+              var res = data;
+              console.log(res);
+
 
 
             }
-          })
+          );
+
+
         }
-      })
+
+      }
 
 
-    } else {
+      function GuardarFactura(){
+        Vitacora(2,"AL GENERAR EL PEDIDO SE GENERO LA FACTURA DEL PEDIDO", GetIdUser(), 3, hora(), Getfecha());
+        const fecha = new Date();
+        var idpedido = "<?php echo $idpedido; ?>";
+        var totalP = $("#idLTotal").html();
+        var idfecha = formatoFecha(fecha, "yy-mm-dd");
+        $.post("../controllers/Factura/GuardarFacturaController.php",
+        {"idpedido":idpedido, "totalp":totalP, "idfecha":idfecha}, 
+        function(data){
+          resp = data;
+          console.log(resp);
+
+        });
+      }
+
+      function GuardarPedido() {
+        Vitacora(2,"EL USUARIO PRESIONO EL BOTON PROCESAR", GetIdUser(), 7, hora(), fecha());
+
+        Swal.fire({
+          title: '¿Esta seguro de continuar?',
+          text: "No podra revertir los cambios!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, confirmado!',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            let timerInterval
+            Swal.fire({
+
+              title: 'Ejecutando Accion',
+              html: 'Por favor espere...',
+              timer: 2000,
+              timerProgressBar: true,
+              didOpen: () => {
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+
+                }, 100)
+              },
+              willClose: () => {
+                clearInterval(timerInterval)
+              }
+            }).then((result) => {
+              /* Read more about handling dismissals below */
+              if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+                GuardarCabezeraPedido();
+
+                
+            
+                
+
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Resultado Existoso',
+                  width: 400,
+                  padding: '1em',
+                  color: '#454541',
+                  background: '#fff url(/images/trees.png)',
+                  backdrop: `
+                              rgba(0,28,50,0.5)
+                              url('../img/pedido.gif')
+                              left bottom
+                              no-repeat
+                              `
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    Vitacora(2,"EL USUARIO PRESIONO EL BOTON OK DE LA VENTANA INFORMATIVA", GetIdUser(), 7, hora(), fecha() );
+                    
+                    window.location.href = "pedidosr.php";
+                    Vitacora(2,"EL USUARIO FUE REDIRECCIONADO A pedidosr.php", GetIdUser(), 7, hora(), Getfecha() );
+                    
+                    
+
+
+                  }
+                })
+              }
+            })
+
+
+          } else {
+
+            Vitacora(2,"EL USUARIO PRESIONO EL BOTON CANCELAR", GetIdUser(), 7, hora(), fecha() );
 
 
 
-    }
+          }
 
-  });
-}
-</script>
+        });
+      }
+
+
+
+
+  </script> 
 
 
 
