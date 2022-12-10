@@ -26,9 +26,9 @@ include('../php/Pedidos/pedidos.php');
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb cabecerap">
             <li class="breadcrumb-item">Panel Principal</li>
-            <li class="breadcrumb-item " aria-current="page"><a href="pedidos.php">Pedidos</a> </li>
-            <li class="breadcrumb-item active" aria-current="page">Pedidos Realizados</li>
-            <li class="breadcrumb-item " aria-current="page"><a href="detallePedidos.php">Detalle de Pedidos</a> </li>
+            <li class="breadcrumb-item " aria-current="page">Pedidos </li>
+            <li class="breadcrumb-item " aria-current="page"><a href="pedidosr.php">Pedidos Realizados</a></li>
+            <li class="breadcrumb-item active " aria-current="page">Detalle de Pedido</li>
 
           </ol>
         </nav>
@@ -100,7 +100,7 @@ function ObtenerPedidosRealizados() {
           "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].nombreempleado + "</td>" +
           "<td>" + resp[i].total + "</td>" +
           "<td>" +
-          "<a href=\"../views/detallesf.php\" class=\"edit-form-data mx-1 btn btn-warning\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
+          "<a href=\"../views/detallePedidos.php?idpedido="+resp[i].idpedido+"\" class=\"edit-form-data mx-1 btn btn-warning\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
           "<i class=\"fa-solid fa-eye\"></i></a>" +
           "<a href=\"\" class=\"edit-form-data px-2 btn btn-dark\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
           "<i class=\"far fa-trash-alt\"></i></a>" +

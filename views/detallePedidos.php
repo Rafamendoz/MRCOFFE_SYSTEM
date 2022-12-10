@@ -4,8 +4,9 @@ include('cabecera.php');
 ?>
 <?php
 include('../conexion.php');
+$idpedido = $_GET["idpedido"];
 $query = "SELECT *
-    FROM detallepedido";
+    FROM detallepedido WHERE idpedido=".$idpedido;
 
 $detalle = mysqli_query($mysqli, $query);
 ?>
@@ -15,8 +16,10 @@ $detalle = mysqli_query($mysqli, $query);
       <div class="shadow p-3 mb-1 bg-body rounded">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb cabecerap">
-            <li class="breadcrumb-item" aria-current="page"><a href="../panelp.php">Panel Principal</a> </li>
-            <li class="breadcrumb-item " aria-current="page"><a href="#">DetallePedido</a> </li>
+            <li class="breadcrumb-item" aria-current="page">Panel Principal</li>
+            <li class="breadcrumb-item " aria-current="page">Pedidos</li>
+            <li class="breadcrumb-item  " aria-current="page"><a href="pedidosr.php">Pedidos Realizados</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Detalle de Pedido</li>
 
 
           </ol>
@@ -62,8 +65,9 @@ $detalle = mysqli_query($mysqli, $query);
 })();
 
 function Obtenerdetalle() {
+  var idpedido = "<?php echo $idpedido; ?>";
   $.post(
-    "../controllers/DetalleP/MostrardetallePedido.php", {},
+    "../controllers/DetalleP/MostrardetallePedido.php", {"idpedido":idpedido},
     function(data) {
 
       var resp = JSON.parse(data);

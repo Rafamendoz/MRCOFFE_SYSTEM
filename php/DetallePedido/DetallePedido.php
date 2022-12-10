@@ -34,9 +34,9 @@ class DetallePedido
 
 
 
-    function BuscardetallesP($conexion)
+    function BuscardetallesP($conexion, $idpedidos)
     {
-        $query = "SELECT dp.idpedido, p.nombreproducto, dp.cantidad, dp.descuento,dp.subtotal, dp.total FROM detallepedido as dp INNER JOIN producto p on p.idproducto = dp.idproducto";
+        $query = "SELECT dp.idpedido, p.nombreproducto, dp.cantidad, dp.descuento,dp.subtotal, dp.total FROM detallepedido as dp INNER JOIN producto p on p.idproducto = dp.idproducto WHERE idpedido=".$idpedidos;
         $listadetalle = array();
         $result = mysqli_query($conexion, $query);
         while ($row = mysqli_fetch_array($result)) {
