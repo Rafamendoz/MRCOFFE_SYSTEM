@@ -90,9 +90,9 @@ include('cabecera.php');
             </div>
 
             <div class="col-3 text-center">
-              <button type="button" class="btn btn-outline-primary" id="idBotonBuscar"
+              <button type="button" class="btn btn-outline-warning" id="idBotonBuscar"
                 onclick="BuscarProductoPorId()"><i class="fa-solid fa-magnifying-glass me-1"></i>Buscar</button>
-              <button type="button" class="btn btn-outline-success" id="idBotonAgregar" onclick="AgregarToOrden()"
+              <button type="button" class="btn btn-outline-dark" id="idBotonAgregar" onclick="AgregarToOrden()"
                 disabled><i class="fa-solid fa-circle-plus me-1"></i>Agregar</button>
 
 
@@ -185,7 +185,7 @@ include('cabecera.php');
 
           <div class="row ">
             <div class="col-2">
-              <button type="button" id="IdGenerar" onclick="GoResumen()" class="btn btn-primary">Generar
+              <button type="button" id="IdGenerar" onclick="GoResumen()" class="btn btn-warning">Generar
                 PreOrden</button>
             </div>
           </div>
@@ -394,7 +394,7 @@ function AgregarToOrden() {
           .precio + "</td>" +
           "<td><input hidden name=\"f" + contador2 + "c5\" value=" + subtotal + ">" + subtotal + "</td>" +
           "<td><button onclick=\"EliminarFromOrder(" + idfila +
-          ")\" type=\"button\" class=\"btn btn-outline-danger\"><i class=\"fa-solid fa-trash\"></i></button>" +
+          ")\" type=\"button\" class=\"btn btn-outline-dark\"><i class=\"fa-solid fa-trash\"></i></button>" +
           "</td></tr>";
         $("#idTbody").append(html);
 

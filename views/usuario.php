@@ -207,18 +207,18 @@ function Obtener() {
       console.log(resp);
       var html = "";
       var basehtml =
-        "<thead><tr>" +
+        "<thead>" + "<tr>" +
         " <th scope=\"col\">Codigo</th>" +
-        "<th scope=\"col\">Nombre</th>" +
-        "<th scope=\"col\">Correo</th>" +
-        "<th scope=\"col\">Rol</th>" +
-        "<th scope=\"col\">Accion</th>" +
-        "</tr></thead>";
+        "<th>Nombre</th>" +
+        "<th>Correo</th>" +
+        "<th>Rol</th>" +
+        "<th>Accion</th>" +
+        "</tr>" + "</thead>";
 
 
       for (var i in resp) {
 
-        html = html + "<tbody><tr><td>" + resp[i].idusuarios + "</td>" +
+        html = html + "<tbody>" + "<tr>" + "<td>" + resp[i].idusuarios + "</td>" +
           "<td>" + resp[i].nombre + "</td>" +
           "<td>" + resp[i].correo + "</td>" +
           "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].idrol + "</td>" +
@@ -227,7 +227,7 @@ function Obtener() {
           "<i class=\"fa-solid fa-pen-to-square \" ></i></a>" +
           "<a href=\"\" class=\" p-1 px-4 btn btn-dark\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
           "<i class=\"fa-solid fa-trash\"></i></a>" +
-          "</td></tr></tbody>";
+          "</td>" + "</tr>" + "</tbody>";
 
 
       }
@@ -325,6 +325,11 @@ function BuscarUsuario() {
       console.log(data);
       var resp = JSON.parse(data);
       console.log(resp);
+
+
+
+
+
 
       document.getElementById('mostrar').style.display = 'block';
       document.getElementById('ocultar').style.display = 'none';
