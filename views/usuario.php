@@ -247,6 +247,7 @@ function Obtener() {
 }
 
 function RegistrarUsuario() {
+  Vitacora(5, "EL USUARIO PRESIONO EL BOTON AGREGAR", GetIdUser(), 3, hora(), fecha());
   var usuario = document.getElementById("user").value;
   var nombre = document.getElementById("name").value;
   var contra = document.getElementById("contra").value;
@@ -330,7 +331,6 @@ function BuscarUsuario() {
 
 
 
-
       document.getElementById('mostrar').style.display = 'block';
       document.getElementById('ocultar').style.display = 'none';
       $("#user").prop("disabled", true);
@@ -357,6 +357,51 @@ function BuscarUsuario() {
 
 function cancelar() {
   javascript: location.reload();
+}
+
+function hora() {
+  const fecha = new Date();
+  var now = fecha.toLocaleTimeString('en-GB');
+  return now;
+}
+
+function fecha() {
+  const fecha = new Date();
+  var idfecha = formatoFecha(fecha, "yy-mm-dd");
+  return idfecha;
+}
+
+function formatoFecha(fecha, formato) {
+  const map = {
+    dd: fecha.getDate(),
+    mm: fecha.getMonth() + 1,
+    yy: fecha.getFullYear().toString().slice(-2),
+    yyyy: fecha.getFullYear()
+  }
+
+  return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
+}
+
+function GetIdUser() {
+  let idusuario = <?php echo $_SESSION['iduser']; ?>;
+  return idusuario;
+}
+
+function Vitacora(modulo, descripcion, usuarioResponsable, accion, hora, fecha) {
+  $.post("../controllers/Vitacora/InsertarItemVitacoraController.php", {
+      "modulo": modulo,
+      "descripcion": descripcion,
+      "usuarioResponsable": usuarioResponsable,
+      "accion": accion,
+      "hora": hora,
+      "fecha": fecha
+    },
+    function(data) {
+      var resp = JSON.parse(data);
+      console.log(resp);
+
+    });
+
 }
 </script>
 
