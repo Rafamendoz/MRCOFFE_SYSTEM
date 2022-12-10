@@ -1,5 +1,6 @@
 <?php 
 
+include("respuestapedidos.php");
 
 class Pedido{
 
@@ -56,16 +57,17 @@ class Pedido{
     }
 
     function GuardarPedido($conexion){
-        $respuesta = "eeee";
+        $respuesta = new RespuestaPedido();
+    
         $query = "INSERT INTO pedido (idpedido, idempleados, fechapedido, horapedido, idcliente, idTipoPago, idEstadoPedido, Total) values($this->idpedido,$this->idempleado,'$this->fechapedido','$this->horapedido',$this->idcliente,$this->idtipopago,1, $this->total)";
     
        
         if(mysqli_query($conexion,$query)==true){
             
-            $respuesta="Exito";
+            $respuesta->Succes("Exito");
 
         }else{
-            $respuesta="Error";
+            $respuesta->NoSucces("Fallo");
         }
 
         return $respuesta;

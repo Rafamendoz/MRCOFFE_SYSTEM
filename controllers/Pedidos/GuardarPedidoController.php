@@ -13,7 +13,7 @@ $pedidoanew = new Pedido();
 $pedidoanew->Constructor($idpedido, 1, $fecha, $horaa , $ccliente, 1, $nombreC, $total) ;
 
 
-echo $pedidoanew->GuardarPedido($mysqli);
+echo json_encode($pedidoanew->GuardarPedido($mysqli));
 
 
 

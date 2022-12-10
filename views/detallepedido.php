@@ -436,6 +436,7 @@ function GuardarCabezeraPedido() {
   var IdCliente = "<?php echo $ccliente; ?>";
   var nombreCliente = "<?php echo $namec; ?>";
   var totalP = $("#idLTotal").html();
+  let estado = 0;
   $.post("../controllers/Pedidos/GuardarPedidoController.php", {
     "idpedido": idpedido,
     "idfecha": idfecha,
@@ -444,14 +445,20 @@ function GuardarCabezeraPedido() {
     "Hora": now,
     "Total": totalP
   }, function(data) {
-    var resp = data;
-    console.log(resp);
+    var resp = JSON.parse(data);
+    console.log(resp.Ok);
+    GuardarDetallePedido();
+    
+    
 
 
   });
+  console.log("Este es el estado: "+ estado);
+  return estado;
 }
 
 function GuardarDetallePedido() {
+  GuardarFactura();
   let colCount = $("#idTbody tr").length;
 
   for (var i = 1; i <= colCount; i++) {
@@ -484,12 +491,28 @@ function GuardarDetallePedido() {
         console.log(res);
 
 
+
       }
     );
 
 
   }
 
+}
+
+
+function GuardarFactura(){
+  const fecha = new Date();
+  var idpedido = "<?php echo $idpedido; ?>";
+  var totalP = $("#idLTotal").html();
+  var idfecha = formatoFecha(fecha, "yy-mm-dd");
+  $.post("../controllers/Factura/GuardarFacturaController.php",
+   {"idpedido":idpedido, "totalp":totalP, "idfecha":idfecha}, 
+   function(data){
+    resp = data;
+    console.log(resp);
+
+  });
 }
 
 function GuardarPedido() {
@@ -527,7 +550,9 @@ function GuardarPedido() {
         if (result.dismiss === Swal.DismissReason.timer) {
           console.log('I was closed by the timer')
           GuardarCabezeraPedido();
-          GuardarDetallePedido();
+           
+       
+          
 
           Swal.fire({
             icon: 'success',

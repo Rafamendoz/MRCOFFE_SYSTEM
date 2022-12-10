@@ -10,7 +10,7 @@ class Factura{
     public $idcliente;
     public $nombrecliente;
     public $nombreempleado;
-
+    public $fecha;
     public $rtnfactura;
     public $cai;
     public $fechaVencimiento;
@@ -44,6 +44,38 @@ class Factura{
         $this-> $isv = $isv;
         $this-> $total = $total;
     }
+
+
+    function ConstructorFactura($idpedido, $fecha, $total, $parametro){
+        $this->idpedido = $idpedido;
+        $this->total = $total;
+        $this->parametro = $parametro;
+        $this->fecha =$fecha;
+
+
+    }
+
+
+    function GuardarFactura($conexion){
+        
+        $respuesta = "eeee";
+        $query = "INSERT INTO facturas (idpedido, fecha, total, id_parametro) values($this->idpedido,'$this->fecha',$this->total,$this->parametro)";
+    
+       
+        if(mysqli_query($conexion,$query)==true){
+            
+            $respuesta="Exito";
+
+        }else{
+            $respuesta="Error";
+        }
+
+        return $respuesta;
+  
+    }
+
+
+
 
 }
     
