@@ -329,7 +329,7 @@ if(isset($_SESSION['Rol'])){
             const fecha = new Date();
             var now = fecha.toLocaleTimeString('en-GB');
             return now;
-        }
+  }
 
         function fecha(){
             const fecha = new Date();
