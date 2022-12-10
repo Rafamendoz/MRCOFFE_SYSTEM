@@ -146,7 +146,7 @@ session_start();
                   <td>
                     <a href="productosModificar.php?id=<?php echo $row['idproducto'] ?>" class="btn btn-warning">
                       <i class="fa-solid fa-pen-to-square"></i> </a>
-                    <a href="productosEliminar.php?id=<?php echo $row['idproducto'] ?>" class="btn btn-dark ">
+                    <a href="productosDeshabilitar.php?id=<?php echo $row['idproducto'] ?>" class="btn btn-dark ">
                       <i class="fa-solid fa-trash"></i></a>
                   </td>
                 </tr>
