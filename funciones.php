@@ -37,17 +37,17 @@ function enviarEmail($email,$nombre, $asunto, $cuerpo){
 
     try {
       
-        #$mail->SMTPDebug=SMTP::DEBUG_SERVER;#
+        $mail->SMTPDebug=SMTP::DEBUG_SERVER;
         $mail->isSMTP();
-        $mail->Host = 'smtp.titan.email';
+        $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;
-        $mail->Username = 'TI@fhope.net';
-        $mail->Password = 'Tifhope2022$$';
+        $mail->Username = "mrcoffe37@gmail.com";
+        $mail->Password = "yzbgawecgjfxannm";
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587; 
 
 
-        $mail->setFrom('TI@fhope.net', 'Recuperar');
+        $mail->setFrom('mrcoffe37@gmail.com', 'Recuperar');
         $mail->addAddress($email, 'Usuario');
         $mail->isHTML(true);
         $mail->Subject= $asunto;
