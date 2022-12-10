@@ -169,8 +169,46 @@ if (isset($_SESSION['Rol'])) {
 
         <div class="row">
           <div class="col-12">
-            <table class="table text-center" id="TablaU">
+          <table id="datatablesSimple">
+            <thead>
+          <tr>
+            <th scope="col">Codigo</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+            include '../conexion.php';
+            $query = "SELECT * FROM usuarios";
+            $result = mysqli_query($mysqli, $query);
+            while ($row = mysqli_fetch_array($result)) {
+          ?>
+          <tr>
+            <th scope="row"><?php echo $row['idusuarios'] ?></th>
+            <td><?php echo $row['nombre'] ?></td>
+            <td><?php echo $row['correo'] ?></td>
+            <td><?php echo $row['idrol'] ?></td>
+            <td>
+              <a href="modificarCliente.php?id=<?php echo $row['idusuarios'] ?>" class="btn btn-warning">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </a>
+              <a href="clientes.php?id=<?php echo $row['idusuarios'] ?>" onclick=""
+                class="btn btn-dark">
+                <i class="fa-solid fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+          <?php
+                        }
 
+
+                        ?>
+
+
+        </tbody>
             </table>
           </div>
 
