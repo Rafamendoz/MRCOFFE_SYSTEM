@@ -224,9 +224,8 @@ function Obtener() {
           "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].idrol + "</td>" +
           "<td>" +
           "<a href=\"javascript:BuscarUsuario()\" class=\" text-center p-1 px-4 mx-2 btn btn-warning\" data-toggle=\"modal\" data-target=\"#editMdl\" onclick=\"BuscarUsuario();\" >" +
-          "<i class=\"fa-solid fa-pen-to-square \" ></i></a>" +
-          "<a href=\"../controllers/dhUsuarios.php?user=" + resp[i].idusuarios +
-          "\" class=\" p-1 px-4 btn btn-dark\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
+          "<i class=\"fa-solid fa-pen-to-square \" \" ></i></a>" +
+          "<a href=\" \" class=\" p-1 px-4 btn btn-dark\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
           "<i class=\"fa-solid fa-trash\"></i></a>" +
           "</td>" + "</tr>" + "</tbody>";
 

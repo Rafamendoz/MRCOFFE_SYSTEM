@@ -4,7 +4,7 @@ include('../conexion.php');
 $idusuarios = $_GET["user"];
 
 
-$query = "UPDATE pedido SET idEstadoPedido=2 WHERE idusuarios=" . $idusuarios;
+$query = "UPDATE Estado SET idEstado=2 WHERE idusuarios=" . $idusuarios;
 
 $detalle = mysqli_query($mysqli, $query);
 
