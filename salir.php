@@ -50,6 +50,7 @@ echo <<<EOT
                     {
                         var resp = JSON.parse(data);
                         console.log(resp);
+                        window.location= 'index.php'
         
                     });
         
@@ -59,5 +60,5 @@ echo <<<EOT
                 </script>
 EOT;
 session_destroy();
-header('location: index.php');
+
 ?>
