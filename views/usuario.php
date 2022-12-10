@@ -192,217 +192,218 @@ if (isset($_SESSION['Rol'])) {
 </script>
 
 <script>
-(function() {
-  Obtener();
-})();
+    (function() {
+      Obtener();
+    })();
 
 
 
-function Obtener() {
-  $.post(
-    "../controllers/buscarUsuario.php", {},
-    function(data) {
-      //alert(data);
-      var resp = JSON.parse(data);
-      console.log(resp);
-      var html = "";
-      var basehtml =
-        "<thead>" + "<tr>" +
-        " <th scope=\"col\">Codigo</th>" +
-        "<th>Nombre</th>" +
-        "<th>Correo</th>" +
-        "<th>Rol</th>" +
-        "<th>Accion</th>" +
-        "</tr>" + "</thead>";
+    function Obtener() {
+      $.post(
+        "../controllers/buscarUsuario.php", {},
+        function(data) {
+          //alert(data);
+          var resp = JSON.parse(data);
+          console.log(resp);
+          var html = "";
+          var basehtml =
+            "<thead>" + "<tr>" +
+            " <th scope=\"col\">Codigo</th>" +
+            "<th>Nombre</th>" +
+            "<th>Correo</th>" +
+            "<th>Rol</th>" +
+            "<th>Accion</th>" +
+            "</tr>" + "</thead>";
 
 
-      for (var i in resp) {
+          for (var i in resp) {
 
-        html = html + "<tbody>" + "<tr>" + "<td>" + resp[i].idusuarios + "</td>" +
-          "<td>" + resp[i].nombre + "</td>" +
-          "<td>" + resp[i].correo + "</td>" +
-          "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].idrol + "</td>" +
-          "<td>" +
-          "<a href=\"javascript:BuscarUsuario()\" class=\" text-center p-1 px-4 mx-2 btn btn-warning\" data-toggle=\"modal\" data-target=\"#editMdl\" onclick=\"BuscarUsuario();\" >" +
-          "<i class=\"fa-solid fa-pen-to-square \" ></i></a>" +
-          "<a href=\"\" class=\" p-1 px-4 btn btn-dark\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
-          "<i class=\"fa-solid fa-trash\"></i></a>" +
-          "</td>" + "</tr>" + "</tbody>";
+            html = html + "<tbody>" + "<tr>" + "<td>" + resp[i].idusuarios + "</td>" +
+              "<td>" + resp[i].nombre + "</td>" +
+              "<td>" + resp[i].correo + "</td>" +
+              "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].idrol + "</td>" +
+              "<td>" +
+              "<a href=\"javascript:BuscarUsuario()\" class=\" text-center p-1 px-4 mx-2 btn btn-warning\" data-toggle=\"modal\" data-target=\"#editMdl\" onclick=\"BuscarUsuario();\" >" +
+              "<i class=\"fa-solid fa-pen-to-square \" ></i></a>" +
+              "<a href=\"\" class=\" p-1 px-4 btn btn-dark\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
+              "<i class=\"fa-solid fa-trash\"></i></a>" +
+              "</td>" + "</tr>" + "</tbody>";
 
 
+          }
+
+          var finalhtml = basehtml + html;
+
+          document.getElementById("datatablesSimple").innerHTML = finalhtml;
+
+
+
+
+
+
+
+        }
+      );
+    }
+
+    function RegistrarUsuario() {
+      Vitacora(5, "EL USUARIO PRESIONO EL BOTON AGREGAR", GetIdUser(), 3, hora(), fecha());
+      var usuario = document.getElementById("user").value;
+      var nombre = document.getElementById("name").value;
+      var contra = document.getElementById("contra").value;
+      var rol = document.getElementById("idrol").value;
+      var correo = document.getElementById("correo").value;
+      alert(usuario + nombre + correo);
+      $.post("../controllers/InsertarUsuario.php", {
+          'usuario': usuario,
+          'nombre': nombre,
+          "contra": contra,
+          "rol": rol,
+          "correo": correo
+
+
+
+        },
+        function(data) {
+
+
+          console.log(data);
+          var resp = JSON.parse(data);
+          console.log(resp);
+
+          window.location.href = "../views/usuario.php";
+
+        }
+      );
+    }
+
+
+    function ModificarUsuario() {
+      var usuario = document.getElementById("user").value;
+      var nombre = document.getElementById("name").value;
+      var contra = document.getElementById("contra").value;
+      var correo = document.getElementById("correo").value;
+      var estado = document.getElementById("idestado").value;
+
+      alert(usuario + nombre + correo);
+      $.post("../controllers/EditarUsuarios.php", {
+          'usuario': usuario,
+          'nombre': nombre,
+          "contra": contra,
+          "correo": correo,
+          "estado": estado,
+
+
+
+
+        },
+        function(data) {
+
+
+          console.log(data);
+          var resp = JSON.parse(data);
+          console.log(resp);
+          window.location.href = "../views/usuario.php";
+
+
+        }
+
+      );
+    }
+
+    function BuscarUsuario() {
+      var usuario = document.getElementById("user").value;
+      var rol = document.getElementById("idrol").value;
+      $.post("../controllers/ObtenerUsuario.php", {
+          'usuario': usuario,
+          'rol': 'rol'
+
+
+        },
+
+        function(data) {
+
+          console.log(data);
+          var resp = JSON.parse(data);
+          console.log(resp);
+
+
+
+
+
+          document.getElementById('mostrar').style.display = 'block';
+          document.getElementById('ocultar').style.display = 'none';
+          $("#user").prop("disabled", true);
+          $("#idrol").prop("disabled", true);
+
+          document.getElementById("user").value = resp.idusuarios;
+          document.getElementById("name").value = resp.nombre;
+          document.getElementById("contra").value = resp.password;
+          document.getElementById("correo").value = resp.correo;
+          document.getElementById("idrol").value = resp.idrol;
+          document.getElementById("idestado").value = resp.idEstado;
+
+
+
+        }
+
+      );
+
+    }
+
+
+
+
+
+    function cancelar() {
+      javascript: location.reload();
+    }
+
+    function hora() {
+      const fecha = new Date();
+      var now = fecha.toLocaleTimeString('en-GB');
+      return now;
+    }
+
+    function fecha() {
+      const fecha = new Date();
+      var idfecha = formatoFecha(fecha, "yy-mm-dd");
+      return idfecha;
+    }
+
+    function formatoFecha(fecha, formato) {
+      const map = {
+        dd: fecha.getDate(),
+        mm: fecha.getMonth() + 1,
+        yy: fecha.getFullYear().toString().slice(-2),
+        yyyy: fecha.getFullYear()
       }
 
-      var finalhtml = basehtml + html;
-
-      document.getElementById("datatablesSimple").innerHTML = finalhtml;
-
-
-
-
-
-
-
-    }
-  );
-}
-
-function RegistrarUsuario() {
-  Vitacora(5, "EL USUARIO PRESIONO EL BOTON AGREGAR", GetIdUser(), 3, hora(), fecha());
-  var usuario = document.getElementById("user").value;
-  var nombre = document.getElementById("name").value;
-  var contra = document.getElementById("contra").value;
-  var rol = document.getElementById("idrol").value;
-  var correo = document.getElementById("correo").value;
-  alert(usuario + nombre + correo);
-  $.post("../controllers/InsertarUsuario.php", {
-      'usuario': usuario,
-      'nombre': nombre,
-      "contra": contra,
-      "rol": rol,
-      "correo": correo
-
-
-
-    },
-    function(data) {
-
-
-      console.log(data);
-      var resp = JSON.parse(data);
-      console.log(resp);
-
-      window.location.href = "../views/usuario.php";
-
-    }
-  );
-}
-
-
-function ModificarUsuario() {
-  var usuario = document.getElementById("user").value;
-  var nombre = document.getElementById("name").value;
-  var contra = document.getElementById("contra").value;
-  var correo = document.getElementById("correo").value;
-  var estado = document.getElementById("idestado").value;
-
-  alert(usuario + nombre + correo);
-  $.post("../controllers/EditarUsuarios.php", {
-      'usuario': usuario,
-      'nombre': nombre,
-      "contra": contra,
-      "correo": correo,
-      "estado": estado,
-
-
-
-
-    },
-    function(data) {
-
-
-      console.log(data);
-      var resp = JSON.parse(data);
-      console.log(resp);
-      window.location.href = "../views/usuario.php";
-
-
+      return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
     }
 
-  );
-}
-
-function BuscarUsuario() {
-  var usuario = document.getElementById("user").value;
-  var rol = document.getElementById("idrol").value;
-  $.post("../controllers/ObtenerUsuario.php", {
-      'usuario': usuario,
-      'rol': 'rol'
-
-
-    },
-
-    function(data) {
-
-      console.log(data);
-      var resp = JSON.parse(data);
-      console.log(resp);
-
-
-
-
-
-      document.getElementById('mostrar').style.display = 'block';
-      document.getElementById('ocultar').style.display = 'none';
-      $("#user").prop("disabled", true);
-      $("#idrol").prop("disabled", true);
-
-      document.getElementById("user").value = resp.idusuarios;
-      document.getElementById("name").value = resp.nombre;
-      document.getElementById("contra").value = resp.password;
-      document.getElementById("correo").value = resp.correo;
-      document.getElementById("idrol").value = resp.idrol;
-      document.getElementById("idestado").value = resp.idEstado;
-
-
-
+    function GetIdUser() {
+      let idusuario = <?php echo $_SESSION['iduser']; ?>;
+      return idusuario;
     }
 
-  );
+    function Vitacora(modulo, descripcion, usuarioResponsable, accion, hora, fecha) {
+      $.post("../controllers/Vitacora/InsertarItemVitacoraController.php", {
+          "modulo": modulo,
+          "descripcion": descripcion,
+          "usuarioResponsable": usuarioResponsable,
+          "accion": accion,
+          "hora": hora,
+          "fecha": fecha
+        },
+        function(data) {
+          var resp = JSON.parse(data);
+          console.log(resp);
 
-}
+        });
 
-
-
-
-
-function cancelar() {
-  javascript: location.reload();
-}
-
-function hora() {
-  const fecha = new Date();
-  var now = fecha.toLocaleTimeString('en-GB');
-  return now;
-}
-
-function fecha() {
-  const fecha = new Date();
-  var idfecha = formatoFecha(fecha, "yy-mm-dd");
-  return idfecha;
-}
-
-function formatoFecha(fecha, formato) {
-  const map = {
-    dd: fecha.getDate(),
-    mm: fecha.getMonth() + 1,
-    yy: fecha.getFullYear().toString().slice(-2),
-    yyyy: fecha.getFullYear()
-  }
-
-  return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
-}
-
-function GetIdUser() {
-  let idusuario = <?php echo $_SESSION['iduser']; ?>;
-  return idusuario;
-}
-
-function Vitacora(modulo, descripcion, usuarioResponsable, accion, hora, fecha) {
-  $.post("../controllers/Vitacora/InsertarItemVitacoraController.php", {
-      "modulo": modulo,
-      "descripcion": descripcion,
-      "usuarioResponsable": usuarioResponsable,
-      "accion": accion,
-      "hora": hora,
-      "fecha": fecha
-    },
-    function(data) {
-      var resp = JSON.parse(data);
-      console.log(resp);
-
-    });
-
-}
+    }
+    
 </script>
 
 <?php
