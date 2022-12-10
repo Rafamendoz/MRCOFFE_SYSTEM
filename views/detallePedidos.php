@@ -65,7 +65,7 @@ function Obtenerdetalle() {
   $.post(
     "../controllers/DetalleP/MostrardetallePedido.php", {},
     function(data) {
-      alert(data);
+
       var resp = JSON.parse(data);
       console.log(resp);
       var html = "";
@@ -77,7 +77,6 @@ function Obtenerdetalle() {
         "<th>Descuento</th>" +
         "<th>SubTotal</th>" +
         "<th>Total</th>" +
-        "<th>Accion</th>" +
         "</tr>";
 
 
@@ -89,10 +88,7 @@ function Obtenerdetalle() {
           "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].descuento + "</td>" +
           "<td>" + resp[i].subtotal + "</td>" +
           "<td>" + resp[i].total + "</td>" +
-          "<td>" + "<a href=\"\" class=\"edit-form-data\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
-          "<i class=\"fa-solid fa-eye\"></i></a>" +
-          "<a href=\"\" class=\"edit-form-data px-2\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
-          "<i class=\"far fa-trash-alt\"></i></a>" +
+          "<td>" +
           "</td></tr>";
 
 

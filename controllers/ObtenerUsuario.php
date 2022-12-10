@@ -4,5 +4,3 @@
 		$Usuario = new Usuarios();
 		$iduser= @$_POST["usuario"];
 		echo json_encode($Usuario->ObtenerUsuariosById($iduser,$mysqli));
-
-?>
