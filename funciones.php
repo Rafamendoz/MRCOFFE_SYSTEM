@@ -37,7 +37,7 @@ function enviarEmail($email,$nombre, $asunto, $cuerpo){
 
     try {
       
-        $mail->SMTPDebug=SMTP::DEBUG_SERVER;
+        /*$mail->SMTPDebug=SMTP::DEBUG_SERVER;*/
         $mail->isSMTP();
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;
