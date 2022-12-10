@@ -98,3 +98,9 @@
 [E][09-12-2022 06:25:58]: Se ha producido un error
 [I][09-12-2022 06:25:58]: helen.orellana
 [I][09-12-2022 06:25:58]: Array
+[E][10-12-2022 12:08:19]: Se ha producido un error
+[I][10-12-2022 12:08:19]: hdaniela
+[I][10-12-2022 12:08:19]: Navegando
+[E][10-12-2022 12:08:27]: Se ha producido un error
+[I][10-12-2022 12:08:27]: hdaniela
+[I][10-12-2022 12:08:27]: Navegando

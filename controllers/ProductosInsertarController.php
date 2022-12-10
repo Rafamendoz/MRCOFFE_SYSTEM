@@ -2,6 +2,7 @@
 include 'conexion.php';
 
 if (!empty($_POST['registrar'])) {
+    
     if (isset($_POST['codigo']) && !empty($_POST['codigo']) &&
         isset($_POST['producto']) && !empty($_POST['producto']) &&
         isset($_POST['descripcion']) && !empty($_POST['descripcion'])  &&
