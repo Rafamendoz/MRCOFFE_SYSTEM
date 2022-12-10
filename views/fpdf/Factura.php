@@ -5,6 +5,7 @@ include("../../conexion.php"); //llamamos a la conexion BD
 
 if (!empty($_GET['id'])) {
     $id = $_GET['id'];
+    $idf = $_GET['idf'];
 }
 
 $queryInfoFacrura = "
@@ -15,7 +16,7 @@ pf.fechavencimiento,
 pf.cai,
 pf.rangoinicial,
 pf.rangofinal,
-CONCAT( e.nombre , ' ', e.apellido ) as nombreempleado,
+CONCAT( e.nombre ) as nombreempleado,
 CONCAT( c.nombre , ' ', c.apellido ) as nombrecliente,
 f.idpedido,
 f.codigofactura,f.subtotal,f.isv,
@@ -29,13 +30,13 @@ join pedido p
 on  f.idpedido = p.idpedido 
 join parametrizacion_facturas pf 
 on f.id_parametro = pf.id_parametro 
-join empleados e 
-on p.idempleados = e.idempleados 
+join usuarios e 
+on p.idempleados = e.idusuarios 
 JOIN cliente c 
 on p.idcliente  = c.idcliente 
 where f.codigoFactura = 
 
-" . $id;
+" .$idf;
 $informacion_consulta = $mysqli->query($queryInfoFacrura);
 $informacion = $informacion_consulta->fetch_object();
 
@@ -54,36 +55,19 @@ class PDF extends FPDF
 
         if (!empty($_GET['id'])) {
             $id = $_GET['id'];
+            $idf = $_GET['idf'];
         }
 
-        $queryInfoFacrura = "
-        SELECT 
-        fecha ,
-        pf.rtn,
-        pf.fechavencimiento,
-        pf.cai,
-        pf.rangoinicial,
-        pf.rangofinal,
-        CONCAT( e.nombre , ' ', e.apellido ) as nombreempleado,
-        CONCAT( c.nombre , ' ', c.apellido ) as nombrecliente,
-        f.idpedido,
-        f.codigofactura
-        
-        
-        
-        FROM 
-        facturas f 
-        join pedido p 
-        on  f.idpedido = p.idpedido 
-        join parametrizacion_facturas pf 
+        $queryInfoFacrura =
+        "SELECT fecha ,pf.rtn, pf.fechavencimiento,pf.cai, pf.rangoinicial,pf.rangofinal,CONCAT( e.nombre) as nombreempleado,CONCAT( c.nombre , ' ', c.apellido ) as nombrecliente,
+        f.idpedido,f.codigofactura FROM  facturas f INNER JOIN pedido p on  f.idpedido = p.idpedido 
+        INNER JOIN parametrizacion_facturas pf 
         on f.id_parametro = pf.id_parametro 
-        join empleados e 
-        on p.idempleados = e.idempleados 
+        join usuarios e 
+        on p.idempleados = e.idusuarios 
         JOIN cliente c 
         on p.idcliente  = c.idcliente 
-        where f.codigoFactura = 
-        
-        " . $id;
+        where f.codigoFactura =".$idf;
         $informacion_consulta = $mysqli->query($queryInfoFacrura);
         $informacion = $informacion_consulta->fetch_object();
 
@@ -194,7 +178,7 @@ SELECT * from detallepedido d
 join producto p 
 on d.idproducto = p.idproducto
 where d.idpedido =
-" . $informacion->idpedido;
+" .$informacion->idpedido;
 $consulta_info = $mysqli->query($query);
 
 //$dato_info = $consulta_info->fetch_object();

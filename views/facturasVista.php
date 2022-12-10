@@ -60,7 +60,7 @@ include('cabecera.php');
                             <td><?php echo $row['idpedido'] ?></td>
                             <td><?php echo $row['fecha'] ?></td>
                             <td><?php echo $row['total'] ?></td>
-                            <th><a href="<?php echo "/PROYECTODW/views/fpdf/Factura.php?id=".$row['codigoFactura'] ?>">Ver detalle</a></th>
+                            <th><a href="<?php echo "/PROYECTODW/views/fpdf/Factura.php?id=".$row['idpedido']."&idf=".$row['codigoFactura']  ?>">Ver detalle</a></th>
                         </tr>
                         <?php
                             }

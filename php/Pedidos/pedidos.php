@@ -29,8 +29,6 @@ class Pedido{
 
    
 
-   
-
     function BuscarPedidoPorIdH($idpedido, $conexion){
         $query = "SELECT * FROM pedido WHERE idpedido='".$idpedido."' AND idEstadoPedido=1";
         $result = mysqli_query($conexion, $query);

@@ -11,6 +11,8 @@ $idpedido = $_POST["Idpedido"];
 $namec = $_POST["NameC"];
 $subtotalF = 0.00;
 $idrtn = $_POST["idrtn"];
+$idempleado =  $_SESSION["iduser"];
+echo $idempleado;
 
 
 
@@ -493,6 +495,7 @@ for ($i = 1; $i <= $len; $i++) {
         var idfecha = formatoFecha(fecha, "yy-mm-dd");
         var IdCliente = "<?php echo $idrtn; ?>";
         var nombreCliente = "<?php echo $namec; ?>";
+        var empleadocargo = <?php echo $idempleado; ?>;
         var totalP = $("#idLTotal").html();
         let estado = 0;
         $.post("../controllers/Pedidos/GuardarPedidoController.php", {
@@ -501,10 +504,11 @@ for ($i = 1; $i <= $len; $i++) {
           "IdCliente": IdCliente,
           "NombreCliente": nombreCliente,
           "Hora": now,
+          "idempleado":empleadocargo,
           "Total": totalP
         }, function(data) {
           var resp = JSON.parse(data);
-          console.log(resp.Ok);
+          console.log(resp);
           GuardarDetallePedido();
           
           
