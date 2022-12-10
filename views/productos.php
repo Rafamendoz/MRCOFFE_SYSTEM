@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('views/cabecera.php'); 
+include('views/cabecera.php');
 if (isset($_SESSION['Rol'])) {
 
 ?>
@@ -32,10 +32,10 @@ if (isset($_SESSION['Rol'])) {
       </script>
       <form method="POST" class="row">
         <?php
-                    include 'conexion.php';
-                    /*   include 'controllers/ProductosEliminarController.php';*/
-                    include 'controllers/ProductosInsertarController.php';
-                    ?>
+          include 'conexion.php';
+          /*   include 'controllers/ProductosEliminarController.php';*/
+          include 'controllers/ProductosInsertarController.php';
+          ?>
         <div class="col-6">
           <div class="form-group">
             <label for="codigo">Código</label>
@@ -68,57 +68,57 @@ if (isset($_SESSION['Rol'])) {
           <button type="reset" class="btn btn-dark">Cancelar</button>
         </div>
       </form>
-      </div>
+    </div>
 
-</div>
-      <div class="card-body">
+  </div>
+  <div class="card-body">
 
-        <table id="datatablesSimple">
-          <thead>
-            <tr>
+    <table id="datatablesSimple">
+      <thead>
+        <tr>
 
-              <th id="">Código</th>
-              <th>Nombre</th>
-              <th>Descripción</th>
-              <th>Precio</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
+          <th id="">Código</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
 
-          <tbody>
-            <?php
-                            include 'conexion.php';
-                            $query = "SELECT * FROM producto";
-                            $result = mysqli_query($mysqli, $query);
-                            while ($row = mysqli_fetch_array($result)) {
-                            ?>
-            <tr>
+      <tbody>
+        <?php
+          include 'conexion.php';
+          $query = "SELECT * FROM producto";
+          $result = mysqli_query($mysqli, $query);
+          while ($row = mysqli_fetch_array($result)) {
+          ?>
+        <tr>
 
-              <td scope="row"><?php echo $row['idproducto'] ?></td>
-              <td><?php echo $row['nombreproducto'] ?></td>
-              <td><?php echo $row['descripcion'] ?></td>
-              <td><?php echo $row['precio'] ?></td>
-              <td>
-                <a href="productosModificar.php?id=<?php echo $row['idproducto'] ?>" class="btn btn-warning">
-                  <i class="fa-solid fa-pen-to-square"></i> </a>
-                <a href="productosEliminar.php?id=<?php echo $row['idproducto'] ?>" class="btn btn-dark ">
-                  <i class="fa-solid fa-trash"></i></a>
-              </td>
-            </tr>
-            <?php
-                            }
-                            ?>
-          </tbody>
-        </table>
-        <script>
-        function generarReporte() {
-          window.open("../PROYECTODW/views/fpdf/ReporteProductos.php");
-        }
-        </script>
-        <button class="btn btn-warning col-2" onclick="return generarReporte()">Generar Reporte</button>
-      </div>
+          <td scope="row"><?php echo $row['idproducto'] ?></td>
+          <td><?php echo $row['nombreproducto'] ?></td>
+          <td><?php echo $row['descripcion'] ?></td>
+          <td><?php echo $row['precio'] ?></td>
+          <td>
+            <a href="productosModificar.php?id=<?php echo $row['idproducto'] ?>" class="btn btn-warning">
+              <i class="fa-solid fa-pen-to-square"></i> </a>
+            <a href="productosEliminar.php?id=<?php echo $row['idproducto'] ?>" class="btn btn-dark ">
+              <i class="fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
+        <?php
+          }
+          ?>
+      </tbody>
+    </table>
+    <script>
+    function generarReporte() {
+      window.open("../PROYECTODW/views/fpdf/ReporteProductos.php");
+    }
+    </script>
+    <button class="btn btn-warning col-2" onclick="return generarReporte()">Generar Reporte</button>
+  </div>
 
-  
+
 
   <!-- fin contenido-->
 
@@ -143,10 +143,11 @@ if (isset($_SESSION['Rol'])) {
 
 </html>
 <?php
-    include('views/pie.php');
+  include('views/pie.php');
   ?>
 <?php
 } else {
   header("Location: http://localhost/PROYECTODW/index.php", TRUE, 301);
-  die();}
+  die();
+}
 ?>
