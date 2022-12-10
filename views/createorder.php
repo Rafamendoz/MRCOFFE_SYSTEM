@@ -244,7 +244,7 @@ function AgregarProducto() {
 
 
 function BuscarClientePorId() {
-
+  Vitacora(7,"EL USUARIO PRESIONO EL ENTER PARA BUSCAR UN USUARIO", GetIdUser(), 1, hora(), fecha() );
   $("#IdCliente").prop('disabled', true);
   var idcliente = document.getElementById("IdCliente").value;
   $.post("../controllers/Clientes/BuscarClienteController.php", {
@@ -277,7 +277,7 @@ function BuscarClientePorId() {
         console.log(resp);
         $("#NameC").val(resp.nombre + " " + resp.apellido);
         $("#IdCliente").prop('disabled', false);
-        Vitacora(7,"EL USUARIO BUSCO UN CLIENTE CON EL EVENTO ENTER", GetIdUser(), 1, hora(), fecha() );
+
    
 
         $("#ContenedorIcon").empty();
@@ -320,7 +320,7 @@ function ObtenerUltimoIdPedido() {
 }
 
 function BuscarProductoPorId() {
-  Vitacora(7,"EL USUARIO BUSCO UN PRODUCTO CON EL BOTON BUSCAR", GetIdUser(), 1, hora(), fecha() );
+  Vitacora(7,"EL USUARIO PRESIONO EL BOTON BUSCAR PARA BUSCAR UN PRODUCTO", GetIdUser(), 1, hora(), fecha() );
   $("#idBotonBuscar").prop('disabled', true);
   var idproducto = $("#idproducto").val();
 
@@ -359,7 +359,7 @@ function BuscarProductoPorId() {
 
 
 function AgregarToOrden() {
-  Vitacora(7,"EL USUARIO PRESIONO EL BOTON AGREGAR", GetIdUser(), 1, hora(), fecha() );
+  Vitacora(7,"EL USUARIO PRESIONO EL BOTON AGREGAR", GetIdUser(), 7, hora(), fecha() );
   $("#idBotonAgregar").prop('disabled', true);
   var idproducto = $("#idproducto").val();
   var cantidad = $("#idCantidad").val();
@@ -434,7 +434,7 @@ function AgregarToOrden() {
 
 
 function EliminarFromOrder(idfila) {
-  Vitacora(7,"EL USUARIO PRESIONO EL BOTON AGREGAR", GetIdUser(), 1, hora(), fecha() );
+  Vitacora(7,"EL USUARIO PRESIONO EL BOTON ELIMINAR", GetIdUser(), 7, hora(), fecha() );
 
 
   $("#" + idfila + "").remove();
@@ -443,6 +443,7 @@ function EliminarFromOrder(idfila) {
 }
 
 function validar() {
+  Vitacora(7,"EL USUARIO PRESIONO EL BOTON GENERAR PREORDEN", GetIdUser(), 7, hora(), fecha() );
   var estado = true;
   var rowCount = $("#idTablaDetalle tr").length - 1;
   if (rowCount == 0) {
