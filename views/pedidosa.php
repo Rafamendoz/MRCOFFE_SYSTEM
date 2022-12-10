@@ -102,7 +102,6 @@ function ObtenerPedidosAnulados() {
         "<th>Nombre del Cliente</th>" +
         "<th>Atendido por</th>" +
         "<th>Total</th>" +
-        "<th>Accion</th>" +
         "</tr>";
 
 
@@ -113,13 +112,7 @@ function ObtenerPedidosAnulados() {
           "<td>" + resp[i].nombrecliente + "</td>" +
           "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].nombreempleado + "</td>" +
           "<td>" + resp[i].total + "</td>" +
-          "<td>" +
-          "<a href=\"../views/detallesf.php?" + resp[i].idpedido +
-          "\" class=\"edit-form-data\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
-          "<i class=\"fa-solid fa-eye\"></i></a>" +
-          "<a href=\"\" class=\"edit-form-data px-2\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
-          "<i class=\"far fa-trash-alt\"></i></a>" +
-          "</td></tr>";
+          "</tr>";
 
 
       }
