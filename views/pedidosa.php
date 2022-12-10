@@ -45,7 +45,7 @@ include('../conexion.php');
 
             <div class="row">
                 <div class="col-12">
-                  <table class="table text-center">
+                  <table class="table text-center" id="idtbody">
                     <thead>
                         <tr>
                             <th>Codigo Pedido</th>
@@ -56,7 +56,7 @@ include('../conexion.php');
                             <th>Accion</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="">
                         <tr>
                             <td>12342</td>
                             <td>3534</td>
@@ -78,6 +78,66 @@ include('../conexion.php');
 
 
 </main>
+
+<script src="../js/jquery.min.js"></script>
+<script>
+
+(function() {
+    ObtenerPedidosAnulados();
+})();
+
+    
+function ObtenerPedidosAnulados() {
+  $.post(
+    "../controllers/Pedidos/BuscarPedidosAnulados.php", {},
+    function(data) {
+
+      var resp =JSON.parse(data);
+      console.log(resp);
+      var html = "";
+      var basehtml =
+        "<tr>" +
+        " <th>Codigo Pedido</th>" +
+        "<th>Codigo Cliente</th>" +
+        "<th>Nombre del Cliente</th>" +
+        "<th>Atendido por</th>" +
+        "<th>Total</th>" +
+        "<th>Accion</th>" +
+        "</tr>";
+
+
+      for (var i in resp) {
+
+        html = html + "<tr><td>" + resp[i].idpedido + "</td>" +
+          "<td>" + resp[i].idcliente + "</td>" +
+          "<td>" + resp[i].nombrecliente + "</td>" +
+          "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].nombreempleado + "</td>" +
+          "<td>" + resp[i].total + "</td>" +
+          "<td>" +
+          "<a href=\"../views/detallesf.php?" + resp[i].idpedido +
+          "\" class=\"edit-form-data\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
+          "<i class=\"fa-solid fa-eye\"></i></a>" +
+          "<a href=\"\" class=\"edit-form-data px-2\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
+          "<i class=\"far fa-trash-alt\"></i></a>" +
+          "</td></tr>";
+
+
+      }
+
+      var finalhtml = basehtml + html;
+
+      document.getElementById("idtbody").innerHTML = finalhtml;
+
+
+
+
+
+
+
+    }
+  );
+}
+</script>
 
 
 
