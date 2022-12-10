@@ -536,7 +536,7 @@ function Vitacora(modulo, descripcion, usuarioResponsable, accion, hora, fecha){
   {"modulo":modulo,"descripcion":descripcion, "usuarioResponsable":usuarioResponsable, "accion":accion, "hora":hora, "fecha":fecha}, 
   function(data)
   {
-    var resp = data;/*JSON.parse(data);*/
+    var resp = JSON.parse(data);
     console.log(resp);
 
   });

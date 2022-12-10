@@ -35,7 +35,9 @@
         $row = $query->fetch(PDO::FETCH_NUM);
         if($row == true){
             // validar rol
+            $iduser = $row[0];
             $rol = $row[3];
+            $_SESSION['iduser'] = $iduser;
             $_SESSION['rol'] = $rol;
 
             switch($_SESSION['rol']){
