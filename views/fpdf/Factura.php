@@ -18,7 +18,7 @@ pf.rangofinal,
 CONCAT( e.nombre , ' ', e.apellido ) as nombreempleado,
 CONCAT( c.nombre , ' ', c.apellido ) as nombrecliente,
 f.idpedido,
-f.codigofactura,
+f.codigofactura,f.subtotal,f.isv,
 f.total
 
 
@@ -223,7 +223,17 @@ while ($row = $consulta_info->fetch_object()) {
 }
 // align center 
 $pdf->Cell(12);
-$pdf->Cell(200, 10, utf8_decode("Total"), 1, 0, 'C', 0);
+$pdf->Cell(200, 10, utf8_decode("SUBTOTAL"), 1, 0, 'C', 0);
+$pdf->Cell(50, 10, utf8_decode($informacion->subtotal), 1, 0, 'C', 0);
+
+$pdf->Cell(40, 10, utf8_decode(""), 0, 1 , 'C', 0); //salto de linea
+$pdf->Cell(12);
+$pdf->Cell(200, 10, utf8_decode("ISV"), 1, 0, 'C', 0);
+$pdf->Cell(50, 10, utf8_decode($informacion->isv), 1, 0, 'C', 0);
+
+$pdf->Cell(40, 10, utf8_decode(""), 0, 1 , 'C', 0); //salto de linea
+$pdf->Cell(12);
+$pdf->Cell(200, 10, utf8_decode("TOTAL"), 1, 0, 'C', 0);
 $pdf->Cell(50, 10, utf8_decode($informacion->total), 1, 0, 'C', 0);
 
 

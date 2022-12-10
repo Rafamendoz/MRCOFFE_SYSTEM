@@ -564,9 +564,11 @@ for ($i = 1; $i <= $len; $i++) {
         const fecha = new Date();
         var idpedido = "<?php echo $idpedido; ?>";
         var totalP = $("#idLTotal").html();
+        var subtotalF = $("#subtotal").html();
+        var isv = $("#idLIsv").html();
         var idfecha = formatoFecha(fecha, "yy-mm-dd");
         $.post("../controllers/Factura/GuardarFacturaController.php",
-        {"idpedido":idpedido, "totalp":totalP, "idfecha":idfecha}, 
+        {"idpedido":idpedido, "subtotal":subtotalF,"isv":isv,"totalp":totalP, "idfecha":idfecha}, 
         function(data){
           resp = data;
           console.log(resp);

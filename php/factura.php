@@ -46,8 +46,10 @@ class Factura{
     }
 
 
-    function ConstructorFactura($idpedido, $fecha, $total, $parametro){
+    function ConstructorFactura($idpedido, $subtotal, $isv, $fecha, $total, $parametro){
         $this->idpedido = $idpedido;
+        $this->subtotal = $subtotal;
+        $this->isv = $isv;
         $this->total = $total;
         $this->parametro = $parametro;
         $this->fecha =$fecha;
@@ -59,7 +61,7 @@ class Factura{
     function GuardarFactura($conexion){
         
         $respuesta = "eeee";
-        $query = "INSERT INTO facturas (idpedido, fecha, total, id_parametro) values($this->idpedido,'$this->fecha',$this->total,$this->parametro)";
+        $query = "INSERT INTO facturas (idpedido, fecha, total, id_parametro, isv, subtotal) values($this->idpedido,'$this->fecha',$this->total,$this->parametro, $this->isv, $this->subtotal)";
     
        
         if(mysqli_query($conexion,$query)==true){
