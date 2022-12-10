@@ -279,6 +279,7 @@ function RegistrarUsuario() {
 
 
 function ModificarUsuario() {
+  Vitacora(5, "EL USUARIO ACTUALIZO UN USUARIO", GetIdUser(), 2, hora(), fecha());
   var usuario = document.getElementById("user").value;
   var nombre = document.getElementById("name").value;
   var contra = document.getElementById("contra").value;
@@ -312,6 +313,7 @@ function ModificarUsuario() {
 }
 
 function BuscarUsuario() {
+  Vitacora(5, "EL USUARIO PRESIONO EL BOTON BUSCAR", GetIdUser(), 1, hora(), fecha());
   var usuario = document.getElementById("user").value;
   var rol = document.getElementById("idrol").value;
   $.post("../controllers/ObtenerUsuario.php", {
