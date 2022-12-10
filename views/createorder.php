@@ -320,6 +320,7 @@ function ObtenerUltimoIdPedido() {
 }
 
 function BuscarProductoPorId() {
+  Vitacora(7,"EL USUARIO BUSCO UN PRODUCTO CON EL BOTON BUSCAR", GetIdUser(), 1, hora(), fecha() );
   $("#idBotonBuscar").prop('disabled', true);
   var idproducto = $("#idproducto").val();
 
@@ -358,6 +359,7 @@ function BuscarProductoPorId() {
 
 
 function AgregarToOrden() {
+  Vitacora(7,"EL USUARIO PRESIONO EL BOTON AGREGAR", GetIdUser(), 1, hora(), fecha() );
   $("#idBotonAgregar").prop('disabled', true);
   var idproducto = $("#idproducto").val();
   var cantidad = $("#idCantidad").val();
@@ -432,6 +434,7 @@ function AgregarToOrden() {
 
 
 function EliminarFromOrder(idfila) {
+  Vitacora(7,"EL USUARIO PRESIONO EL BOTON AGREGAR", GetIdUser(), 1, hora(), fecha() );
 
 
   $("#" + idfila + "").remove();
@@ -531,7 +534,7 @@ function formatoFecha(fecha, formato) {
 }
 
 function GetIdUser(){
-  let idusuario = <?php echo $_SESSION['iduser']; ?>;
+  let idusuario = "<?php echo $_SESSION['iduser']; ?>";
   return idusuario;
 }
 
