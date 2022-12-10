@@ -128,12 +128,16 @@ class Usuarios
 
   function ObtenerUsuariosById($iduser, $Conexion)
   {
+    $respuesta = new Respuesta();
     $query = "SELECT idusuarios,nombre, password, correo,idrol,idestado from usuarios where nombre='$iduser' AND idestado=1";
     $result = mysqli_query($Conexion, $query);
     $Usuario = new Usuarios();
     if ($row = mysqli_fetch_array($result)) {
 
       $Usuario->ConstructorSobrecargado($row['idusuarios'], $row['nombre'], $row['password'], $row['correo'], $row['idrol'], $row['idestado']);
+    } else if (mysqli_num_rows($result) == 0) {
+      $respuesta->NoExiste("No existe el registro");
+      return $respuesta;
     }
     return  $Usuario;
   }
