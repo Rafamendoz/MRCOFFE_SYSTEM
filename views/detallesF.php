@@ -54,6 +54,13 @@ for ($i = 1; $i <= $len; $i++) {
       </div>
 
     </div>
+    <div class="input-group " id="busca">
+      <input class="form-control" type="text" id="idpedido" placeholder="Ingrese la id " aria-label="Search for..."
+        aria-describedby="btnNavbarSearch" />
+      <button class="btn btn-warning" id="btnNavbarSearch" type="button" onclick="Buscars()"><i
+          class="fas fa-search"></i></button>
+
+    </div>
 
 
     <div class="px-3 mx-3 mt-3 pb-4 bg-body rounded">
@@ -151,9 +158,9 @@ for ($i = 1; $i <= $len; $i++) {
 
             <div class="col-4 align-self-center">
               <p class="p1"><?php
-                            $fechaActual = date('d-m-Y');
-                            echo date("d-m-Y", strtotime($fechaActual . "- 1 days"));
-                            ?></p>
+                     $fechaActual = date('d-m-Y');
+                     echo date("d-m-Y", strtotime($fechaActual . "- 1 days"));
+                     ?></p>
             </div>
             <br>
             <br>
@@ -280,9 +287,41 @@ for ($i = 1; $i <= $len; $i++) {
 </main>
 <script src="../js/jquery.min.js"></script>
 <!--- Creacion de funciones en javascript--->
-
 <script type="text/javascript">
+function Buscars() {
 
+  var pedido = document.getElementById("idpedido").value;
+
+  $.post("../../controllers/DetallesP/Mostrardetallepedidobyid.php", {
+      'pedido': pedido
+
+
+
+    },
+
+
+    function(data) {
+
+      console.log(data);
+      var resp = JSON.parse(data);
+      console.log(resp);
+
+
+
+
+      document.getElementById("idpedido").value = resp.idpedido;
+      document.getElementById("name").value = resp.idproducto;
+      document.getElementById("idLDes").value = resp.descuento;
+      document.getElementById("subtotal").value = resp.subtotal;
+      document.getElementById("idLTotal").value = resp.total;
+
+
+
+    }
+
+  );
+
+}
 </script>
 
 

@@ -28,6 +28,7 @@ include('../php/Pedidos/pedidos.php');
             <li class="breadcrumb-item">Panel Principal</li>
             <li class="breadcrumb-item " aria-current="page"><a href="pedidos.php">Pedidos</a> </li>
             <li class="breadcrumb-item active" aria-current="page">Pedidos Realizados</li>
+            <li class="breadcrumb-item " aria-current="page"><a href="detallePedidos.php">Detalle de Pedidos</a> </li>
 
           </ol>
         </nav>
@@ -43,13 +44,7 @@ include('../php/Pedidos/pedidos.php');
     <div class="px-3 mx-3  pb-4 bg-body shadow rounded">
 
 
-      <div class="input-group " id="busca">
-        <input class="form-control" type="text" id="idpedido" placeholder="Ingrese la id " aria-label="Search for..."
-          aria-describedby="btnNavbarSearch" />
-        <button class="btn btn-warning" id="btnNavbarSearch" type="button" onclick="Buscars()"><i
-            class="fas fa-search"></i></button>
 
-      </div>
 
       <div class="row">
 
@@ -105,10 +100,9 @@ function ObtenerPedidosRealizados() {
           "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].nombreempleado + "</td>" +
           "<td>" + resp[i].total + "</td>" +
           "<td>" +
-          "<a href=\"../views/detallesf.php?" + resp[i].idpedido +
-          "\" class=\"edit-form-data\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
+          "<a href=\"../views/detallesf.php\" class=\"edit-form-data mx-1 btn btn-warning\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
           "<i class=\"fa-solid fa-eye\"></i></a>" +
-          "<a href=\"\" class=\"edit-form-data px-2\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
+          "<a href=\"\" class=\"edit-form-data px-2 btn btn-dark\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
           "<i class=\"far fa-trash-alt\"></i></a>" +
           "</td></tr>";
 
@@ -132,42 +126,6 @@ function ObtenerPedidosRealizados() {
 function Buscar() {
 
   window.location.href = "../views/detallesF.php";
-
-}
-
-function Buscars() {
-
-  var pedido = document.getElementById("idpedido").value;
-  Buscar();
-
-  $.post("../controllers/DetallesP/MostrardetallesPedido.php", {
-      'pedido': pedido
-
-
-
-    },
-
-
-    function(data) {
-
-      console.log(data);
-      var resp = JSON.parse(data);
-      console.log(resp);
-
-
-
-
-      document.getElementById("idpedido").value = resp.idpedido;
-      document.getElementById("name").value = resp.idproducto;
-      document.getElementById("idLDes").value = resp.descuento;
-      document.getElementById("subtotal").value = resp.subtotal;
-      document.getElementById("idLTotal").value = resp.total;
-
-
-
-    }
-
-  );
 
 }
 </script>
