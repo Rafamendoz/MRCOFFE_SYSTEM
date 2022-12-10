@@ -5,11 +5,12 @@ include('../php/DetallePedido/DetallePedido.php');
 include('../php/Pedidos/Pedidos.php');
 
 
-$ccliente = $_POST["IdCliente"];
+$ccliente = $_POST["RTN"];
 $fecha = $_POST["idfecha"];
 $idpedido = $_POST["Idpedido"];
 $namec = $_POST["NameC"];
 $subtotalF = 0.00;
+$idrtn = $_POST["idrtn"];
 
 
 
@@ -490,7 +491,7 @@ for ($i = 1; $i <= $len; $i++) {
         const fecha = new Date();
         var now = fecha.toLocaleTimeString('en-US');
         var idfecha = formatoFecha(fecha, "yy-mm-dd");
-        var IdCliente = "<?php echo $ccliente; ?>";
+        var IdCliente = "<?php echo $idrtn; ?>";
         var nombreCliente = "<?php echo $namec; ?>";
         var totalP = $("#idLTotal").html();
         let estado = 0;

@@ -36,12 +36,13 @@ include('cabecera.php');
 
 
 
-          <div class="col-md-1 text-center">
-            <label for="inputPassword4" class="form-label">C. Cliente</label>
-            <input type="number" class="form-control" name="IdCliente" id="IdCliente" value="">
+          <div class="col-md-2 text-center">
+            <label for="inputPassword4" class="form-label">RTN</label>
+            <input type="text" class="form-control" name="RTN" id="IdCliente" value="">
+            <input type="text" hidden class="form-control" name="idrtn" id="idrtn" value="">
           </div>
 
-          <div class="col-md-6 text-center">
+          <div class="col-md-5 text-center">
             <label for="inputPassword4" class="form-label">Nombre del Cliente</label>
             <input type="text" class="form-control" id="NameC" name="NameC" readonly>
           </div>
@@ -276,6 +277,7 @@ include('cabecera.php');
         } else {
           console.log(resp);
           $("#NameC").val(resp.nombre + " " + resp.apellido);
+          $("#idrtn").val(resp.idcliente);
           $("#IdCliente").prop('disabled', false);
 
     

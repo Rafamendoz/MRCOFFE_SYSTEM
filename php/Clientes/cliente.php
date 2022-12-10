@@ -50,7 +50,7 @@ class Cliente{
     
     function BuscarClientePorId($id,$conexion){
         $respuestaCliente = new Respuesta();
-        $query = "SELECT * FROM cliente WHERE idcliente=".$id." AND idestado=1;";
+        $query = "SELECT * FROM cliente WHERE identidad=".$id." AND idestado=1;";
         $result = mysqli_query($conexion, $query);
         if(mysqli_num_rows($result)==0){
             $respuestaCliente->NoExiste("No existe el registro");
