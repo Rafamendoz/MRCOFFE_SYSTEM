@@ -26,7 +26,7 @@ include('../php/Pedidos/pedidos.php');
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb cabecerap">
             <li class="breadcrumb-item">Panel Principal</li>
-            <li class="breadcrumb-item " aria-current="page"><a href="pedidos.php">Pedidos</a>   </li>
+            <li class="breadcrumb-item " aria-current="page"><a href="pedidos.php">Pedidos</a>     </li>
             <li class="breadcrumb-item active" aria-current="page">Pedidos Realizados</li>
 
 
