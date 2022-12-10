@@ -45,7 +45,7 @@ if (!empty($_POST['registrar'])) {
        
         
 
-        $sql = "INSERT INTO producto (idproducto, nombreproducto, descripcion, precio ) VALUES ('$codigo','$producto', '$descripcion', '$precio')";
+        $sql = "INSERT INTO producto (idproducto, nombreproducto, descripcion, precio, idestado ) VALUES ('$codigo','$producto', '$descripcion', '$precio', 1)";
         $result = mysqli_query($mysqli, $sql);
         if ($result) {
             echo "<div class='alert alert-success'>Producto Registrado </div>";
