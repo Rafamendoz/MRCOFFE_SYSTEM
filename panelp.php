@@ -44,11 +44,6 @@ if (isset($_SESSION['Rol'])) {
         class="fas fa-bars"></i></button>
     <!-- Navbar Search-->
     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-      <div class="input-group">
-        <input class="form-control" type="text" placeholder="Busqueda..." aria-label="Search for..."
-          aria-describedby="btnNavbarSearch" />
-        <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-      </div>
     </form>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -56,8 +51,6 @@ if (isset($_SESSION['Rol'])) {
         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
           aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="#!">Settings</a></li>
-          <li><a class="dropdown-item" href="#!">Activity Log</a></li>
           <li>
             <hr class="dropdown-divider" />
           </li>
@@ -93,7 +86,7 @@ if (isset($_SESSION['Rol'])) {
               Clientes
               <div class="sb-sidenav-collapse-arrow"></div>
             </a>
-            <a <?php if($_SESSION['Rol'] != 1){ ?> style="display:none;" <?php } ?> class="nav-link collapsed"
+            <a <?php if ($_SESSION['Rol'] != 1) { ?> style="display:none;" <?php } ?> class="nav-link collapsed"
               href="views/empleados.php" aria-expanded="false" aria-controls="collapsePages">
               <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
               Empleado
@@ -120,7 +113,7 @@ if (isset($_SESSION['Rol'])) {
         <div class="sb-sidenav-footer">
           <div class="small">Logged in as:</div>
           <?php echo $_SESSION['User']; ?>
-          
+
         </div>
       </nav>
     </div>
@@ -133,10 +126,10 @@ if (isset($_SESSION['Rol'])) {
 
         <div class="container-fluid px-4">
           <?php if ($_SESSION['Rol'] != 1) { ?>
-            <h1 class="mt-4">Usuario</h1>
-          <?php } else {?>
-            <h1 class="mt-4">Administrador</h1>
-          <?php }?>
+          <h1 class="mt-4">Usuario</h1>
+          <?php } else { ?>
+          <h1 class="mt-4">Administrador</h1>
+          <?php } ?>
           <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active"></li>
           </ol>
@@ -145,7 +138,7 @@ if (isset($_SESSION['Rol'])) {
               <div class="card bg-primary text-white mb-4">
                 <div class="card-body">Usuarios</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                  <a class="small text-white stretched-link" href="#">View Details</a>
+                  <a class="small text-white stretched-link" href="views/usuario.php">View Details</a>
                   <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
               </div>
@@ -154,7 +147,7 @@ if (isset($_SESSION['Rol'])) {
               <div class="card bg-warning text-white mb-4">
                 <div class="card-body">Empleados</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                  <a class="small text-white stretched-link" href="#">View Details</a>
+                  <a class="small text-white stretched-link" href="views/empleados.php">View Details</a>
                   <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
               </div>
@@ -163,7 +156,7 @@ if (isset($_SESSION['Rol'])) {
               <div class="card bg-success text-white mb-4">
                 <div class="card-body">Clientes</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                  <a class="small text-white stretched-link" href="#">View Details</a>
+                  <a class="small text-white stretched-link" href="views/clientes.php">View Details</a>
                   <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
               </div>
@@ -172,7 +165,7 @@ if (isset($_SESSION['Rol'])) {
               <div class="card bg-danger text-white mb-4">
                 <div class="card-body">Pedidos</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                  <a class="small text-white stretched-link" href="#">View Details</a>
+                  <a class="small text-white stretched-link" href="views/pedidos.php">View Details</a>
                   <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
               </div>
@@ -210,7 +203,7 @@ if (isset($_SESSION['Rol'])) {
 
   </script>
 
- 
+
 
 </body>
 
