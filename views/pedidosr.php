@@ -3,6 +3,7 @@ include('cabecera.php');
 include('../conexion.php');
 include('../php/Pedidos/pedidos.php');
 
+
 /*$idpedido = $_GET["Idpedido"];
 
  $query = "SELECT MAX(idpedido) as idpedi FROM pedido";
@@ -42,9 +43,16 @@ include('../php/Pedidos/pedidos.php');
     <div class="px-3 mx-3  pb-4 bg-body shadow rounded">
 
 
+      <div class="input-group " id="busca">
+        <input class="form-control" type="text" id="idpedido" placeholder="Ingrese la id " aria-label="Search for..."
+          aria-describedby="btnNavbarSearch" />
+        <button class="btn btn-warning" id="btnNavbarSearch" type="button" onclick="Buscars()"><i
+            class="fas fa-search"></i></button>
 
+      </div>
 
       <div class="row">
+
         <div class="col-12">
           <table class="table text-center" id="TablaPedidosR">
 
@@ -119,6 +127,48 @@ function ObtenerPedidosRealizados() {
 
     }
   );
+}
+
+function Buscar() {
+
+  window.location.href = "../views/detallesF.php";
+
+}
+
+function Buscars() {
+
+  var pedido = document.getElementById("idpedido").value;
+  Buscar();
+
+  $.post("../controllers/DetallesP/MostrardetallesPedido.php", {
+      'pedido': pedido
+
+
+
+    },
+
+
+    function(data) {
+
+      console.log(data);
+      var resp = JSON.parse(data);
+      console.log(resp);
+
+
+
+
+      document.getElementById("idpedido").value = resp.idpedido;
+      document.getElementById("name").value = resp.idproducto;
+      document.getElementById("idLDes").value = resp.descuento;
+      document.getElementById("subtotal").value = resp.subtotal;
+      document.getElementById("idLTotal").value = resp.total;
+
+
+
+    }
+
+  );
+
 }
 </script>
 

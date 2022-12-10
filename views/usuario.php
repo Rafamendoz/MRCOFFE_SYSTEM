@@ -159,8 +159,8 @@ if (isset($_SESSION['Rol'])) {
 
       </div>
 
-      <div class="bg-dark bg-gradient text-white p-2 mx-5 mt-1 ">
-        <p class="p1">Listas de Usuarios</p>
+      <div class="bg-dark bg-gradient text-white text-center p-2 mx-5 mt-2 mb-1 ">
+        <h2>Listas de Usuarios</h2>
       </div>
       <div class="px-2 mx-5  pb-4 bg-body shadow rounded">
 
@@ -169,46 +169,9 @@ if (isset($_SESSION['Rol'])) {
 
         <div class="row">
           <div class="col-12">
-          <table id="datatablesSimple">
-            <thead>
-          <tr>
-            <th scope="col">Codigo</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Correo</th>
-            <th scope="col">Rol</th>
-            <th scope="col">Accion</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-            include '../conexion.php';
-            $query = "SELECT * FROM usuarios";
-            $result = mysqli_query($mysqli, $query);
-            while ($row = mysqli_fetch_array($result)) {
-          ?>
-          <tr>
-            <th scope="row"><?php echo $row['idusuarios'] ?></th>
-            <td><?php echo $row['nombre'] ?></td>
-            <td><?php echo $row['correo'] ?></td>
-            <td><?php echo $row['idrol'] ?></td>
-            <td>
-              <a href="modificarCliente.php?id=<?php echo $row['idusuarios'] ?>" class="btn btn-warning">
-                <i class="fa-solid fa-pen-to-square"></i>
-              </a>
-              <a href="clientes.php?id=<?php echo $row['idusuarios'] ?>" onclick=""
-                class="btn btn-dark">
-                <i class="fa-solid fa-trash"></i>
-              </a>
-            </td>
-          </tr>
-          <?php
-                        }
+            <table class="table text-center mt-2" id="datatablesSimple">
 
 
-                        ?>
-
-
-        </tbody>
             </table>
           </div>
 
@@ -244,35 +207,34 @@ function Obtener() {
       console.log(resp);
       var html = "";
       var basehtml =
-        "<tr>" +
-        " <th>Codigo</th>" +
-        "<th>Nombre</th>" +
-        "<th>Correo</th>" +
-        "<th>Rol</th>" +
-        "<th>Accion</th>" +
-        "</tr>";
+        "<thead><tr>" +
+        " <th scope=\"col\">Codigo</th>" +
+        "<th scope=\"col\">Nombre</th>" +
+        "<th scope=\"col\">Correo</th>" +
+        "<th scope=\"col\">Rol</th>" +
+        "<th scope=\"col\">Accion</th>" +
+        "</tr></thead>";
 
 
       for (var i in resp) {
 
-        html = html +
-          "<tr><td>" + resp[i].idusuarios + "</td>" +
+        html = html + "<tbody><tr><td>" + resp[i].idusuarios + "</td>" +
           "<td>" + resp[i].nombre + "</td>" +
           "<td>" + resp[i].correo + "</td>" +
           "<td> <input hidden type=\"text\" value=\"1\"></input>" + resp[i].idrol + "</td>" +
           "<td>" +
-          "<a href=\"javascript:BuscarUsuario()\" class=\"edit-form-data px-2 mx-2 btn btn-warning\" data-toggle=\"modal\" data-target=\"#editMdl\" onclick=\"BuscarUsuario();\" >" +
+          "<a href=\"javascript:BuscarUsuario()\" class=\" text-center p-1 px-4 mx-2 btn btn-warning\" data-toggle=\"modal\" data-target=\"#editMdl\" onclick=\"BuscarUsuario();\" >" +
           "<i class=\"fa-solid fa-pen-to-square \" ></i></a>" +
-          "<a href=\"\" class=\"edit-form-data px-2 btn btn-dark\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
-          "<i class=\"far fa-trash-alt\"></i></a>" +
-          "</td></tr>";
+          "<a href=\"\" class=\" p-1 px-4 btn btn-dark\" data-toggle=\"modal\" data-target=\"#editMdl\">" +
+          "<i class=\"fa-solid fa-trash\"></i></a>" +
+          "</td></tr></tbody>";
 
 
       }
 
       var finalhtml = basehtml + html;
 
-      document.getElementById("TablaU").innerHTML = finalhtml;
+      document.getElementById("datatablesSimple").innerHTML = finalhtml;
 
 
 
