@@ -148,6 +148,7 @@ if (isset($_SESSION['Rol'])) {
                                     </div>
                                     <div class="col-lg-8">
                                         <button id="" type="button" onclick="RegistrarEmpleado()" class="btn btn-warning" value="ingresar">Agregar Empleado</button>
+                                        <button type="reset" class="btn btn-dark">Cancelar</button>
                                     </div>
                                 </div>
 
@@ -235,7 +236,7 @@ if (isset($_SESSION['Rol'])) {
 
     <script type="text/javascript">
         function RegistrarEmpleado() {
-
+            Vitacora(3, "EL USUARIO PRESIONO EL BOTON AGREGAR", GetIdUser(), 3, hora(), fecha());
             var idempleados = document.getElementById("idempleados").value;
             var nombre = document.getElementById("nombre").value;
             var apellido = document.getElementById("apellido").value;
@@ -311,7 +312,45 @@ if (isset($_SESSION['Rol'])) {
         }
 
 
+        function hora(){
+            const fecha = new Date();
+            var now = fecha.toLocaleTimeString('en-GB');
+            return now;
+        }
 
+        function fecha(){
+            const fecha = new Date();
+            var idfecha = formatoFecha(fecha, "yy-mm-dd");
+            return idfecha;
+        }
+
+        function formatoFecha(fecha, formato) {
+            const map = {
+                dd: fecha.getDate(),
+                mm: fecha.getMonth() + 1,
+                yy: fecha.getFullYear().toString().slice(-2),
+                yyyy: fecha.getFullYear()
+        }
+
+        return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
+        }
+
+        function GetIdUser(){
+            let idusuario = <?php echo $_SESSION['iduser']; ?>;
+            return idusuario;
+        }
+
+        function Vitacora(modulo, descripcion, usuarioResponsable, accion, hora, fecha){
+            $.post("../controllers/Vitacora/InsertarItemVitacoraController.php",
+            {"modulo":modulo,"descripcion":descripcion, "usuarioResponsable":usuarioResponsable, "accion":accion, "hora":hora, "fecha":fecha}, 
+            function(data)
+            {
+                var resp = JSON.parse(data);
+                console.log(resp);
+
+            });
+
+        }
 
         function Validar(error) {
             //alert(error);

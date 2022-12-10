@@ -205,6 +205,7 @@ if(isset($_SESSION['Rol'])){
   <script type="text/javascript">
 
   function ModificarEmpleado() {
+    Vitacora(3, "EL USUARIO ACTUALIZO UN EMPLEADO", GetIdUser(), 2, hora(), fecha());
     var idempleados = document.getElementById("idempleados").value;
     var nombre = document.getElementById("nombre").value;
     var apellido = document.getElementById("apellido").value;
